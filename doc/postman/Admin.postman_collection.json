@@ -1,0 +1,4954 @@
+{
+	"info": {
+		"_postman_id": "1155e07a-ebfa-4a75-931e-4936882ad6d6",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "getUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/auth/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCurrentUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"org1\",\r\n    \"firstName\":\"org1\",\r\n    \"lastName\":\"org1\",\r\n    \"oldPassword\":\"password2\",\r\n    \"password\":\"password1\",\r\n    \"confirmPassword\":\"password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/auth/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEnabledFeatures",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/auth/features",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"auth",
+								"features"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "log",
+			"item": [
+				{
+					"name": "getAuditLogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\": \"all\",\r\n    \"from\": \"0\",\r\n    \"size\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/audit",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"audit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCrsRule",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/config/rule/crsrule/901",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"config",
+								"rule",
+								"crsrule",
+								"901"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAuditLog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/audit/62a2dce257e10f09270019a0",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"audit",
+								"62a2dce257e10f09270019a0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafEventLogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"site_id\": \"all\",\r\n  \"time_range\": {\r\n    \"period\": \"1d\"\r\n  },\r\n  \"count\": 5,\r\n  \"from\": 0,\r\n  \"conditions\": [\r\n    {\r\n      \"key\": \"ua\",\r\n      \"value\": \"Mozilla/5.0 Windows NT Win64 x64 rv Gecko/20100101 Firefox/96\",\r\n      \"condition\": \"eq\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/waf_event",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"waf_event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafEventLog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"count\":1\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/waf_event/GBL3yYMBv4vDmL_jGbwc",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"waf_event",
+								"GBL3yYMBv4vDmL_jGbwc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBotEventLogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"site_id\": \"all\",\r\n  \"time_range\": {\r\n    \"period\": \"1d\"\r\n  },\r\n  \"count\": 5,\r\n  \"from\": 0\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/bot_event",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"bot_event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBotEventLog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"count\":1\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/bot_event/xG8hboMBM1cnvTK5CJlB",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"bot_event",
+								"xG8hboMBM1cnvTK5CJlB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRlEventLogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"site_id\": \"all\",\r\n  \"time_range\": {\r\n    \"period\": \"1d\"\r\n  },\r\n  \"count\": 5,\r\n  \"from\": 0\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/rl_event",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"rl_event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRlEventLog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/rl_event/-xRJ64MBDHAooNGDTIY5",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"rl_event",
+								"-xRJ64MBDHAooNGDTIY5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafEventLogs2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"site_id\": \"all\",\r\n  \"time_range\": {\r\n    \"period\": \"1d\"\r\n  },\r\n  \"count\": 5,\r\n  \"from\": 0,\r\n  \"conditions\": [\r\n    {\r\n      \"key\": \"src_ip\",\r\n      \"values\": [\"45.126.3.252\", \"13.41.77.229\"]\r\n    },\r\n    {\r\n        \"key\":\"method\",\r\n        \"values\": [\"GET\"]\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/log/waf_event2",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"log",
+								"waf_event2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "log",
+					"item": [
+						{
+							"name": "enable_audit_req_body",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"req_body_enabled\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/log/{{site-uid}}/audit_log_config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"{{site-uid}}",
+										"audit_log_config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getExternalWebhook",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/log/external_webhook/config/3",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"external_webhook",
+										"config",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setExternalWebhook",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true,\r\n    \"url\": \"https://endpoint4.collection.sumologic.com/receiver/v1/http/ZaVnC4dhaV2c_1i6nHvV4EB7pYOdqUTM3vI1YKnL0dGRCH42dnuykQPnrWspAziQMqnI5MpyCyqutlFrilqY2JvW4YHKCfvaS_D4HSyJxQsmuIbSNeI20Q==\",\r\n    \"sites\": [\r\n        {\"site_id\": \"spaceigniter.com\", \"enable\": true}\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/log/external_webhook/config/3",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"external_webhook",
+										"config",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getExternalWebhooks",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/log/external_webhook/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"external_webhook",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "testExternalWebhook",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"url\": \"https://endpoint4.collection.sumologic.com/receiver/v1/http/ZaVnC4dhaV2c_1i6nHvV4EB7pYOdqUTM3vI1YKnL0dGRCH42dnuykQPnrWspAziQMqnI5MpyCyqutlFrilqY2JvW4YHKCfvaS_D4HSyJxQsmuIbSNeI20Q==\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/log/external_webhook/test/2",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"external_webhook",
+										"test",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "applyLogConfig",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/log/external_webhook/apply",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"log",
+										"external_webhook",
+										"apply"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "rule",
+					"item": [
+						{
+							"name": "getCrsRules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/crsrule",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"crsrule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCrsSecRule",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/crssecrule/400001",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"crssecrule",
+										"400001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createCustomRule",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\":\"test rule\",\r\n    \"action\" : 0,\r\n    \"conditions\": [\r\n        {\r\n            \"key\": [\"src_ip\"],\r\n            \"operator\": \"eq\",\r\n            \"value\": \"1.2.3.4\"\r\n        },\r\n        {\r\n            \"key\": [\"host_name\"],\r\n            \"operator\": \"beginsWith\",\r\n            \"value\": \"www.spaceigniter.\",\r\n            \"negative\": true\r\n        }\r\n    ]    \r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/custom",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"custom"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCustomRules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/custom",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"custom"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCustomRule",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"action\" : 1,\r\n    \"conditions\": [\r\n        {\r\n            \"key\": [\"src_ip\"],\r\n            \"transform\": [\"removeNulls\"],\r\n            \"operator\": \"eq\",\r\n            \"value\": \"1.2.3.4\"\r\n        },\r\n        {\r\n            \"key\": [\"host_name\"],\r\n            \"operator\": \"beginsWith\",\r\n            \"value\": \"www.spaceigniter.\",\r\n            \"negative\": true\r\n        },\r\n        {\r\n            \"key\": [\"query\"],\r\n            \"operator\": \"beginsWith\",\r\n            \"value\": \"test\",\r\n            \"negative\": true\r\n        }\r\n    ]   \r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/custom/400000",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"custom",
+										"400000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCustomRule",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/custom/400000",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"custom",
+										"400000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCustomRule",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/custom/400003",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"custom",
+										"400003"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCrsSecRules",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/crssecrules/410",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"crssecrules",
+										"410"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCrsRule",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/crsrule/941",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"crsrule",
+										"941"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getSdSigRules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/sd_sig_rule",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"sd_sig_rule"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllCrsSecRules",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/crssecrules",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"crssecrules"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllSdSecRules",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/rule/sdsecrules",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"rule",
+										"sdsecrules"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ssl",
+					"item": [
+						{
+							"name": "ssl_type",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ssl_type\": 0\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "https_redirect",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"https_redirect_enabled\":true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "www_redirect",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"www_redirect_enabled\": false\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auto_http_rewrite",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"http_rewrite_enabled\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "min_tls_version",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"min_tls_version\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getSslConfig",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "hsts",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hsts\": {\r\n        \"enabled\": false,\r\n        \"max_age\": 5,\r\n        \"include_sub_domains\": true,\r\n        \"preload\": false,\r\n        \"no_sniff_header\": false\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "generate_certs",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}/generate_certs",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}",
+										"generate_certs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload_certs",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"certs\": {\r\n        \"fullchain\":\"-----BEGIN CERTIFICATE-----\\nMIIGejCCBGKgAwIBAgIRALQ+6poNknyUXEbf5JMkWOYwDQYJKoZIhvcNAQEMBQAw\\nSzELMAkGA1UEBhMCQVQxEDAOBgNVBAoTB1plcm9TU0wxKjAoBgNVBAMTIVplcm9T\\nU0wgUlNBIERvbWFpbiBTZWN1cmUgU2l0ZSBDQTAeFw0yMjA1MzAwMDAwMDBaFw0y\\nMjA4MjgyMzU5NTlaMBkxFzAVBgNVBAMMDiouZXZlcnBhZ2UuYXBwMIIBIjANBgkq\\nhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA45pVs+DWkiBhRloYGHLYlsgIe7lG7Uf9\\nIx5HWiS+WjlKFLbbxUho2ZtQT5iSwJXcqJF2WXCYifDeVAQvFtmDbGlXzOmPkeT5\\nEY6sivdofAzS+JyzBuFMzjSOkLNQTpPh5j4yc+GPtVM3PuVhTpNd8yvEMHpFEejT\\nDJC5so+92xZ12Z6xOsLDakAsQYp5oWPN6Vc3TEwmW8lreOvwovgjPh2WUTHX5zZ8\\nXRuvGCjCV4Fnh/5JT/jCcdHq4InU795uD5wlF997Rt+MwE5HSDxpLpyU7p6TxbXO\\nlXQ4ByMNwHfuSzIyB2jFnz9isnGkPNm5DSb7GwXjsE/SxMjjBj9LWwIDAQABo4IC\\niTCCAoUwHwYDVR0jBBgwFoAUyNl4aKLZGWjVPXLeXwo+3LWGhqYwHQYDVR0OBBYE\\nFLlxPdKFji9DUkxcCOVePY5jzppHMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8E\\nAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBJBgNVHSAEQjBAMDQG\\nCysGAQQBsjEBAgJOMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20v\\nQ1BTMAgGBmeBDAECATCBiAYIKwYBBQUHAQEEfDB6MEsGCCsGAQUFBzAChj9odHRw\\nOi8vemVyb3NzbC5jcnQuc2VjdGlnby5jb20vWmVyb1NTTFJTQURvbWFpblNlY3Vy\\nZVNpdGVDQS5jcnQwKwYIKwYBBQUHMAGGH2h0dHA6Ly96ZXJvc3NsLm9jc3Auc2Vj\\ndGlnby5jb20wggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgBGpVXrdfqRIDC1oolp\\n9PN9ESxBdL79SbiFq/L8cP5tRwAAAYEV9cxTAAAEAwBHMEUCIHATKH6OJjSrz5qI\\nE+EuUEe0NosOa2RjnbUXCTTC0qt4AiEAg7JzLrVq7lGozzqn9iXQbsB60Y/eB0Uj\\n/1zJnHz1oP4AdwBByMqx3yJGShDGoToJQodeTjGLGwPr60vHaPCQYpYG9gAAAYEV\\n9cxQAAAEAwBIMEYCIQCCm0cjQacfepSIs7kVlXwpGoNws4pK1mxufdxhvzTcewIh\\nAPLDM37CFLO/TjTg88tE8+qeHz0Zwi4hdfMmkMOFe4IxMCcGA1UdEQQgMB6CDiou\\nZXZlcnBhZ2UuYXBwggxldmVycGFnZS5hcHAwDQYJKoZIhvcNAQEMBQADggIBAF20\\nv7PCjWHJEuGE1MV4pNBuTpWykjgzpchJ274lisAWi/DwEI8qHjoBNA9K1hYHmkdm\\nc11q5W8D42DLrhKj6/9NVOZUenVAy7YdAUEaEYjmk2pItuVJn0LRRIhfUJVptITo\\nF5+VI0kblAwwd4Y46qvnRgXBViJ+5o8nom2leFFazqQmb2nHVg+Cn5r6nRSDva64\\nhDLWXNSnxKjASPOQWkfScE/cu8zMllEPJRqAT1KZf5EAT/w9m9hufhbsL80GRicF\\nlAswNN0uSHpIcbpXgZ16TcXHBgrRnGSwNIVL4xD223k2QFOC6yjad8mNNijf4pBZ\\nLW0v+UL/jhSBHdVksiRpga4gtTwiPFtsEFpDoITCN8ED46diHTn7937YEOcJdC/C\\nmWGveNK4kPPVMR3yXL2CHCDPbVHa2H5tcnTCAVHxoCR5V1PzovpSRRhuEBBxJcl0\\nrWPnlc1C5Efpgz7M+1zGlSnlVtS2inGflTA4Kt/wb33DB3bnbiSihSHv4UhwkHxO\\nrr/Mk+pELkBpF5qoA3CaeeimSdox3/mgwyhH4SQ5SS1qWo60I1G24p2w26jn9qxa\\nZnB1Bj9l5Q4CgrwDb8hqTGb2rm1NTaiN8W3f91o/5/xYvSyRos6l+0W8gGQ8Cjue\\ndQhrqC8U3FkmX9ds26pU5VEbnuBQIoH4xBbq+Ur9\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\nMIIG1TCCBL2gAwIBAgIQbFWr29AHksedBwzYEZ7WvzANBgkqhkiG9w0BAQwFADCB\\niDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0pl\\ncnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNV\\nBAMTJVVTRVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMjAw\\nMTMwMDAwMDAwWhcNMzAwMTI5MjM1OTU5WjBLMQswCQYDVQQGEwJBVDEQMA4GA1UE\\nChMHWmVyb1NTTDEqMCgGA1UEAxMhWmVyb1NTTCBSU0EgRG9tYWluIFNlY3VyZSBT\\naXRlIENBMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAhmlzfqO1Mdgj\\n4W3dpBPTVBX1AuvcAyG1fl0dUnw/MeueCWzRWTheZ35LVo91kLI3DDVaZKW+TBAs\\nJBjEbYmMwcWSTWYCg5334SF0+ctDAsFxsX+rTDh9kSrG/4mp6OShubLaEIUJiZo4\\nt873TuSd0Wj5DWt3DtpAG8T35l/v+xrN8ub8PSSoX5Vkgw+jWf4KQtNvUFLDq8mF\\nWhUnPL6jHAADXpvs4lTNYwOtx9yQtbpxwSt7QJY1+ICrmRJB6BuKRt/jfDJF9Jsc\\nRQVlHIxQdKAJl7oaVnXgDkqtk2qddd3kCDXd74gv813G91z7CjsGyJ93oJIlNS3U\\ngFbD6V54JMgZ3rSmotYbz98oZxX7MKbtCm1aJ/q+hTv2YK1yMxrnfcieKmOYBbFD\\nhnW5O6RMA703dBK92j6XRN2EttLkQuujZgy+jXRKtaWMIlkNkWJmOiHmErQngHvt\\niNkIcjJumq1ddFX4iaTI40a6zgvIBtxFeDs2RfcaH73er7ctNUUqgQT5rFgJhMmF\\nx76rQgB5OZUkodb5k2ex7P+Gu4J86bS15094UuYcV09hVeknmTh5Ex9CBKipLS2W\\n2wKBakf+aVYnNCU6S0nASqt2xrZpGC1v7v6DhuepyyJtn3qSV2PoBiU5Sql+aARp\\nwUibQMGm44gjyNDqDlVp+ShLQlUH9x8CAwEAAaOCAXUwggFxMB8GA1UdIwQYMBaA\\nFFN5v1qqK0rPVIDh2JvAnfKyA2bLMB0GA1UdDgQWBBTI2XhootkZaNU9ct5fCj7c\\ntYaGpjAOBgNVHQ8BAf8EBAMCAYYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHSUE\\nFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwIgYDVR0gBBswGTANBgsrBgEEAbIxAQIC\\nTjAIBgZngQwBAgEwUAYDVR0fBEkwRzBFoEOgQYY/aHR0cDovL2NybC51c2VydHJ1\\nc3QuY29tL1VTRVJUcnVzdFJTQUNlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMHYG\\nCCsGAQUFBwEBBGowaDA/BggrBgEFBQcwAoYzaHR0cDovL2NydC51c2VydHJ1c3Qu\\nY29tL1VTRVJUcnVzdFJTQUFkZFRydXN0Q0EuY3J0MCUGCCsGAQUFBzABhhlodHRw\\nOi8vb2NzcC51c2VydHJ1c3QuY29tMA0GCSqGSIb3DQEBDAUAA4ICAQAVDwoIzQDV\\nercT0eYqZjBNJ8VNWwVFlQOtZERqn5iWnEVaLZZdzxlbvz2Fx0ExUNuUEgYkIVM4\\nYocKkCQ7hO5noicoq/DrEYH5IuNcuW1I8JJZ9DLuB1fYvIHlZ2JG46iNbVKA3ygA\\nEz86RvDQlt2C494qqPVItRjrz9YlJEGT0DrttyApq0YLFDzf+Z1pkMhh7c+7fXeJ\\nqmIhfJpduKc8HEQkYQQShen426S3H0JrIAbKcBCiyYFuOhfyvuwVCFDfFvrjADjd\\n4jX1uQXd161IyFRbm89s2Oj5oU1wDYz5sx+hoCuh6lSs+/uPuWomIq3y1GDFNafW\\n+LsHBU16lQo5Q2yh25laQsKRgyPmMpHJ98edm6y2sHUabASmRHxvGiuwwE25aDU0\\n2SAeepyImJ2CzB80YG7WxlynHqNhpE7xfC7PzQlLgmfEHdU+tHFeQazRQnrFkW2W\\nkqRGIq7cKRnyypvjPMkjeiV9lRdAM9fSJvsB3svUuu1coIG1xxI1yegoGM4r5QP4\\nRGIVvYaiI76C0djoSbQ/dkIUUXQuB8AL5jyH34g3BZaaXyvpmnV4ilppMXVAnAYG\\nON51WhJ6W0xNdNJwzYASZYH+tmCWI+N60Gv2NNMGHwMZ7e9bXgzUCZH5FaBFDGR5\\nS9VWqHB73Q+OyIVvIbKYcSc2w/aSuFKGSA==\\n-----END CERTIFICATE-----\\n\",\r\n        \"privkey\": \"-----BEGIN PRIVATE KEY-----\\nMIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQDjmlWz4NaSIGFG\\nWhgYctiWyAh7uUbtR/0jHkdaJL5aOUoUttvFSGjZm1BPmJLAldyokXZZcJiJ8N5U\\nBC8W2YNsaVfM6Y+R5PkRjqyK92h8DNL4nLMG4UzONI6Qs1BOk+HmPjJz4Y+1Uzc+\\n5WFOk13zK8QwekUR6NMMkLmyj73bFnXZnrE6wsNqQCxBinmhY83pVzdMTCZbyWt4\\n6/Ci+CM+HZZRMdfnNnxdG68YKMJXgWeH/klP+MJx0ergidTv3m4PnCUX33tG34zA\\nTkdIPGkunJTunpPFtc6VdDgHIw3Ad+5LMjIHaMWfP2KycaQ82bkNJvsbBeOwT9LE\\nyOMGP0tbAgMBAAECggEBAN9FrUESFSuv+/zpsK17LCFuBXRporxuXFKxB0nUta8I\\neDWt1BXKHKErjTMn9v5ZhOcQG0tN+zWGRnOgzxjZM+WLyYfIrwBt4C9rCLQiVCss\\n4WDlR3I+XfwC7r/gR61twLL+3Lt00GcORSm8FyLfydAcZQ8xQsR442B2MNSL0bEy\\nk75rfIUeEAVUmCzcZs2AS2GTBrnlHslCkfCdRVb8LGUlU9x/CGWkGKKE3hgTfNjx\\nm/OLEdx5UI3mAu68xP1uaj5Lvpv+P2dDR+rduWBuYaVnhMFxVELdPlLnSx9L1oEx\\nrJmDz546OjTOgi1brXGfC7vb+GLX5NzcrhQZ25XoqwECgYEA8ZGsz4FrudarIehN\\ngZ+B2vNXmSP5If53k5DgaP3MboA0dUO4WsnvAC97LX3X8veJ7T/4vltCucm+sqYj\\n0GN07TSZ7PAbFfNMjg79cJlzhjeMrh2H+eCquZUggD8wpYsTWhwb6L3nXGTiNH+5\\nHiJRzsP8hYXnwa8oeqaBmTD+6cECgYEA8TMTElNJv8Lq0FFV7dRxsbaObO3MUA1T\\nIwBcrKL1bSxAdRarWORNrg3D7WP+138QYJPDKnuddgcxnVXBd+3KDRjhX2Dvyyeu\\nrkO1uXhyqTYt8N0GnmbJDnRQosEDtJou93MKn2KFUdFjiCCOQZOzLX9ksMJT5fxG\\nDKAPBELdpBsCgYEApjKkY0tWc1AXA0gQ8wpry9i5vtm6EMJDQJpfWryqhqfb74W8\\n83GU5lrEc2LuTPIzya/Gkii1ep8rfTvCzh9vFben4xS6fdqbI+16PprEmWXkevJE\\nWA1TSEUqTDGtZWeO0+Mc7H6jC7U40AfDs9DG2euK885RybaZsfCWn2/PIcECgYEA\\no24OAB67G9oArQJPjQSjvNyLiLdf9uXwbQjzwm3wifav/iZMF8Ep+UOOfC2DIZUR\\nDb9RQFneCXk6XvcaTh6rB1DSdIQENs0+iQmL+o3oc0soucmpkG7o0IhzkrPhxN+r\\n7zLeAb0JxLRyEmystzZS9AMbwMELhAv5kthpFGQSNf0CgYEAhkNb1BABOpxK3kMb\\nzBUommNB/PzU+SMz0DriU5aBeKo6FsLHSHie+Wz2QTjVtRsVT4kjnleONu5PmVFa\\nbuTeohdGxAJVwfOFa5My+gfALGjF2SvHquYTammzKQvCj767wbu8qiCnMOb1eNlV\\n8oPwKzQUMfHj+Y0UD06OnvEDAvQ=\\n-----END PRIVATE KEY-----\\n\"\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify_domains",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cert_id\": \"789d0e0d27e2500c11b8bb26c4696aae\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}/verify_domains",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}",
+										"verify_domains"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "generate_sg_certs",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"subdomains\": []\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}/generate_sg_certs",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}",
+										"generate_sg_certs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_sg_certs",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/ssl/{{site-uid}}/sg_certs",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ssl",
+										"{{site-uid}}",
+										"sg_certs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "waf",
+					"item": [
+						{
+							"name": "enable_signature_module",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"signature_module_active\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable_mlfwaf_module",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mlfwaf_module_active\": false\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable_crs_rule",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}/crs_rule/941",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}",
+										"crs_rule",
+										"941"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable_crs_sec_rule",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true,\r\n    \"rule_id\":\"941\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}/crs_sec_rule/941110",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}",
+										"crs_sec_rule",
+										"941110"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set_paranoia_level",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paranoia_level\": 2\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "select_waf_action_sig",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"waf_action_sig\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "select_signature_waf_level",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"signature_waf_level\": 0\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set_block_page",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"block_page\": {\r\n        \"waf\": {\r\n            \"url\": \"https://www.google.com\",\r\n            \"enabled\": false\r\n        },\r\n        \"location\": {\r\n            \"url\": \"https://www.baidu.com\",\r\n            \"enabled\": true\r\n        },\r\n        \"interrupt\": {\r\n            \"url\": \"https://yahoo.com\",\r\n            \"enabled\": true\r\n        }\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getWafConfig",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "anomaly_score",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"anomaly_scoring\": {\r\n        \"enable\": true,\r\n        \"inbound_threshold\": 5,\r\n        \"outbound_threshold\": 5,\r\n        \"early_block\": true\r\n    }\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCrsRuleConfig",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}/crs_rule/941",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}",
+										"crs_rule",
+										"941"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set_mlfwaf_sensitivity",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mlfwaf_sensitivity\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable_waf",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable_sd_sig_module",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sd_sig_module_active\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "select_waf_action_ml",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"waf_action_ml\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "select_waf_action_sd_sig",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"waf_action_sd_sig\": 1\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/waf/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"waf",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "exception",
+					"item": [
+						{
+							"name": "createException",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"skip_rule_type\": 1,\r\n    \"skip_secrule_ids\": [\r\n        \"942140\",\r\n        \"941110\"\r\n    ],\r\n    \"conditions\": [\r\n        [\r\n            {\r\n                \"key\": \"bot_score\",\r\n                \"value\": \"100\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"method\",\r\n                \"value\": \"POST\",\r\n                \"condition\": \"ncont\"\r\n            }\r\n        ],\r\n        [\r\n            {\r\n                \"key\": \"src_ip\",\r\n                \"value\": \"1.1.1.4\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"host_name\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            }\r\n        ]\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteException",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"exception_id\":[\"6399f2d0049048cdb6d41b84\"]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getExceptions",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"site_id\":\"spaceigniter.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateException",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}/639a702e289c21cd6a1fe0ee",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}",
+										"639a702e289c21cd6a1fe0ee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getException",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"site_id\":\"spaceigniter.com\",\r\n    \"exception_id\": \"62a925b3b84e4e56d347310f\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "saveExceptionsOrder",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"exception_ids\": [\"639a702e289c21cd6a1fe0ee\"]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/exception/{{site-uid}}/set_order",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"exception",
+										"{{site-uid}}",
+										"set_order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "fw",
+					"item": [
+						{
+							"name": "createFwRule",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conditions\": [\r\n        [\r\n            {\r\n                \"key\": \"country\",\r\n                \"value\": \"US\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"city\",\r\n                \"value\": \"New York\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"method\",\r\n                \"value\": \"POST\",\r\n                \"condition\": \"ncont\"\r\n            }\r\n        ],\r\n        [\r\n            {\r\n                \"key\": \"src_ip\",\r\n                \"value\": \"1.1.1.4\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"host_name\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            }\r\n        ]\r\n    ],\r\n    \"action\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFwRules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFwRule",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}/639a88e96f2265384496b9c5",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}",
+										"639a88e96f2265384496b9c5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateFwRule",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true,\r\n    \"name\": \"Fw Rule 2\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}/639a88e96f2265384496b9c5",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}",
+										"639a88e96f2265384496b9c5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteFwRule",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fw_rule_id\":\"639a88e96f2265384496b9c5\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "saveFwRulesOrder",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fw_rule_ids\": [\"639a88e96f2265384496b9c5\" ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/fw/{{site-uid}}/set_order",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"fw",
+										"{{site-uid}}",
+										"set_order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ratelimit",
+					"item": [
+						{
+							"name": "createRateLimitRule",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conditions\": [\r\n        [\r\n            {\r\n                \"key\": \"country\",\r\n                \"value\": \"US\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"city\",\r\n                \"value\": \"NewYork\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"method\",\r\n                \"value\": \"POST\",\r\n                \"condition\": \"ncont\"\r\n            }\r\n        ],\r\n        [\r\n            {\r\n                \"key\": \"src_ip\",\r\n                \"value\": \"1.1.1.4\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"host_name\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            }\r\n        ]\r\n    ],\r\n    \"action\": 3,\r\n    \"mitigation_timeout\": 600,\r\n    \"requests_per_period\": 1,\r\n    \"period\": 60,\r\n    \"characteristics\": [{\"key\": \"ip\"}]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRateLimitRules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRateLimitRule",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}/639a8b173b491dde3bfac07f",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}",
+										"639a8b173b491dde3bfac07f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateRateLimitRule",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true,\r\n    \"name\": \"Rate Limit Rule 2\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}/639a8964e7d4517efe140ff8",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}",
+										"639a8964e7d4517efe140ff8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRateLimitRule",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ratelimit_rule_id\":\"639a8964e7d4517efe140ff8\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "saveRateLimitRulesOrder",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ratelimit_rule_ids\": [\"639a8964e7d4517efe140ff8\" ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ratelimit/{{site-uid}}/set_order",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ratelimit",
+										"{{site-uid}}",
+										"set_order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "bot",
+					"item": [
+						{
+							"name": "getBmConfig",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enableBm",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"enabled\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setBotAction",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"good_bot_action\": 3,\r\n    \"bad_bot_action\": 4\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createBotException",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"exception1\",\r\n    \"conditions\": [\r\n        [\r\n            {\r\n                \"key\": \"country\",\r\n                \"value\": \"US\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"city\",\r\n                \"value\": \"NewYork\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"method\",\r\n                \"value\": \"POST\",\r\n                \"condition\": \"ncont\"\r\n            }\r\n        ],\r\n        [\r\n            {\r\n                \"key\": \"query\",\r\n                \"value\": \"1.1.1.4\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"host_name\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"ja3_fingerprint\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            }\r\n        ]\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getBotExceptions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getBotException",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception/639ada1ca3b1858e0e05c550",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception",
+										"639ada1ca3b1858e0e05c550"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateBotException",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test1\",\r\n    \"enabled\": true,\r\n    \"conditions\": [\r\n        [\r\n            {\r\n                \"key\": \"country\",\r\n                \"value\": \"US\",\r\n                \"condition\": \"eq\"\r\n            },\r\n            {\r\n                \"key\": \"city\",\r\n                \"value\": \"NewYork\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"method\",\r\n                \"value\": \"POST\",\r\n                \"condition\": \"ncont\"\r\n            }\r\n        ],\r\n        [\r\n            {\r\n                \"key\": \"query\",\r\n                \"value\": \"1.1.1.4\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"host_name\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            },\r\n            {\r\n                \"key\": \"ja3_fingerprint\",\r\n                \"value\": \"spaceigniter.com\",\r\n                \"condition\": \"ne\"\r\n            }\r\n        ]\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception/639ada1ca3b1858e0e05c550",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception",
+										"639ada1ca3b1858e0e05c550"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteBotException",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bot_exception_id\": \"639ada1ca3b1858e0e05c550\"\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setBotExceptionsOrder",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bot_exception_ids\": [\"639ada1ca3b1858e0e05c550\"]\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/bot/{{site-uid}}/exception/set_order",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"bot",
+										"{{site-uid}}",
+										"exception",
+										"set_order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ddos",
+					"item": [
+						{
+							"name": "getDdosConfig",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{user-api-url}}/config/ddos/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ddos",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setDdosSensitivity",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sensitivity\": 3\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ddos/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ddos",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setDdosBrowserIntegrity",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"browser_integrity\": true\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ddos/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ddos",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setDdosTimeout",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"timeout\": 60\r\n}"
+								},
+								"url": {
+									"raw": "{{user-api-url}}/config/ddos/{{site-uid}}/config",
+									"host": [
+										"{{user-api-url}}"
+									],
+									"path": [
+										"config",
+										"ddos",
+										"{{site-uid}}",
+										"config"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "paywall",
+			"item": [
+				{
+					"name": "getConfig",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/paywall/config",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createStripeCustomer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/paywall/customer",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieveStripeCustomer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/customer",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieveStripePaymentMethod",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/payment-method",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"payment-method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStripePaymentMethod",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentMethodId\": \"pm_1LvurjL1SD32RD2brBDr9zwQ\"\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/payment-method",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"payment-method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createStripeSubscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentMethodId\": \"pm_1LBTxAL1SD32RD2b3t5V47Yx\",\r\n    \"plan\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/subscription",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelStripeSubscription",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cancelled\": true\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/subscription",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reactivate-subscription",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cancelled\": false\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/subscription",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieveStripeSubscription",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/subscription",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-subscription",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPlan\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/paywall/subscription",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPriceForPlan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/paywall/price?currency=HKD&plan=1",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"paywall",
+								"price"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "HKD"
+								},
+								{
+									"key": "plan",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "site",
+			"item": [
+				{
+					"name": "createSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"talkingparrot.ai\",\r\n    \"site_name\":\"Space Igniter\",\r\n    \"site_addr\":\"8.8.8.8\",\r\n    \"subdomains\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/site",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSites",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/site",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_name\":\"test1\",\r\n    \"site_addr\":\"127.0.0.1\",\r\n    \"subdomains\":[{\"name\": \"test11.com\", \"enabled\": true, \"addr\": \"1.2.3.4\"}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/site/639896c1b0e22db45dafe3fc",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"639896c1b0e22db45dafe3fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"talkingparrot.ai\",\r\n    \"deleted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/site/bulkDelete",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"bulkDelete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSiteByUid",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/site/6398ae4248d2daede02b05e7",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"6398ae4248d2daede02b05e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "applySiteConfig",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"spaceigniter.com\",\r\n    \"action\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/site/applyConfig",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"applyConfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBasicSites",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/site/basis",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"basis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBasicSites",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/site/basis_all",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"basis_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/site?site_id={{site-id}}",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site"
+							],
+							"query": [
+								{
+									"key": "site_id",
+									"value": "{{site-id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "onCreate",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"spaceigniter.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/site/onCreate",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"site",
+								"onCreate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stats",
+			"item": [
+				{
+					"name": "getTrafficStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-06-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/traffic",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"traffic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDetectStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-12T00:00:00\"\r\n    },\r\n    \"waf_type\":-1\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/detection",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"detection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTotalStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"period\": \"1d\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/basis",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"basis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRegionalDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-06-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/regional_detection",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"regional_detection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRegionalTrafficStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/regional_traffic",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"regional_traffic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopRegionalTrafficStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_region_traffic",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_region_traffic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopRegionalDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_region_detection",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_region_detection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopSourceDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_source_detection",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_source_detection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopUaDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_ua",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_ua"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopPathDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_path",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_path"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpMethodStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-04-01T00:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_method",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBasicWafStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"period\": \"7d\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/basis_waf",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"basis_waf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopDetectionTypeStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"period\": \"1M\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_detection_type",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_detection_type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpResCodeDetectionStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-11T00:00:00\",\r\n        \"to\": \"2022-10-13T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/stats/top_res_code_detection",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"stats",
+								"top_res_code_detection"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/users",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"test53\",\r\n    \"firstName\":\"te\",\r\n    \"lastName\":\"st53\",\r\n    \"email\":\"test53@test.com\",\r\n    \"password\":\"1q2ws#EDC\",\r\n    \"confirmPassword\":\"1q2ws#EDC\",\r\n    \"role\":3,\r\n    \"verify\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/users",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"1te\",\r\n    \"lastName\":\"1st31\",\r\n    \"email\":\"test31130@test.com\",\r\n    \"role\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/users/639848f568d851c0552a11d6",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users",
+								"639848f568d851c0552a11d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/users/626ff91a38e42a3f197ecda0",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users",
+								"626ff91a38e42a3f197ecda0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUsers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"639877cfc9cce15437ccb289\",\r\n    \"deleted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/users/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disableUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": [\"639848f568d851c0552a11d6\"],\r\n    \"enabled\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/users/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": [\"6398765bc9cce15437ccb0f6\"],\r\n    \"enabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/users/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "getNotifications4User",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/notification",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotification",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/notification/63430ce0fb1cd0fbe9684373",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"notification",
+								"63430ce0fb1cd0fbe9684373"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "markReadNotification",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/notification/mark_read/63430ce0fb1cd0fbe9684373",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"notification",
+								"mark_read",
+								"63430ce0fb1cd0fbe9684373"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "markReadAllNotifications",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user-api-url}}/notification/mark_read",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"notification",
+								"mark_read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "package",
+			"item": [
+				{
+					"name": "getCommonPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"publishable_key\": \"pk_test_51LAsinL1SD32RD2bUmk0gFzJNjDgWuIGQAcAfiiknYbjG73tnDgrWTK7ceoshk5UQFkbP5nAoycLllJP4NZgUg4k0064WYvwUq\",\r\n    \"secret_key\": \"sk_test_51LAsinL1SD32RD2b8eh3egCXC3LSk7X1SCeKAb2gutCSDEUDOwaXg9yzKuGn3ZhqG5YI9oIRySjGqGmVUpX4vYaF00xhjsgIgb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/package/common/2",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"package",
+								"common",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user-api-url}}/package/custom/",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"package",
+								"custom",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bot_stats",
+			"item": [
+				{
+					"name": "getTopRegionBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_region",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_region"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopSourceBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_source",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopPathBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-22T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_path",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_path"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopUaBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_ua",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_ua"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHostBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_host",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_host"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopJa3HashBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_ja3_hash",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_ja3_hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpMethodBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-23T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_method",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBotScoreStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-13T00:00:00\",\r\n        \"to\": \"2022-09-16T00:00:00\"\r\n    }\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/reqs_by_bot_score",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"reqs_by_bot_score"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBotScoreStatsTotal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-09-21T00:00:00\",\r\n        \"to\": \"2022-09-24T00:00:00\"\r\n    }\r\n\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/reqs_by_bot_score_total",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"reqs_by_bot_score_total"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-12T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/stats",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpResCodeBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-14T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_res_code",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_res_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopBotScoreBotStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-14T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_bot_score",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_bot_score"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rl_stats",
+			"item": [
+				{
+					"name": "getTopSourceRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_source",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopPathRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_path",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_path"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopUaRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_ua",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_ua"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHostRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_host",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_host"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopJa3HashRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_ja3_hash",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_ja3_hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpMethodRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/top_method",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"top_method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"{{site-id}}\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-12T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/rl_stats/stats",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"rl_stats",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTopHttpResCodeRlStats",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"all\",\r\n    \"time_range\": {\r\n        \"time_zone\": \"+01:00\",\r\n        \"from\": \"2022-10-10T00:00:00\",\r\n        \"to\": \"2022-10-20T00:00:00\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/bot_stats/top_res_code",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"bot_stats",
+								"top_res_code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "idp",
+			"item": [
+				{
+					"name": "getConnections",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/idp/saml",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"idp",
+								"saml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createConnection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test connection\",\r\n    \"options\": {\r\n        \"signInEndpoint\": \"https://\",\r\n        \"signingCert\": \"CERT_CONTENT\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/idp/saml",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"idp",
+								"saml"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getConnectionById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/idp/saml/123456789",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"idp",
+								"saml",
+								"123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateConnection",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"options\": {\r\n        \"signInEndpoint\": \"https://\",\r\n        \"signingCert\": \"CERT_CONTENT\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/idp/saml/123456789",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"idp",
+								"saml",
+								"123456789"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "organisation",
+			"item": [
+				{
+					"name": "getOrganisation",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{user-api-url}}/organisation",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"organisation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrganisation",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Organization of kosta arjen\"\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/organisation",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"organisation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "key",
+			"item": [
+				{
+					"name": "getKeys",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user-api-url}}/key",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"all\",\r\n    \"duration\": 7,\r\n    \"permissions\":[0,1,2,3,4,5,6,7,8,9,10,11,12]\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/key",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"all\",\r\n    \"duration\": 7,\r\n    \"permissions\":[0,1,2,3,4,5,6,7,8,9,10,11,12]\r\n}"
+						},
+						"url": {
+							"raw": "{{user-api-url}}/key/639b65b745844eb960652801",
+							"host": [
+								"{{user-api-url}}"
+							],
+							"path": [
+								"key",
+								"639b65b745844eb960652801"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer-token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user-api-url",
+			"value": "http://localhost:5000/api/user/v1",
+			"type": "default"
+		},
+		{
+			"key": "bearer-token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlpuRVJaM3ZiNUdCMjhKd2F1a0ZBYyJ9.eyJpc3MiOiJodHRwczovL2Rldi1sLTduMGZmcS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjM5NDQzZmFjZDljYzI5ZjM1MTViYWIzIiwiYXVkIjpbImh0dHBzOi8vZGV2LWwtN24wZmZxLnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtbC03bjBmZnEudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3MDkxNjA3NywiZXhwIjoxNjcwOTE5Njc3LCJhenAiOiJ3SnJPNmx0SlFvT1N4enpVeHlvYWJuaUZ0aHVoTG5KUyIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.Yg18HySXpAA7VyNYeIHKS9LkSKXl73m8pdi29id2LHuIx9Ff4HDWgsAbU5IAi3gOEPjT-5hUFWv8-aagmTaURpEeSCgQ6usWQImUEwMRoYIlyQH-OwfzYGz0vh7c4-Up552CphrCQW0SvRcaUJlHwRoHksiwx4gPTXe3UGg6BTnyX78W2MLTsBVDr1kLq11Lb68fK9q15nAG0mNxJK6EGIT2JNuXx38QIMq4V8VhYdfoedFoYnFlcpOk3bExXhflzosIUQKDqbuL44iG6TGLSpoddBnQxCYuV8HIvwQt2ugUot9WiCwOUg5t-fYHgWqRBrQ4Fng4_Zw93pfcBwMnlA",
+			"type": "default"
+		},
+		{
+			"key": "site-id",
+			"value": "spaceigniter.com",
+			"type": "default"
+		},
+		{
+			"key": "site-uid",
+			"value": "6398ae4248d2daede02b05e7",
+			"type": "default"
+		}
+	]
+}

@@ -1,0 +1,1040 @@
+{
+  "GET": {
+    "api": {
+      "user": {
+        "v1": {
+          "auth": {
+            "": "Get current user",
+            "features": "Get the features of the current user"
+          },
+          "notification": {
+            "": "Get all notifications",
+            ":noti_id": "Get a notification"
+          },
+          "users": {
+            "": "Get all users",
+            ":uid": "Get information of a user"
+          },
+          "organisation": {
+            "": "Get current organisation"
+          },
+          "site": {
+            "": "Get information of all sites or a specific site",
+            "basis": "Get list of active sites",
+            "basis_all": "Get list of all sites",
+            ":site_uid": "Get information of a site"
+          },
+          "config": {
+            "waf": {
+              ":site_uid": {
+                "": "Get WAF configuration",
+                "crs_rule": {
+                  ":rule_id": "Get a CRS rule"
+                }
+              }
+            },
+            "ssl": {
+              ":site_uid": {
+                "": "Get SSL Configuration",
+                "sg_certs": "Get a TLS certificate signed by SenseDefence"
+              }
+            },
+            "exception": {
+              ":site_uid": {
+                "": "Get list of WAF exceptions",
+                ":exception_id": "Get a WAF exception"
+              }
+            },
+            "fw": {
+              ":site_uid": {
+                "": "Get list of FW rules",
+                ":fw_rule_id": "Get a FW rule"
+              }
+            },
+            "ratelimit": {
+              ":site_uid": {
+                "": "Get list of rate limiting rules",
+                ":ratelimit_rule_id": "Get a rate limiting rule"
+              }
+            },
+            "log": {
+              "external_webhook": {
+                "config": {
+                  "": "Get external webhooks enabled status.",
+                  ":type": "Get external webhook configuration"
+                }
+              }
+            },
+            "rule": {
+              "crsrule": {
+                "": "Get all CRS rules",
+                ":rule_id": "Get a CrsRule"
+              },
+              "sd_sig_rule": {
+                "": "Get all Sense Defence signature rules"
+              },
+              "crssecrules": {
+                "": "Get an array of basic information of all CrsSecRules.",
+                ":rule_id": "Get an array of CrsSecRules contained by CrsRule."
+              },
+              "sdsecrules": {
+                "": "Get an array of basic information of all SD SecRules."
+              },
+              "crssecrule": {
+                ":sec_rule_id": "Get a CrsSecRule"
+              },
+              "custom": {
+                "": "Get all custom rules",
+                ":custom_rule_id": "Get a custom rule"
+              }
+            },
+            "bot": {
+              "license": "Get BM license status of the current organisation",
+              ":site_uid": {
+                "config": "Get the current bot management configuration",
+                "exception": {
+                  "": "Get list of bot exceptions",
+                  ":bot_exception_id": "Get a bot exception"
+                }
+              }
+            }
+          },
+          "stats": {},
+          "log": {
+            "waf_event": {
+              "": "Get WAF event logs by filter",
+              ":log_id": "Get a WAF event log"
+            },
+            "audit": {
+              "": "Get audit logs by filter",
+              ":audit_log_id": "Get a audit log"
+            },
+            "bot_event": {
+              ":bot_event_id": "Get a bot event log"
+            },
+            "rl_event": {
+              ":rl_event_id": "Get a rate limit event log"
+            }
+          },
+          "paywall": {
+            "config": "Get common Stripe configuration",
+            "price": "Get prices for subscriptions",
+            "customer": "Get Stripe customer information",
+            "payment-method": "Get payment method information",
+            "subscription": "Get Stripe subscription information"
+          },
+          "package": {
+            "common": {
+              ":plan": "Get a common package"
+            },
+            "custom": "Get enterprise package for an organisation"
+          },
+          "idp": {
+            "saml": {
+              "": "Get an array of SAML connections owned by current account",
+              ":connection_id": "Get a SAML connection"
+            }
+          },
+          "key": "Return API keys of the current user"
+        }
+      },
+      "admin": {
+        "organisation": {
+          "": "Get basic information of all organisation",
+          ":org_id": "Get an organisation"
+        },
+        "admins": {
+          "": "Get all administrators",
+          ":uid": "Get information of an administrator"
+        },
+        "waf": {
+          "point": {
+            "": "Get basic information of all WAF engines",
+            ":waf_id": "Get an WAF engine"
+          },
+          "certs": "Get certificates of WAF edges"
+        },
+        "edge": {
+          "point": {
+            "": "Get basic information of all RL-Engine nodes",
+            ":edge_id": "Get an RL-Engine node"
+          }
+        },
+        "bm_engine": {
+          "point": {
+            "": "Get basic information of all BM-Engine nodes",
+            ":node_id": "Get an BM-Engine node"
+          }
+        },
+        "ad_engine": {
+          "point": {
+            "": "Get basic information of all AD-Engine nodes",
+            ":node_id": "Get an AD-Engine node"
+          }
+        },
+        "es_engine": {
+          "point": {
+            "": "Get basic information of all ES-Engine nodes",
+            ":node_id": "Get an ES-Engine node"
+          }
+        },
+        "omb_service": {
+          "point": {
+            "": "Get basic information of all AD-Engine nodes",
+            ":node_id": "Get an AD-Engine node"
+          }
+        },
+        "region": {
+          "": "Get all WAF regions",
+          ":region_id": "Get a WAF region"
+        },
+        "health": {
+          "server": "Get health status of administration server",
+          "waf": {
+            ":waf_id": "Get health status of a WAF-Engine node"
+          },
+          "edge": {
+            ":edge_id": "Get health status of a RL-Engine node"
+          },
+          "bm_engine": {
+            ":node_id": "Get health status of a BM-Engine node"
+          },
+          "ad_engine": {
+            ":node_id": "Get health status of a AD-Engine node"
+          },
+          "es_engine": {
+            ":node_id": "Get health status of a ES-Engine node"
+          },
+          "omb_service": {
+            ":node_id": "Get health status of a OMB-Service node"
+          }
+        },
+        "feature": {
+          "": "Get all features",
+          ":feature_id": "Get a feature"
+        },
+        "package": {
+          "common": {
+            ":plan": "Get a common package"
+          },
+          "custom": {
+            ":org_id": "Get enterprise package for an organisation"
+          },
+          "bm": {
+            ":org_id": "Get bot management package for an organisation"
+          }
+        },
+        "payment": {
+          "stripe_api_key": {
+            "current": "Get the masked current Stripe API key"
+          },
+          "rate_limit_bill": {
+            "current": "Get the current rate limit billing configuration"
+          },
+          "pi": {
+            ":pi_id": "Get a payment intent details"
+          }
+        },
+        "zcrm": {
+          "api_config": {
+            "current": "Get the masked current Zoho CRM API config"
+          },
+          "product": {
+            "": "Get all of Zoho CRM Products",
+            ":id": "Get one Zoho CRM Product"
+          },
+          "account": {
+            ":org_id": "Get Zoho Account for an organisation"
+          },
+          "contact": {
+            ":org_id": "Get Zoho Contact for an organisation"
+          }
+        },
+        "ssl": {
+          "zerossl_api_key": {
+            "current": "Get the masked current ZeroSSL API key"
+          }
+        },
+        "api_key": {
+          "otx": {
+            "current": "Get the masked current OTX API key"
+          },
+          "abuseipdb": {
+            "current": "Get the masked current AbuseIPDB API key"
+          }
+        },
+        "captcha": {
+          "h_site_key": {
+            "current": "Get the masked current hCaptcha site key"
+          },
+          "h_secret_key": {
+            "current": "Get the masked current hCaptcha secret key"
+          },
+          "re_api_key": {
+            "current": {
+              ":type": "Get the masked current reCaptcha API key"
+            }
+          },
+          "block_page": {
+            ":type": "Get captcha block page"
+          },
+          "type": "Get active captcha type",
+          "expire_time": "Get captcha expire time",
+          "verify_url": "Get captcha verify url"
+        },
+        "bm": {
+          "aws_s3": {
+            "current": "Get the masked current AWS S3 bucket configuration"
+          }
+        },
+        "ad": {
+          "mitigation_timeout": "Get the current DDoS mitigation timeout",
+          "block_url": "Get the current DDoS block url"
+        },
+        "es": {
+          "api_key": {
+            "current": "Get the masked current Elastic Search API key"
+          },
+          "address": {
+            "current": "Get the masked current Elastic Search address"
+          },
+          "auth_info": {
+            "current": "Get the masked current Elastic Search authentication information"
+          },
+          "health": "Get health status of ES cluster",
+          "certs": "Get ES certificates"
+        },
+        "rule": {
+          "crsrule": "Get list of all CRS rules",
+          "sd_ai_rule": "Get list of all Sense Defence AI rules",
+          "sd_sig_rule": "Get list of all Sense Defence signature rules",
+          "custom": {
+            "": "Get array of all custom rules for global",
+            ":custom_rule_id": "Get a global custom rule"
+          },
+          "crssecrule": {
+            ":sec_rule_id": "Get a CRS sec rule"
+          }
+        },
+        "general": {
+          "email": {
+            "": "Get list of all email templates",
+            ":type": "Get an email template"
+          },
+          "invoice": {
+            "download": {
+              ":invoice_no": "Download an invoice"
+            },
+            ":invoice_no": "Get an invoice"
+          }
+        },
+        "notification": {
+          "": "Get all global notifications"
+        }
+      }
+    }
+  },
+  "POST": {
+    "api": {
+      "user": {
+        "v1": {
+          "users": {
+            "": "Create new account"
+          },
+          "idp": {
+            "saml": {
+              "": "Create a new SAML connection."
+            }
+          },
+          "site": {
+            "": "Create a new site",
+            "applyConfig": "Apply configuration to a site",
+            "onCreate": "Send email notifications for site creation success"
+          },
+          "config": {
+            "ssl": {
+              ":site_uid": {
+                "generate_certs": "Generate wildcard certificates",
+                "verify_domains": "Verify domains for wildcard certificates",
+                "generate_sg_certs": "Generate a free TLS certificate signed by SenseDefence"
+              }
+            },
+            "exception": {
+              ":site_uid": "Create a WAF exception"
+            },
+            "fw": {
+              ":site_uid": "Create a new FW rule"
+            },
+            "ratelimit": {
+              ":site_uid": "Create a new rate limiting rule"
+            },
+            "bot": {
+              ":site_uid": {
+                "exception": {
+                  "": "Create a new bot exception"
+                }
+              }
+            },
+            "log": {
+              "external_webhook": {
+                "test": {
+                  ":type": "Test the external webhook connection"
+                },
+                "apply": "Apply webhook settings to the WAF edges"
+              }
+            },
+            "rule": {
+              "custom": "Create a new custom rule"
+            }
+          },
+          "stats": {
+            "basis": "Get basic stats",
+            "basis_waf": "Get basic stats for WAF",
+            "traffic": "Get traffic stats by time",
+            "regional_traffic": "Get traffic stats by country",
+            "regional_detection": "Get WAF detection stats by country",
+            "detection": "Get WAF detection stats by time",
+            "top_region_traffic": "Get top traffic stats by country",
+            "top_region_detection": "Get top WAF detection stats by country",
+            "top_path": "Get top WAF detection stats by path",
+            "top_ua": "Get top traffic stats by user agent",
+            "top_detection_type": "Get top WAF detection stats by attack type",
+            "top_method": "Get top traffic stats by HTTP method",
+            "top_res_code_detection": "Get top WAF detection by HTTP response code",
+            "top_source_detection": "Get top WAF detection by source IP"
+          },
+          "bot_stats": {
+            "stats": "Get bot stats by time",
+            "top_region": "Get top bot stats by country",
+            "top_path": "Get top bot stats by path",
+            "top_ua": "Get top bot stats by user agent",
+            "top_source": "Get top bot by source IP",
+            "top_host": "Get top bot by host",
+            "top_ja3_hash": "Get top bot by JA3 hash",
+            "top_method": "Get top bot by HTTP method",
+            "top_res_code": "Get top bot by HTTP response code",
+            "top_bot_score": "Get top bot by bot score",
+            "reqs_by_bot_score": "Get date categorized statistics of requests by bot score",
+            "reqs_by_bot_score_total": "Get total statistics of requests by bot score"
+          },
+          "rl_stats": {
+            "stats": "Get Rate Limit event stats by time",
+            "top_region": "Get top Rate Limit event stats by country",
+            "top_path": "Get top Rate Limit event stats by path",
+            "top_ua": "Get top Rate Limit event stats by user agent",
+            "top_source": "Get top Rate Limit event by source IP",
+            "top_host": "Get top Rate Limit event by host",
+            "top_ja3_hash": "Get top Rate Limit event by JA3 hash",
+            "top_method": "Get top Rate Limit event by HTTP method",
+            "top_res_code": "Get top Rate Limit event by HTTP response code"
+          },
+          "log": {
+            "waf_event": "Get WAF events by filter",
+            "waf_event2": "Get WAF events by filter",
+            "audit": "Get audit logs by filter",
+            "bot_event": "Get bot event logs by filter",
+            "rl_event": "Get Rate Limit event logs by filter"
+          },
+          "paywall": {
+            "customer": "Create a new Stripe customer",
+            "subscription": "Create a new Stripe subscription"
+          },
+          "key": {
+            "": "Create a new API key of the current user"
+          }
+        }
+      },
+      "admin": {
+        "organisation": {
+          "get": "Get all organisations",
+          "": "Modify an existing organisation"
+        },
+        "user": {
+          "impersonate": "Impersonate an existing user",
+          "verify": "Verify a user manually",
+          "report": "Generate user report"
+        },
+        "admins": {
+          ":uid": "Modify an administrator"
+        },
+        "waf": {
+          "point": {
+            "": "Get all WAF engines",
+            ":waf_id": "Modify a WAF engine"
+          },
+          "enable_https": "Enable or disable HTTPS over all WAF edges",
+          "upload_certs": "Upload certificates for WAF edges manually",
+          "generate_certs": "Generate wildcard certificates for WAF edges",
+          "verify_domains": "Verify domains for wildcard certificates for WAF edges",
+          "generate_sg_certs": "Generate a free TLS certificate signed by SenseDefence for WAF edges",
+          "apply_ssl": "Apply SSL configurations to all WAF edges."
+        },
+        "edge": {
+          "point": {
+            "": "Get all RL-Engine nodes",
+            ":edge_id": "Modify a RL-Engine node"
+          }
+        },
+        "bm_engine": {
+          "point": {
+            "": "Get all BM-Engine nodes",
+            ":node_id": "Modify a BM-Engine node"
+          }
+        },
+        "ad_engine": {
+          "point": {
+            "": "Get all AD-Engine nodes",
+            ":node_id": "Modify a AD-Engine node"
+          }
+        },
+        "es_engine": {
+          "point": {
+            "": "Get all ES-Engine nodes",
+            ":node_id": "Modify a ES-Engine node"
+          }
+        },
+        "omb_service": {
+          "point": {
+            "": "Get all OMB-Service nodes",
+            ":node_id": "Modify a OMB-Service node"
+          }
+        },
+        "region": {
+          "": "Create a new WAF region",
+          "test": "Check health status of WAF region(s)"
+        },
+        "health": {
+          "waf": {
+            "stats": {
+              ":waf_id": "Return connection and bandwidth of a WAF-Engine node"
+            }
+          },
+          "edge": {
+            "stats": {
+              ":edge_id": "Return connection and bandwidth of a RL-Engine node"
+            }
+          },
+          "bm_engine": {
+            "stats": {
+              ":node_id": "Return connection and bandwidth of a BM-Engine node"
+            }
+          },
+          "ad_engine": {
+            "stats": {
+              ":node_id": "Return connection and bandwidth of a AD-Engine node"
+            }
+          },
+          "es_engine": {
+            "stats": {
+              ":node_id": "Return connection and bandwidth of a ES-Engine node"
+            }
+          },
+          "omb_service": {
+            "stats": {
+              ":node_id": "Return connection and bandwidth of a OMB-Service node"
+            }
+          }
+        },
+        "feature": {
+          ":feature_id": "Modify a feature"
+        },
+        "package": {
+          "common": {
+            "price": {
+              "history": "Get price history for common plans"
+            },
+            ":plan": "Modify the features or price of a common package"
+          },
+          "custom": {
+            ":org_id": "Modify enterprise package for an organisation"
+          },
+          "bm": {
+            ":org_id": "Modify bot management package for an organisation"
+          }
+        },
+        "payment": {
+          "stripe_api_key": {
+            "history": "Get history of Stripe API key"
+          },
+          "rate_limit_bill": {
+            "history": "Get history of rate limit billing configuration"
+          },
+          "custom": {
+            "history": {
+              ":org_id": "Get a manual payment history for enterprise plan of an organisation"
+            }
+          },
+          "bm": {
+            "history": {
+              ":org_id": "Get a Bot management payment history of an organisation"
+            }
+          },
+          "stripe": {
+            "history": {
+              ":org_id": "Get payment history of an organisation"
+            }
+          }
+        },
+        "zcrm": {
+          "api_config": {
+            "history": "Get history of Zoho CRM API config"
+          },
+          "product": {
+            ":id": "Update an existing Zoho CRM Product"
+          },
+          "account": {
+            ":org_id": "Update Zoho Account for an organisation"
+          },
+          "contact": {
+            ":org_id": "Update Zoho Contact for an organisation"
+          }
+        },
+        "ssl": {
+          "zerossl_api_key": {
+            "history": "Get history of ZeroSSL API keys"
+          },
+          "cert_provision": "Get status of SSL certificates"
+        },
+        "api_key": {
+          "otx": {
+            "history": "Get history of OTX API keys"
+          },
+          "abuseipdb": {
+            "history": "Get history of AbuseIPDB API keys"
+          }
+        },
+        "captcha": {
+          "h_site_key": {
+            "history": "Get history of hCaptcha site keys"
+          },
+          "h_secret_key": {
+            "history": "Get history of hCaptcha secret keys"
+          },
+          "re_api_key": {
+            "history": {
+              ":type": "Get history of reCaptcha API keys"
+            }
+          },
+          "block_page": {
+            ":type": "Create or modify captcha block page"
+          },
+          "type": "Set active captcha type",
+          "expire_time": "Set captcha expire time",
+          "verify_url": "Set captcha verify url"
+        },
+        "es": {
+          "api_key": {
+            "history": "Get history of Elastic Search API key"
+          },
+          "auth_info": {
+            "history": "Get history of Elastic Search authentication information"
+          },
+          "certs": "Upload a new ES certificates",
+          "apply": "Apply ES configuration to all nodes",
+          "api_console": "Simulate ES API Console"
+        },
+        "rule": {
+          "get_crs_rule": "Get a CRS rule information",
+          "enable_crs_rule": "Enable or disable SIG CrsRule globally",
+          "enable_crs_sec_rule": "Enable or disable SIG CrsSecRule globally",
+          "custom": {
+            ":custom_rule_id": "Modify a global custom rule"
+          },
+          "crssecrule": {
+            ":sec_rule_id": "Modify an existing CRS Sec rule"
+          }
+        },
+        "general": {
+          "email": {
+            ":type": "Create or modify an email template"
+          },
+          "invoice": {
+            "history": {
+              ":org_id": "Get invoice history of an organisation"
+            }
+          }
+        },
+        "notification": {
+          "": "Get array of global notifications",
+          ":noti_id": "Modify a global notification"
+        },
+        "bm": {
+          "license": "Get BM license status of organisations",
+          "aws_s3": {
+            "history": "Get history of AWS S3 bucket configuration masked",
+            "apply": "Apply AWS S3 bucket configuration to BM-Engines"
+          }
+        },
+        "ad": {
+          "mitigation_timeout": "Update DDoS mitigation timeout",
+          "block_url": "Update the DDoS block url",
+          "exception": {
+            "": "Modify an exisiting Anti DDoS exception.",
+            "get": "Get Anti DDoS exception of an organization."
+          },
+          "applyConfig": "Apply Anti DDoS configuration"
+        }
+      }
+    }
+  },
+  "PUT": {
+    "api": {
+      "user": {
+        "v1": {
+          "users": {
+            ":uid": "Modify a user"
+          },
+          "site": {
+            ":site_uid": "Modify a site"
+          },
+          "config": {
+            "log": {
+              "external_webhook": {
+                "config": {
+                  ":type": "Modify external webhook configuration"
+                }
+              }
+            }
+          },
+          "paywall": {
+            "subscription": "Update Stripe subscription",
+            "payment-method": "Create or update a Stripe payment method"
+          }
+        }
+      },
+      "admin": {
+        "organisation": { "": "Create a new organisation" },
+        "admins": { "": "Create a new administrator" },
+        "waf": {
+          "point": {
+            "": "Create a new WAF engine"
+          }
+        },
+        "edge": {
+          "point": {
+            "": "Create a new RL-Engine node"
+          }
+        },
+        "bm_engine": {
+          "point": {
+            "": "Create a new BM-Engine node"
+          }
+        },
+        "ad_engine": {
+          "point": {
+            "": "Create a new AD-Engine node"
+          }
+        },
+        "es_engine": {
+          "point": {
+            "": "Create a new ES-Engine node"
+          }
+        },
+        "omb_service": {
+          "point": {
+            "": "Create a new OMB-Service node"
+          }
+        },
+        "region": {
+          ":region_id": "Modify an existing WAF region"
+        },
+        "feature": {
+          "": "Create a new feature"
+        },
+        "package": {
+          "custom": {
+            ":org_id": "Create a new enterprise package for an organisation"
+          },
+          "common": {
+            "price": "Create a new price object for common plans"
+          },
+          "bm": {
+            "price": "Create a new bot management package for an organisation"
+          }
+        },
+        "payment": {
+          "stripe_api_key": "Update Stripe API key",
+          "rate_limit_bill": "Update rate limit billing configuration",
+          "custom": {
+            ":org_id": "Manually input payment for enterprise plan"
+          },
+          "bm": {
+            ":org_id": "Manually input payment for bot management"
+          }
+        },
+        "zcrm": {
+          "api_config": "Update Zoho CRM API config",
+          "product": "Create a new Zoho CRM Product",
+          "account": {
+            ":org_id": "Create a new Zoho Account for an organisation"
+          },
+          "contact": {
+            ":org_id": "Create a new Zoho Contact for an organisation"
+          },
+          "quote": {
+            ":org_id": "Create a new Zoho Quote for an organisation"
+          }
+        },
+        "ssl": {
+          "zerossl_api_key": "Update ZeroSSL API key"
+        },
+        "api_key": {
+          "otx": "Update OTX API key",
+          "abuseipdb": "Update AbuseIPDB API key"
+        },
+        "captcha": {
+          "h_site_key": "Update hCaptcha site key",
+          "h_secret_key": "Update hCaptcha secret key",
+          "re_api_key": {
+            ":type": "Update reCaptcha API key"
+          }
+        },
+        "es": {
+          "api_key": "Update Elastic Search API key",
+          "address": "Update Elastic Search cluster address",
+          "auth_info": "Update Elastic Search authentication information"
+        },
+        "rule": {
+          "custom": "Create a new global custom rule"
+        },
+        "notification": {
+          "": "Create a new global notification"
+        },
+        "bm": {
+          "aws_s3": "Update AWS S3 bucket configuration"
+        },
+        "ad": {
+          "exception": "Create an anti-DDoS exception."
+        }
+      }
+    }
+  },
+  "DELETE": {
+    "api": {
+      "user": {
+        "v1": {
+          "users": {
+            "": "Remove user(s)"
+          },
+          "site": {
+            "": "Remove site(s)"
+          },
+          "config": {
+            "exception": {
+              ":site_uid": "Delete a WAF exception"
+            },
+            "fw": {
+              ":site_uid": "Delete a FW rule"
+            },
+            "ratelimit": {
+              ":site_uid": "Delete a rate limiting rule"
+            },
+            "rule": {
+              "custom": {
+                ":custom_rule_id": "Delete a custom rule"
+              }
+            },
+            "bot": {
+              ":site_uid": {
+                "exception": "Delete a bot exception"
+              }
+            }
+          },
+          "paywall": {
+            "payment-method": "Delete payment method"
+          },
+          "idp": {
+            "saml": {
+              ":connection_id": "Delete a SAML connection"
+            }
+          }
+        }
+      },
+      "admin": {
+        "organisation": {
+          "": "Delete organisation(s)"
+        },
+        "admins": {
+          "": "Delete administrator(s)"
+        },
+        "waf": {
+          "point": {
+            ":waf_id": "Delete a WAF engine"
+          }
+        },
+        "edge": {
+          "point": {
+            ":edge_id": "Delete a RL-Engine node"
+          }
+        },
+        "bm_engine": {
+          "point": {
+            ":node_id": "Delete a BM-Engine node"
+          }
+        },
+        "es_engine": {
+          "point": {
+            ":node_id": "Delete a ES-Engine node"
+          }
+        },
+        "omb_service": {
+          "point": {
+            ":node_id": "Delete a OMB-Service node"
+          }
+        },
+        "region": {
+          ":region_id": "Remove a WAF region"
+        },
+        "feature": {
+          ":feature_id": "Delete a feature"
+        },
+        "custom": {
+          ":custom_rule_id": "Delete a global custom rule"
+        },
+        "data": {
+          "site": "Delete Elastic Search logs for a site"
+        },
+        "notification": {
+          ":noti_id": "Remove a new global notification"
+        },
+        "package": {
+          "bm": {
+            ":org_id": "Remove a bot management package for an organisation"
+          }
+        },
+        "ad": {
+          "exception": "Delete single or multiple Anti DDoS exceptions."
+        }
+      }
+    }
+  },
+  "PATCH": {
+    "api": {
+      "user": {
+        "v1": {
+          "auth": { "": "Update current user" },
+          "notification": {
+            "mark_read": {
+              ":noti_id": "Mark read for one notification",
+              "": "Mark all notifications as read"
+            }
+          },
+          "users": {
+            "": "Delete/Undelete/Disable/Enable users"
+          },
+          "organisation": {
+            "": "Modify current organisation"
+          },
+          "config": {
+            "waf": {
+              ":site_uid": {
+                "": "Modify WAF configuration",
+                "crs_rule": {
+                  ":rule_id": "Enable/Disable a CRS rule"
+                },
+                "crs_sec_rule": {
+                  ":sec_rule_id": "Enable/Disable a CRS Sec Rule"
+                }
+              }
+            },
+            "ssl": {
+              ":site_uid": "Modify SSL configuration"
+            },
+            "exception": {
+              ":site_uid": {
+                ":exception_id": "Modify a WAF exception",
+                "set_order": "Change order of exceptions"
+              }
+            },
+            "fw": {
+              ":site_uid": {
+                ":fw_rule_id": "Modify a FW rule",
+                "set_order": "Change order of FW rules"
+              }
+            },
+            "ratelimit": {
+              ":site_uid": {
+                ":ratelimit_rule_id": "Modify a rate limiting rule",
+                "set_order": "Change order of rate limiting rules"
+              }
+            },
+            "bot": {
+              ":site_uid": {
+                "config": "Modify the current bot management configuration",
+                "exception": {
+                  ":bot_exception_id": "Modify a bot exception",
+                  "set_order": "Change order of bot exceptions"
+                }
+              }
+            },
+            "log": {
+              ":site_uid": {
+                "audit_log_config": "Turn on/off logging of request body for WAF event log"
+              }
+            },
+            "rule": {
+              "custom": {
+                ":custom_rule_id": "Modify a custom rule"
+              }
+            }
+          },
+          "paywall": {
+            "subscription": "Cancel or Reactivate Stripe subscription"
+          },
+          "site": {
+            "bulkDelete": "Delete/Restore site(s)"
+          },
+          "idp": {
+            "saml": {
+              ":connection_id": "Update a SAML connection"
+            }
+          },
+          "key": {
+            ":key_id": "Update user's API key"
+          }
+        }
+      },
+      "admin": {
+        "admins": {
+          "": "Undelete deleted administrator(s)"
+        },
+        "waf": {
+          "point": {
+            ":waf_id": "UnDelete a WAF engine"
+          }
+        },
+        "edge": {
+          "point": {
+            ":edge_id": "UnDelete a RL-Engine node"
+          }
+        },
+        "bm_engine": {
+          "point": {
+            ":node_id": "UnDelete a BM-Engine node"
+          }
+        },
+        "es_engine": {
+          "point": {
+            ":node_id": "UnDelete a ES-Engine node"
+          }
+        },
+        "omb_service": {
+          "point": {
+            ":node_id": "UnDelete a OMB-Service node"
+          }
+        },
+        "region": {
+          ":region_id": "Delete or undelete a WAF region"
+        },
+        "feature": {
+          ":feature_id": "Undelete a feature"
+        },
+        "rule": {
+          "custom": {
+            ":custom_rule_id": "Undelete a global custom rule"
+          }
+        }
+      }
+    }
+  }
+}

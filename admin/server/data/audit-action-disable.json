@@ -1,0 +1,309 @@
+{
+  "GET": {
+    "api": {
+      "user": {
+        "v1": {
+          "auth": ["", "features"],
+          "notification": ["", ":noti_id"],
+          "users": ["", ":uid"],
+          "organisation": [""],
+          "site": ["", "basis", "basis_all", ":site_uid"],
+          "config": {
+            "waf": {
+              ":site_uid": {
+                "": [""],
+                "crs_rule": [":rule_id"]
+              }
+            },
+            "ssl": { ":site_uid": ["", "sg_certs"] },
+            "exception": { ":site_uid": ["", ":exception_id"] },
+            "fw": { ":site_uid": ["", ":fw_rule_id"] },
+            "ratelimit": {
+              ":site_uid": ["", ":ratelimit_rule_id"]
+            },
+            "log": {
+              "external_webhook": {
+                "config": ["", ":type"]
+              }
+            },
+            "rule": {
+              "crsrule": ["", ":rule_id"],
+              "sd_sig_rule": [""],
+              "crssecrule": [":sec_rule_id"],
+              "crssecrules": ["", ":rule_id"],
+              "sdsecrules": [""],
+              "custom": ["", ":custom_rule_id"]
+            },
+            "bot": {
+              ":site_uid": {
+                "config": [""],
+                "exception": ["", ":bot_exception_id"]
+              },
+              "license": [""]
+            }
+          },
+          "log": {
+            "waf_event": ["", ":log_id"],
+            "audit": ["", ":audit_log_id"],
+            "bot_event": [":bot_event_id"],
+            "rl_event": [":rl_event_id"]
+          },
+          "paywall": ["config", "price", "customer", "payment-method", "subscription"],
+          "package": {
+            "common": [":plan"],
+            "custom": [""],
+            "bm": [""]
+          },
+          "idp": {
+            "saml": ["", ":connection_id"]
+          },
+          "key": [""]
+        }
+      },
+      "admin": {
+        "organisation": ["", ":org_id"],
+        "admins": ["", ":uid"],
+        "waf": {
+          "point": ["", ":waf_id"],
+          "certs": [""]
+        },
+        "edge": {
+          "point": ["", ":edge_id"]
+        },
+        "bm_engine": {
+          "point": ["", ":node_id"]
+        },
+        "ad_engine": {
+          "point": ["", ":node_id"]
+        },
+        "es_engine": {
+          "point": ["", ":node_id"]
+        },
+        "omb_service": {
+          "point": ["", ":node_id"]
+        },
+        "region": ["", ":region_id"],
+        "health": {
+          "server": [""],
+          "waf": [":waf_id"],
+          "edge": [":edge_id"],
+          "bm_engine": [":node_id"],
+          "ad_engine": [":node_id"],
+          "es_engine": [":node_id"],
+          "omb_service": [":node_id"]
+        },
+        "feature": ["", ":feature_id"],
+        "package": {
+          "common": [":plan"],
+          "custom": [":org_id"],
+          "bm": [":org_id"]
+        },
+        "payment": {
+          "stripe_api_key": ["current"],
+          "rate_limit_bill": ["current"],
+          "pi": [":pi_id"]
+        },
+        "zcrm": {
+          "api_config": ["current"],
+          "product": ["", ":id"],
+          "account": [":org_id"],
+          "contact": [":org_id"]
+        },
+        "ssl": {
+          "zerossl_api_key": ["current"]
+        },
+        "api_key": {
+          "otx": ["current"],
+          "abuseipdb": ["current"]
+        },
+        "captcha": {
+          "h_site_key": ["current"],
+          "h_secret_key": ["current"],
+          "re_api_key": { "current": [":type"] },
+          "block_page": [":type"],
+          "type": [""],
+          "expire_time": [""],
+          "verify_url": [""]
+        },
+        "es": {
+          "api_key": ["current"],
+          "address": ["current"],
+          "auth_info": ["current"],
+          "health": [""],
+          "certs": [""]
+        },
+        "rule": {
+          "crsrule": [""],
+          "sd_ai_rule": [""],
+          "sd_sig_rule": [""],
+          "get_crs_rule": [""],
+          "custom": ["", ":custom_rule_id"],
+          "crssecrule": [":sec_rule_id"]
+        },
+        "general": {
+          "email": ["", ":type"],
+          "invoice": [":invoice_no"]
+        },
+        "bm": {
+          "aws_s3": ["current"]
+        },
+        "ad": {
+          "mitigation_timeout": [""],
+          "block_url": [""]
+        },
+        "notification": [""],
+        "v1": {
+          "node": ["health", "stats"]
+        }
+      }
+    }
+  },
+  "POST": {
+    "api": {
+      "user": {
+        "v1": {
+          "config": {
+            "log": {
+              "external_webhook": {
+                "test": [":type"]
+              }
+            }
+          },
+          "stats": [
+            "basis",
+            "basis_waf",
+            "traffic",
+            "regional_traffic",
+            "regional_detection",
+            "detection",
+            "top_region_traffic",
+            "top_region_detection",
+            "top_path",
+            "top_ua",
+            "top_detection_type",
+            "top_method",
+            "top_res_code_detection",
+            "top_source_detection"
+          ],
+          "bot_stats": [
+            "stats",
+            "top_region",
+            "top_path",
+            "top_ua",
+            "top_source",
+            "top_host",
+            "top_ja3_hash",
+            "top_method",
+            "top_res_code",
+            "top_bot_score",
+            "reqs_by_bot_score",
+            "reqs_by_bot_score_total"
+          ],
+          "rl_stats": ["stats", "top_region", "top_path", "top_ua", "top_source", "top_host", "top_ja3_hash", "top_method", "top_res_code"],
+          "site": ["onCreate"],
+          "log": ["waf_event", "waf_event2", "audit", "bot_event", "rl_event"]
+        }
+      },
+      "admin": {
+        "waf": {
+          "point": [""]
+        },
+        "edge": {
+          "point": [""]
+        },
+        "bm_engine": {
+          "point": [""]
+        },
+        "ad_engine": {
+          "point": [""]
+        },
+        "es_engine": {
+          "point": [""]
+        },
+        "omb_service": {
+          "point": [""]
+        },
+        "organisation": {
+          "get": [""]
+        },
+        "health": {
+          "waf": {
+            "stats": [":waf_id"]
+          },
+          "edge": {
+            "stats": [":edge_id"]
+          },
+          "bm_engine": {
+            "stats": [":node_id"]
+          },
+          "ad_engine": {
+            "stats": [":node_id"]
+          },
+          "es_engine": {
+            "stats": [":node_id"]
+          },
+          "omb_service": {
+            "stats": [":node_id"]
+          }
+        },
+        "package": {
+          "common": {
+            "price": ["history"]
+          }
+        },
+        "payment": {
+          "stripe_api_key": ["history"],
+          "rate_limit_bill": ["history"],
+          "custom": {
+            "history": [":org_id"]
+          },
+          "stripe": {
+            "history": [":org_id"]
+          }
+        },
+        "zcrm": {
+          "api_config": ["history"]
+        },
+        "ssl": {
+          "zerossl_api_key": ["history"],
+          "cert_provision": [""]
+        },
+        "api_key": {
+          "otx": ["history"],
+          "abuseipdb": ["history"]
+        },
+        "captcha": {
+          "h_site_key": ["history"],
+          "h_secret_key": ["history"],
+          "re_api_key": { "history": [":type"] }
+        },
+        "es": {
+          "api_key": ["history"],
+          "address": ["history"],
+          "auth_info": ["history"]
+        },
+        "rule": ["get_crs_rule"],
+        "general": {
+          "invoice": {
+            "history": [":org_id"]
+          }
+        },
+        "bm": {
+          "license": [""],
+          "aws_s3": ["history"]
+        },
+        "notification": [""],
+        "v1": {
+          "node": {
+            "sg_cert": [""],
+            "apply_ssl": [":node_id"],
+            "ping": [":node_id"]
+          }
+        },
+        "ad": {
+          "exception": ["get"]
+        }
+      }
+    }
+  }
+}

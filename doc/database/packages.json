@@ -1,0 +1,219 @@
+[{
+  "plan": 0,
+  "features": [
+    {
+      "feature_id": 1,
+      "value": 1
+    },
+    {
+      "feature_id": 2,
+      "value": true
+    },
+    {
+      "feature_id": 3,
+      "value": true
+    },
+    {
+      "feature_id": 4,
+      "value": 10
+    },
+    {
+      "feature_id": 5,
+      "value": 7
+    },
+    {
+      "feature_id": 6,
+      "value": false
+    },
+    {
+      "feature_id": 7,
+      "value": false
+    },
+    {
+      "feature_id": 8,
+      "value": false
+    },
+    {
+      "feature_id": 9,
+      "value": false
+    },
+    {
+      "feature_id": 10,
+      "value": false
+    },
+    {
+      "feature_id": 11,
+      "value": false
+    },
+    {
+      "feature_id": 12,
+      "value": 0
+    },
+    {
+      "feature_id": 13,
+      "value": false
+    },
+    {
+      "feature_id": 14,
+      "value": false
+    },
+    {
+      "feature_id": 16,
+      "value": 0
+    },
+    {
+      "feature_id": 17,
+      "value": false
+    }
+  ],
+  "price": 0,
+  "period": 1
+},{
+  "plan": 1,
+  "features": [
+    {
+      "feature_id": 1,
+      "value": 10
+    },
+    {
+      "feature_id": 2,
+      "value": true
+    },
+    {
+      "feature_id": 3,
+      "value": true
+    },
+    {
+      "feature_id": 4,
+      "value": 100
+    },
+    {
+      "feature_id": 5,
+      "value": 30
+    },
+    {
+      "feature_id": 6,
+      "value": true
+    },
+    {
+      "feature_id": 7,
+      "value": true
+    },
+    {
+      "feature_id": 8,
+      "value": false
+    },
+    {
+      "feature_id": 9,
+      "value": false
+    },
+    {
+      "feature_id": 10,
+      "value": false
+    },
+    {
+      "feature_id": 11,
+      "value": false
+    },
+    {
+      "feature_id": 12,
+      "value": 10
+    },
+    {
+      "feature_id": 13,
+      "value": false
+    },
+    {
+      "feature_id": 14,
+      "value": false
+    },
+    {
+      "feature_id": 15,
+      "value": true
+    },
+    {
+      "feature_id": 16,
+      "value": 0
+    },
+    {
+      "feature_id": 17,
+      "value": false
+    }
+  ],
+  "price": 100,
+  "period": 1
+},{
+  "plan": 2,
+  "features": [
+    {
+      "feature_id": 1,
+      "value": 100
+    },
+    {
+      "feature_id": 2,
+      "value": true
+    },
+    {
+      "feature_id": 3,
+      "value": true
+    },
+    {
+      "feature_id": 4,
+      "value": -1
+    },
+    {
+      "feature_id": 5,
+      "value": 90
+    },
+    {
+      "feature_id": 6,
+      "value": true
+    },
+    {
+      "feature_id": 7,
+      "value": true
+    },
+    {
+      "feature_id": 8,
+      "value": true
+    },
+    {
+      "feature_id": 9,
+      "value": true
+    },
+    {
+      "feature_id": 10,
+      "value": true
+    },
+    {
+      "feature_id": 11,
+      "value": true
+    },
+    {
+      "feature_id": 12,
+      "value": 20
+    },
+    {
+      "feature_id": 13,
+      "value": true
+    },
+    {
+      "feature_id": 14,
+      "value": false
+    },
+    {
+      "feature_id": 15,
+      "value": true
+    },
+    {
+      "feature_id": 16,
+      "value": 0
+    },
+    {
+      "feature_id": 17,
+      "value": false
+    }
+  ],
+  "price": 1000,
+  "period": 1
+}]

@@ -1,0 +1,111 @@
+// ==============================|| SWITCH - SIZE STYLE ||============================== //
+
+function getSizeStyle(size) {
+  switch (size) {
+    case "small":
+      return { width: 28, height: 16, base: 12, thumb: 10, trackRadius: 8 };
+    case "large":
+      return { width: 60, height: 28, base: 32, thumb: 22, trackRadius: 24 };
+    case "medium":
+    default:
+      return { width: 44, height: 22, base: 22, thumb: 16, trackRadius: 16 };
+  }
+}
+
+function switchStyle(size) {
+  const sizes = getSizeStyle(size);
+
+  return {
+    width: sizes.width,
+    height: sizes.height,
+    "& .MuiSwitch-switchBase": {
+      padding: 3,
+      "&.Mui-checked": {
+        transform: `translateX(${sizes.base}px)`,
+      },
+    },
+    "& .MuiSwitch-thumb": {
+      width: sizes.thumb,
+      height: sizes.thumb,
+    },
+    "& .MuiSwitch-track": {
+      borderRadius: sizes.trackRadius,
+    },
+  };
+}
+
+// ==============================|| OVERRIDES - TAB ||============================== //
+
+export default function Switch(theme) {
+  return {
+    MuiSwitch: {
+      styleOverrides: {
+        track: {
+          opacity: 1,
+          backgroundColor: theme.palette.secondary[400],
+          boxSizing: "border-box",
+        },
+        thumb: {
+          borderRadius: "50%",
+          transition: theme.transitions.create(["width"], {
+            duration: 200,
+          }),
+        },
+        switchBase: {
+          "&.Mui-checked": {
+            color: "#fff",
+            "& + .MuiSwitch-track": {
+              opacity: 1,
+            },
+            "&.Mui-disabled": {
+              color: theme.palette.grey.contrastText,
+              "& + .MuiSwitch-track": {
+                opacity: 1,
+                backgroundColor: theme.palette.secondary[200],
+              },
+            },
+          },
+          "&.Mui-disabled": {
+            color: theme.palette.grey.contrastText,
+            "& + .MuiSwitch-track": {
+              opacity: 1,
+              backgroundColor: theme.palette.secondary[200],
+            },
+          },
+        },
+        root: {
+          color: theme.palette.text.primary,
+          padding: 0,
+          margin: 8,
+          display: "flex",
+          "& ~ .MuiFormControlLabel-label": {
+            margin: 6,
+          },
+          ...switchStyle("medium"),
+        },
+        sizeLarge: { ...switchStyle("large") },
+        sizeSmall: {
+          ...switchStyle("small"),
+        },
+        colorPrimary: {
+          "&.Mui-checked": {
+            color: "#fff",
+            "& + .MuiSwitch-track": {
+              opacity: 1,
+              backgroundColor: theme.palette.custom.yellow.main,
+            },
+          },
+        },
+        colorSecondary: {
+          "&.Mui-checked": {
+            color: "#fff",
+            "& + .MuiSwitch-track": {
+              opacity: 1,
+              backgroundColor: theme.palette.secondary[800],
+            },
+          },
+        },
+      },
+    },
+  };
+}

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="{{locale}}">
+  <head>
+    {%- auth0:head -%}
+    <style>
+      body {
+        background-color: #032142;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+      }
+
+      @media only screen and (max-width: 1080px) {
+        /*Tablets [601px -> 1200px]*/
+        .container {
+          width: 100%;
+          height: 200%;
+          flex-direction: column;
+        }
+        .item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 50%;
+        }
+      }
+
+      .prompt-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+      }
+
+      .prompt-wrapper > main > section > div {
+        box-shadow: none;
+      }
+    </style>
+
+    <style>
+      .carousel {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+
+      .slide {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      /* animations for 1st slide */
+
+      .slide:nth-child(1) {
+        opacity: 1;
+        animation: slide1-animation 16s infinite;
+        animation-delay: 0s;
+      }
+
+      /* prettier-ignore */
+      @keyframes slide1-animation {
+        0%      { opacity: 0; } /* 0s - start fading in */
+        6.25%   { opacity: 1; } /* 1s - end fade in, start animation */
+        15.625% { opacity: 1; } /* 2.5s - middle of animation */
+        25%     { opacity: 1; } /* 4s - end of animation, stay */
+        31.25%  { opacity: 1; } /* 5s - start fading out */
+        37.5%   { opacity: 0; } /* 6s - end fading out */
+        100%    { opacity: 0; } /* last */
+      }
+
+      .circle-1-2 {
+        animation: circle-1-2-animation 16s infinite;
+        animation-delay: 0s;
+      }
+
+      /* prettier-ignore */
+      @keyframes circle-1-2-animation {
+        0%      { width: 100%; height: 100%; } /* 0s - start fading in */
+        6.25%   { width: 100%; height: 100%; } /* 1s - end fade in, start animation */
+        15.625% { width: 571px; height: 555px; } /* 2.5s - middle of animation */
+        25%     { width: 100%; height: 100%; } /* 4s - end of animation, stay */
+        31.25%  { width: 100%; height: 100%; } /* 5s - start fading out */
+        37.5%   { width: 100%; height: 100%; } /* 6s - end fading out */
+        100%    { width: 100%; height: 100%; } /* last */
+      }
+
+      .circle-1-4 {
+        animation: circle-1-4-animation 16s infinite;
+        animation-delay: 0s;
+      }
+
+      /* prettier-ignore */
+      @keyframes circle-1-4-animation {
+        0%      { width: 296px; height: 290px; } /* 0s - start fading in */
+        6.25%   { width: 296px; height: 290px; } /* 1s - end fade in, start animation */
+        15.625% { width: 474px; height: 464px; } /* 2.5s - middle of animation */
+        25%     { width: 296px; height: 290px; } /* 4s - end of animation, stay */
+        31.25%  { width: 296px; height: 290px; } /* 5s - start fading out */
+        37.5%   { width: 296px; height: 290px; } /* 6s - end fading out */
+        100%    { width: 296px; height: 290px; } /* last */
+      }
+
+      .circle-1-5 {
+        animation: circle-1-5-animation 16s infinite;
+        animation-delay: 0s;
+      }
+
+      /* prettier-ignore */
+      @keyframes circle-1-5-animation {
+        0%      { width: 296px; height: 290px; } /* 0s - start fading in */
+        6.25%   { width: 296px; height: 290px; } /* 1s - end fade in, start animation */
+        15.625% { width: 372px; height: 382px; } /* 2.5s - middle of animation */
+        25%     { width: 296px; height: 290px; } /* 4s - end of animation, stay */
+        31.25%  { width: 296px; height: 290px; } /* 5s - start fading out */
+        37.5%   { width: 296px; height: 290px; } /* 6s - end fading out */
+        100%    { width: 296px; height: 290px; } /* last */
+      }
+
+      /* animations for 2nd slide */
+
+      .slide:nth-child(2) {
+        animation: slide2-animation 16s infinite;
+        animation-delay: 5s;
+      }
+
+      /* prettier-ignore */
+      @keyframes slide2-animation {
+        0%      { opacity: 0; } /* 0s - start fading in */
+        6.25%   { opacity: 1; } /* 1s - end fade in, start animation */
+        21.875% { opacity: 1; } /* 3.5s - middle of animation */
+        37.5%   { opacity: 1; } /* 6s - end of animation, stay */
+        43.75%  { opacity: 1; } /* 7s - start fading out */
+        50%     { opacity: 0; } /* 8s - end fading out */
+        100%    { opacity: 0; } /* last */
+      }
+
+      .robot {
+        animation: robot-animation 16s infinite;
+        animation-delay: 5s;
+      }
+
+      /* prettier-ignore */
+      @keyframes robot-animation {
+        0%      { transform: none;  } /* 0s - start fading in */
+        6.25%   { transform: none;  } /* 1s - end fade in, start animation */
+        21.875% { transform: translate(0px, -20px); } /* 3.5s - middle of animation */
+        37.5%   { transform: none; } /* 6s - end of animation, stay */
+        43.75%  { transform: none; } /* 7s - start fading out */
+        50%     { transform: none; } /* 8s - end fading out */
+        100%    { transform: none; } /* last */
+      }
+
+      .circle-2-4 {
+        animation: circle-2-4-animation 16s infinite;
+        animation-delay: 5s;
+      }
+
+      /* prettier-ignore */
+      @keyframes circle-2-4-animation {
+        0%      { width: 296px; height: 290px; } /* 0s - start fading in */
+        6.25%   { width: 296px; height: 290px; } /* 1s - end fade in, start animation */
+        21.875% { width: 406px; height: 408px; } /* 2.5s - middle of animation */
+        37.5%   { width: 296px; height: 290px; } /* 4s - end of animation, stay */
+        43.75%  { width: 296px; height: 290px; } /* 5s - start fading out */
+        50%     { width: 296px; height: 290px; } /* 6s - end fading out */
+        100%    { width: 296px; height: 290px; } /* last */
+      }
+
+      .circle-2-5 {
+        animation: circle-2-5-animation 16s infinite;
+        animation-delay: 5s;
+      }
+
+      /* prettier-ignore */
+      @keyframes circle-2-5-animation {
+        0%      { width: 296px; height: 290px; } /* 0s - start fading in */
+        6.25%   { width: 296px; height: 290px; } /* 1s - end fade in, start animation */
+        21.875% { width: 482px; height: 480px; } /* 2.5s - middle of animation */
+        37.5%   { width: 296px; height: 290px; } /* 4s - end of animation, stay */
+        43.75%  { width: 296px; height: 290px; } /* 5s - start fading out */
+        50%     { width: 296px; height: 290px; } /* 6s - end fading out */
+        100%    { width: 296px; height: 290px; } /* last */
+      }
+
+      /* animations for 3rd slide */
+
+      .slide:nth-child(3) {
+        animation: slide3-animation 16s infinite;
+        animation-delay: 12s;
+      }
+      /* prettier-ignore */
+      @keyframes slide3-animation {
+        0%      { opacity: 0; } /* 0s - start fading in */
+        6.25%   { opacity: 1; } /* 1s - end fade in, start animation */
+        12.5%   { opacity: 1; } /* 2s - middle of animation */
+        18.75%  { opacity: 1; } /* 3s - end of animation, stay */
+        25%     { opacity: 1; } /* 4s - start fading out */
+        31.25%  { opacity: 0; } /* 5s - end fading out */
+        100%    { opacity: 0; } /* last */
+      }
+
+      .line1 {
+        animation: line1-animation 16s infinite;
+        animation-delay: 12s;
+      }
+      /* prettier-ignore */
+      @keyframes line1-animation {
+        0%      { transform: matrix(0.45, -0.9, 0.9, 0.45, 130, -165); } /* 0s - start fading in */
+        6.25%   { transform: matrix(0.45, -0.9, 0.9, 0.45, 130, -165); } /* 1s - end fade in, start animation */
+        18.75%  { transform: none; } /* 3s - end of animation, stay */
+        25%     { transform: none; } /* 4s - start fading out */
+        31.25%  { transform: none; } /* 5s - end fading out */
+        100%    { transform: matrix(0.45, -0.9, 0.9, 0.45, 130, -165); } /* last */
+      }
+
+      .line2 {
+        animation: line2-animation 16s infinite;
+        animation-delay: 12s;
+      }
+      /* prettier-ignore */
+      @keyframes line2-animation {
+        0%      { transform: none; } /* 0s - start fading in */
+        6.25%   { transform: none; } /* 1s - end fade in, start animation */
+        18.75%  { transform: translate(0px, 40px); } /* 3s - end of animation, stay */
+        25%     { transform: translate(0px, 40px); } /* 4s - start fading out */
+        31.25%  { transform: translate(0px, 40px); } /* 5s - end fading out */
+        100%    { transform: none; } /* last */
+      }
+
+      .circle-3-1 {
+        animation: circle-3-1-animation 16s infinite;
+        animation-delay: 12s;
+      }
+      /* prettier-ignore */
+      @keyframes circle-3-1-animation {
+        0%      { width: 100%; height: 100%; } /* 0s - start fading in */
+        6.25%   { width: 100%; height: 100%; } /* 1s - end fade in, start animation */
+        18.75%  { width: 435px; height: 437px; } /* 3s - end of animation, stay */
+        25%     { width: 435px; height: 437px; } /* 4s - start fading out */
+        31.25%  { width: 435px; height: 437px; } /* 5s - end fading out */
+        100%    { width: 100%; height: 100%; } /* last */
+      }
+
+      .circle-3-2 {
+        animation: circle-3-2-animation 16s infinite;
+        animation-delay: 12s;
+      }
+      /* prettier-ignore */
+      @keyframes circle-3-2-animation {
+        0%      { width: 100%; height: 100%; } /* 0s - start fading in */
+        6.25%   { width: 100%; height: 100%; } /* 1s - end fade in, start animation */
+        18.75%  { width: 521px; height: 513px; } /* 3s - end of animation, stay */
+        25%     { width: 521px; height: 513px; } /* 4s - start fading out */
+        31.25%  { width: 521px; height: 513px; } /* 5s - end fading out */
+        100%    { width: 100%; height: 100%; } /* last */
+      }
+
+      .title {
+        /* font-family: Inter; */
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 44px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding-bottom: 50px;
+      }
+      .subtitle {
+        /* font-family: Inter; */
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        min-height: 48px;
+        letter-spacing: 0em;
+        text-align: left;
+      }
+    </style>
+
+    <style>
+      .full-size {
+        width: 100%;
+        height: 100%;
+      }
+      .anchor-center {
+        transform: translate(-50%, -50%);
+      }
+      .pos-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+      }
+      .logo {
+        position: relative;
+        width: 373px;
+        height: 373px;
+        margin-bottom: 145px;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <title>{{ prompt.screen.texts.pageTitle }}</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item prompt-wrapper">{%- auth0:widget -%}</div>
+      <div class="item" style="background-color: #032142">
+        <div class="carousel" style="color: white">
+          <div class="slide">
+            <div class="logo">
+              <!-- main circle -->
+              <img
+                class="anchor-center pos-center circle-1-1"
+                src="https://cdn.sensedefence.net/static/images/circle1.svg"
+              />
+              <!-- secondary circle -->
+              <img
+                class="anchor-center pos-center circle-1-2"
+                src="https://cdn.sensedefence.net/static/images/circle2.svg"
+              />
+              <!-- key -->
+              <img
+                class="anchor-center pos-center"
+                src="https://cdn.sensedefence.net/static/images/lock.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-1-3"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-1-4"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-1-5"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+            </div>
+            <h1 class="title">IntelliSense WAF</h1>
+            <p class="subtitle">NxtGen Intelligent Web Application Firewall</p>
+          </div>
+
+          <div class="slide">
+            <div class="logo">
+              <!-- primary circle -->
+              <img
+                class="anchor-center pos-center circle-2-1"
+                src="https://cdn.sensedefence.net/static/images/circle1.svg"
+              />
+              <!-- secondary circle -->
+              <img
+                class="anchor-center pos-center circle-2-2"
+                src="https://cdn.sensedefence.net/static/images/circle2.svg"
+              />
+              <!-- lines -->
+              <img
+                class="anchor-center pos-center"
+                src="https://cdn.sensedefence.net/static/images/chart.svg"
+              />
+              <!-- robot -->
+              <img
+                class="robot"
+                style="position: absolute; left: 1px; top: 102px"
+                src="https://cdn.sensedefence.net/static/images/robot.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-2-3"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-2-4"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+              <img
+                class="anchor-center pos-center circle-2-5"
+                src="https://cdn.sensedefence.net/static/images/circle_dotted.svg"
+              />
+            </div>
+            <h1 class="title">IntelliSense Bot Spray</h1>
+            <p class="subtitle">Got a bot problem? <br />Intelligent AntiBot</p>
+          </div>
+
+          <div class="slide">
+            <div class="logo">
+              <!-- primary circle -->
+              <img
+                class="anchor-center pos-center circle-3-1"
+                src="https://cdn.sensedefence.net/static/images/circle1.svg"
+              />
+              <!-- secondary circle -->
+              <img
+                class="anchor-center pos-center circle-3-2"
+                src="https://cdn.sensedefence.net/static/images/circle2.svg"
+              />
+              <!-- fixed lines -->
+              <img
+                style="position: absolute; left: 12px; top: 31px"
+                src="https://cdn.sensedefence.net/static/images/lines.svg"
+              />
+              <img
+                style="position: absolute; left: 30px; top: 10px"
+                src="https://cdn.sensedefence.net/static/images/line0.svg"
+              />
+              <!-- moving lines -->
+              <img
+                class="line2"
+                style="position: absolute; left: 12px; top: 31px"
+                src="https://cdn.sensedefence.net/static/images/line1.svg"
+              />
+              <img
+                class="line2"
+                style="position: absolute; left: 39px; top: 177px"
+                src="https://cdn.sensedefence.net/static/images/line2.svg"
+              />
+              <img
+                class="line1"
+                style="position: absolute; left: 31px; top: 177px"
+                src="https://cdn.sensedefence.net/static/images/line2.svg"
+              />
+            </div>
+            <h1 class="title">IntelliSense Anti-DDOS</h1>
+            <p class="subtitle">Self Sensing Al based DDOS Protection</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

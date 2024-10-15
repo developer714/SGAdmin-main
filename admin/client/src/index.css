@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"), url("./utils/font/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Spinnaker";
+  src: local("Spinnaker"), url("./utils/font/Spinnaker/Spinnaker-Regular.ttf") format("truetype");
+}

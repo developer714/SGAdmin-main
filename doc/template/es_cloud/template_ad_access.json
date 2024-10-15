@@ -1,0 +1,96 @@
+{
+    "version": 1,
+    "index_patterns": [
+        "ad_access-*"
+    ],
+    "template": {
+        "settings": {
+            "index": {
+                "refresh_interval": "5s"
+            }
+        },
+        "mappings": {
+            "properties": {
+                "http": {
+                    "properties": {
+                        "request": {
+                            "properties": {
+                                "host": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "type": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "@timestamp": {
+                    "type": "date"
+                },
+                "sd_ad_uid": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "source": {
+                    "properties": {
+                        "address": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "ip"
+                        }
+                    }
+                },
+                "@version": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "sg_waf_id": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "sd_node_type": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "integer"
+                }
+            }
+        },
+        "aliases": {}
+    }
+}

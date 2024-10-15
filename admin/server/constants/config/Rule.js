@@ -1,0 +1,76 @@
+const RuleOperator = {
+  DETECT_SQLI: "detectSQLi",
+  DETECT_XSS: "detectXSS",
+  EQUALS: "eq",
+  CONTAINS: "contains",
+  GREATER_THAN: "gt",
+  LESS_THAN: "lt",
+  GREATER_THAN_OR_EQUALS_TO: "ge",
+  LESS_THAN_OR_EQUALS_TO: "le",
+  PARTIAL_MATCH: "pm",
+  REG_EXP_MATCH: "rx",
+  BEGINS_WITH: "beginsWith",
+  ENDS_WITH: "endsWith",
+  MATCHES_IP: "ipMatch",
+};
+
+const RuleKeyField = {
+  SOURCE_IP: "src_ip",
+  HOST_NAME: "host_name",
+  URI: "uri",
+  ARGS: "arg",
+  ARGS_NAMES: "arg_name",
+  REQUEST_HEADERS: "req_header",
+  REQUEST_HEADER_NAMES: "req_header_name",
+  USER_AGENT: "ua",
+  COOKIE: "cookie",
+  COOKIE_NAME: "cookie_name",
+  METHOD: "method",
+  URI_PATH: "path",
+  QUERY: "query",
+  REQUEST_BODY: "req_body",
+  REQUEST_BODY_LENGTH: "req_body_len",
+};
+
+const RuleAction = {
+  MIN: 0,
+  PASS: 0,
+  BLOCK: 1,
+  LOG: 2,
+  MAX: 2,
+};
+
+const RuleTransformation = {
+  NONE: "none",
+  REMOVE_NULLS: "removeNulls",
+  LOWERCASE: "lowercase",
+  DECODE_HTML_ENTITY_ESCAPE: "htmlEntityDecode",
+  DECODE_JS_ESCAPE: "jsDecode",
+  DECODE_CSS_ESCAPE: "cssDecode",
+  DECODE_CLI_ESCAPE: "cmdLine",
+  BASE64_DECODE: "base64Decode",
+  URL_DECODE: "urlDecode",
+  PATH_NORMALIZATION: "normalizePath",
+  COMPRESS_WHITESPACE: "compressWhitespace",
+  BASE64_ENCODE: "base64Encode",
+  REMOVE_COMMENTS: "removeComments",
+  HEX_DECODE: "hexDecode",
+  HEX_ENCODE: "hexEncode",
+  REMOVE_WHITE_SPACE: "removeWhitespace",
+  REPLACE_NULLS: "replaceNulls",
+  UPPERCASE: "uppercase",
+  URL_DECODE_UNI: "urlDecodeUni",
+  URL_ENCODE: "urlEncode",
+  UTF8_TO_UNICODE: "utf8toUnicode",
+  TRIM_LEFT: "trimLeft",
+  TRIM_RIGHT: "trimRight",
+  TRIM: "trim",
+  LENGTH: "length",
+};
+
+module.exports = {
+  RuleOperator,
+  RuleKeyField,
+  RuleAction,
+  RuleTransformation,
+};

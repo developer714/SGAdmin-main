@@ -1,0 +1,35 @@
+{
+  "mongoURI": "mongodb://127.0.0.1:27017",
+  "jwtSecret": "secret",
+  "omServerAddr": "http://127.0.0.1:5000",
+  "frontEndUrl": "http://127.0.0.1:3000",
+  "emailFrom": "contact@sensedefence.net",
+  "smtpOptions": {
+    "host": "smtp.office365.com",
+    "port": 587,
+    "auth": {
+      "user": "user",
+      "pass": "password"
+    }
+  },
+  "stripe": {
+    "DEFAULT_VAT_TAX_ID": "txr_1LBggeL1SD32RD2bSITQDIz6"
+  },
+  "openexchangerates": {
+    "AppId": "76e85dc8fd864129a74c10ed47105245"
+  },
+  "auth0": {
+    "comment": "Auth0 account used for local testbed - david.hang.12138@gmail.com",
+    "domain": "dev-l-7n0ffq.us.auth0.com",
+    "frontendId": "wJrO6ltJQoOSxzzUxyoabniFthuhLnJS",
+
+    "apiDomain": "dev-l-7n0ffq.us.auth0.com",
+    "audience": "https://dev-l-7n0ffq.us.auth0.com/api/v2/",
+    "backendId": "QRjWFqVdSf7fWanYiJ4Fb7OecqFpyHMC",
+    "backendSecret": "PGhoSP6Ldm28XPhMy4pWQQ8-eMUwBeHC36v5gt_jANyq46P93ORS_2ixq1CugKgA",
+
+    "dbConnectionName": "Username-Password-Authentication",
+
+    "actionTokenSecret": "1234567890"
+  }
+}

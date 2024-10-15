@@ -1,0 +1,159 @@
+[
+    {
+        "type": 0,
+        "value": {
+            "publishable_key": "pk_test_51LAsinL1SD32RD2bUmk0gFzJNjDgWuIGQAcAfiiknYbjG73tnDgrWTK7ceoshk5UQFkbP5nAoycLllJP4NZgUg4k0064WYvwUq",
+            "secret_key": "sk_test_51LAsinL1SD32RD2b8eh3egCXC3LSk7X1SCeKAb2gutCSDEUDOwaXg9yzKuGn3ZhqG5YI9oIRySjGqGmVUpX4vYaF00xhjsgIgb"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1656593507279"
+            }
+        }
+    },
+    {
+        "type": 1,
+        "value": "2661d177f2feda9412eb23046bdde0c4",
+        "updated": {
+            "$date": {
+                "$numberLong": "1656593580911"
+            }
+        }
+    },
+    {
+        "type": 2,
+        "value": "Y2hGS280TUJ2NHZEbUxfanRkLUs6WjlkR2tHLVJTQS00VnhVMnBLTmdYQQ==",
+        "updated": {
+            "$date": {
+                "$numberLong": "1663372034622"
+            }
+        }
+    },
+    {
+        "type": 3,
+        "value": "https://senseguard.es.eu-west-1.aws.found.io",
+        "updated": {
+            "$date": {
+                "$numberLong": "1656593555574"
+            }
+        }
+    },
+    {
+        "type": 4,
+        "value": {
+            "priceId": "price_1LIwJmL1SD32RD2bAGJEke6K",
+            "price": 100
+        }
+    },
+    {
+        "type": 5,
+        "value": {
+            "priceId": "price_1LIwJuL1SD32RD2bXRlE9M9Q",
+            "price": 1000
+        }
+    },
+    {
+        "type": 6,
+        "value": {
+            "site_key": "6Lcj3YwgAAAAAKOYPY48lVnPmvXRLAoZ0xQdRo4T",
+            "secret_key": "6Lcj3YwgAAAAAEC7FtetLWSWuV3D-nCVLwO-Yn0r"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1658334891396"
+            }
+        }
+    },
+    {
+        "type": 7,
+        "value": {
+            "site_key": "6LdKOvIgAAAAAKhSqR2GX6SzNdTbd5xp0xxKQB6G",
+            "secret_key": "6LdKOvIgAAAAABa3nYOuCCtokcezUbpHPzmaAL62"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1658334923602"
+            }
+        }
+    },
+    {
+        "type": 8,
+        "value": {
+            "site_key": "6Lf6wIwgAAAAAIyzzqlWYUw7oQ98Qh5M6B5nKgPe",
+            "secret_key": "6Lf6wIwgAAAAAE6ppk2zyOdUhrG5AGn07IUxdvL6"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1658334858291"
+            }
+        }
+    },
+    {
+        "type": 9,
+        "value": "0xF0aCc3192e9057b4eAe6DA4e1A9014eD96477e2F",
+        "updated": {
+            "$date": {
+                "$numberLong": "1658334824337"
+            }
+        }
+    },
+    {
+        "type": 10,
+        "value": "a7bd9672-ea78-4c59-af6a-31bf7284de8b",
+        "updated": {
+            "$date": {
+                "$numberLong": "1658334812533"
+            }
+        }
+    },
+    {
+        "type": 11,
+        "value": "f6e62aa7191c4c433bf43d4ff86986c8ee21551e30194ded9d90ae698d2c2910",
+        "updated": {
+            "$date": {
+                "$numberLong": "1658416181725"
+            }
+        }
+    },
+    {
+        "type": 12,
+        "value": {
+            "free_requests": 10000,
+            "unit_requests": 10000,
+            "unit_price": 5
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1660697008650"
+            }
+        }
+    },
+    {
+        "type": 13,
+        "value": {
+            "aws_access_key_id": "AKIAXEJHS2BFIEOWAXFI",
+            "aws_secret_access_key": "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",
+            "aws_storage_bucket_name": "sensedefence-datalake",
+            "aws_s3_region_name": "eu-west-1"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1663666533800"
+            }
+        }
+    },
+    {
+        "type": 13,
+        "value": {
+            "aws_access_key_id": "AKIAQPKCQUYHSJR3LWAW",
+            "aws_secret_access_key": "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",
+            "aws_storage_bucket_name": "sensedefence-dev-datalake",
+            "aws_s3_region_name": "eu-west-2"
+        },
+        "updated": {
+            "$date": {
+                "$numberLong": "1671813249784"
+            }
+        }
+    }
+]

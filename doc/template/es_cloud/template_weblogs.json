@@ -1,0 +1,416 @@
+{
+    "version": 1,
+    "index_patterns": ["weblogs-*"],
+    "template": {
+        "settings": {
+            "index": {
+                "refresh_interval": "5s"
+            }
+        },
+        "mappings": {
+            "properties": {
+                "http": {
+                    "properties": {
+                        "version": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "keyword"
+                        },
+                        "request": {
+                            "properties": {
+                                "referrer": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "text"
+                                },
+                                "host": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "method": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "response": {
+                            "properties": {
+                                "body": {
+                                    "properties": {
+                                        "bytes": {
+                                            "type": "long"
+                                        }
+                                    }
+                                },
+                                "status_code": {
+                                    "type": "long"
+                                }
+                            }
+                        }
+                    }
+                },
+                "log": {
+                    "properties": {
+                        "file": {
+                            "properties": {
+                                "path": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "text"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "url": {
+                    "properties": {
+                        "original": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "geoip": {
+                    "properties": {
+                        "mmdb": {
+                            "properties": {
+                                "dma_code": {
+                                    "type": "long"
+                                }
+                            }
+                        },
+                        "ip": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "ip"
+                        },
+                        "geo": {
+                            "properties": {
+                                "region_iso_code": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "text"
+                                },
+                                "country_iso_code": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "continent_code": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "country_name": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "postal_code": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "location": {
+                                    "properties": {
+                                        "lat": {
+                                            "type": "float"
+                                        },
+                                        "lon": {
+                                            "type": "float"
+                                        }
+                                    }
+                                },
+                                "city_name": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "timezone": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                },
+                                "region_name": {
+                                    "fields": {
+                                        "keyword": {
+                                            "ignore_above": 256,
+                                            "type": "keyword"
+                                        }
+                                    },
+                                    "type": "keyword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "@timestamp": {
+                    "type": "date"
+                },
+                "destination": {
+                    "properties": {
+                        "address": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "ip"
+                        }
+                    }
+                },
+                "extra_fields": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "source": {
+                    "properties": {
+                        "address": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "ip"
+                        }
+                    }
+                },
+                "bot_score": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "integer"
+                },
+                "host": {
+                    "properties": {
+                        "name": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "text"
+                        }
+                    }
+                },
+                "user_agent": {
+                    "properties": {
+                        "original": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "type": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "message": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "text"
+                },
+                "@version": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "event": {
+                    "type": "object"
+                },
+                "sg_waf_id": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "sd_node_type": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "integer"
+                },
+                "ja3_hash": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "sd_rate_limited": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "integer"
+                },
+                "sd_rate_limit_rule": {
+                    "properties": {
+                        "characteristics": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "text"
+                        },
+                        "conditions": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "text"
+                        },
+                        "period": {
+                            "type": "integer"
+                        },
+                        "mitigation_timeout": {
+                            "type": "integer"
+                        },
+                        "host_name": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "keyword"
+                        },
+                        "requests_per_period": {
+                            "type": "integer"
+                        },
+                        "rule_id": {
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            },
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "sd_ad_uid": {
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    },
+                    "type": "keyword"
+                }
+            }
+        },
+        "aliases": {}
+    }
+}

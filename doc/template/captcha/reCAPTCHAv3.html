@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script src="https://www.recaptcha.net/recaptcha/api.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            rel="stylesheet"
+        />
+        <title>Please wait...</title>
+        <style>
+            a,
+            body,
+            div,
+            h1,
+            html,
+            span {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            body {
+                background: -webkit-radial-gradient(
+                    26% 19%,
+                    circle,
+                    #fff,
+                    #f4f7f9
+                );
+                background: radial-gradient(circle at 26% 19%, #fff, #f4f7f9);
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -ms-flex-line-pack: center;
+                align-content: center;
+                width: 100%;
+                min-height: 100vh;
+                line-height: 1;
+                flex-direction: column;
+            }
+            h1,
+            p,
+            svg {
+                display: block;
+            }
+            svg {
+                margin: 0 auto 4vh;
+                max-width: 50%;
+            }
+            main {
+                text-align: center;
+                flex: 1;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -ms-flex-line-pack: center;
+                align-content: center;
+                flex-direction: column;
+            }
+            h1 {
+                font-family: "Montserrat";
+                font-weight: 600;
+                font-size: 34px;
+                color: #143059;
+                line-height: 1.2;
+            }
+            p {
+                font-size: 18px;
+                line-height: normal;
+                color: #143059;
+                font-family: Montserrat;
+                font-weight: 400;
+            }
+            a {
+                color: #4842b7;
+            }
+            footer {
+                width: 100%;
+                text-align: center;
+            }
+            footer p {
+                font-size: 12px;
+            }
+            ul.cferror_details {
+                display: none;
+            }
+        </style>
+        <script>
+            window.addEventListener("load", (event) => {
+                var countDown = 3;
+                // Update the count down every 1 second
+                var timer = setInterval(function () {
+                    // Find the distance between now and the count down date
+                    countDown = countDown - 1;
+                    // If the count down is finished, write some text
+                    if (countDown < 0) {
+                        clearInterval(timer);
+                        var button_submit =
+                            document.getElementById("btn-submit");
+                        button_submit.click();
+                    }
+                }, 1000);
+            });
+            function onSubmit(token) {
+                let reqBody = "g-recaptcha-response=" + token;
+                let httpRequest = new XMLHttpRequest();
+                httpRequest.open("POST", "%CAPTCHA_VERIFY_URL%");
+                httpRequest.setRequestHeader(
+                    "Content-Type",
+                    "application/x-www-form-urlencoded"
+                );
+                httpRequest.send(reqBody);
+                httpRequest.onreadystatechange = () => {
+                    if (
+                        httpRequest.readyState == 4 &&
+                        httpRequest.status == 200
+                    ) {
+                        let text = httpRequest.responseText;
+                        switch (text) {
+                            case "good":
+                                window.location.reload();
+                                break;
+                            case "bad":
+                                alert(
+                                    "Bad CAPTCHA, please refresh the page and try again"
+                                );
+                                break;
+                            default:
+                                alert(
+                                    "Unexpected error occurred, please refresh the page and try again"
+                                );
+                        }
+                    }
+                };
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            <lottie-player
+                src="https://assets9.lottiefiles.com/packages/lf20_qsixtgwx.json"
+                background="transparent"
+                speed="1"
+                style="width: 300px; height: 300px"
+                loop
+                autoplay
+            ></lottie-player>
+            <h1>Please wait...</h1>
+            <p>Sense Defence is checking this request</p>
+            <p>If this is not expected, please contact support</p>
+            <button
+                id="btn-submit"
+                hidden="true"
+                class="g-recaptcha"
+                data-sitekey="%CAPTCHA_SITE_KEY%"
+                data-callback="onSubmit"
+            >
+                Submit
+            </button>
+        </main>
+        <footer>
+            <p>
+                ©
+                <a
+                    href="https://www.sensedefence.com/?utm_medium=block_page"
+                    target="_blank"
+                    >SenseDefence AI 2022</a
+                >
+            </p>
+        </footer>
+    </body>
+</html>

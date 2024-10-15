@@ -1,0 +1,6779 @@
+{
+	"info": {
+		"_postman_id": "faa2ccdb-86d2-48b8-8b23-d8a106ce5fcc",
+		"name": "Super Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ad_engine",
+			"item": [
+				{
+					"name": "createAdEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYxNzUwMywiZXhwIjoxNjY0NjIxMTAzfQ.I_CrJqljWVDaHXdbPuwL00gUOM2O6JqBostFRAlVDrXvEvBILZfHIlVGvUh0vXuWQTF7jq7MeeDx1jj6VcWHLw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ip\":\"127.0.0.4\",\r\n    \"cname\": \"ad01-eu.dev.senseguard.io2\",\r\n    \"name\":\"ad01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdEngineNodes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYxNzUwMywiZXhwIjoxNjY0NjIxMTAzfQ.I_CrJqljWVDaHXdbPuwL00gUOM2O6JqBostFRAlVDrXvEvBILZfHIlVGvUh0vXuWQTF7jq7MeeDx1jj6VcWHLw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAdEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYxNzUwMywiZXhwIjoxNjY0NjIxMTAzfQ.I_CrJqljWVDaHXdbPuwL00gUOM2O6JqBostFRAlVDrXvEvBILZfHIlVGvUh0vXuWQTF7jq7MeeDx1jj6VcWHLw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"port\": 5004,\r\n    \"ip\":\"127.0.0.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad_engine/point/63380c8b952fe9c15d361d4d",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad_engine",
+								"point",
+								"63380c8b952fe9c15d361d4d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYxNzUwMywiZXhwIjoxNjY0NjIxMTAzfQ.I_CrJqljWVDaHXdbPuwL00gUOM2O6JqBostFRAlVDrXvEvBILZfHIlVGvUh0vXuWQTF7jq7MeeDx1jj6VcWHLw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad_engine/point/63380c8b952fe9c15d361d4d",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad_engine",
+								"point",
+								"63380c8b952fe9c15d361d4d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBasicBmEngineNodes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYyOTgyNywiZXhwIjoxNjY0NjMzNDI3fQ.n0dclKV-qYg8E5haWsYI_316DO9qsFw7K9MZDIbbfL7yzbI5iJQaa-REP4adgE7GRuURfYwC1H5S3YuE5MyrxA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@test.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/user/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "organisation",
+			"item": [
+				{
+					"name": "deleteOrganisation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_id\": \"62bab2aacc9ef8a11fc49b7c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrganisations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5NTI3MSwiZXhwIjoxNjYzMjk4ODcxfQ.pQQfjSdqUawL5BFo4hM5JC9neoBHFY5-bttqzCHG3kVAZOo1m2-F3YpIQyY7oKi63FHxnpqx-JdMTOLHZhFqHg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0, \r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/get",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrganisation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjI4NDgyNCwiZXhwIjoxNjU2Mjg4NDI0fQ.kbecBmk_0OY2gs6plBB-_g8oszGxlivWJZEm4jtvSelPu32vZDmRDdQNeI2etS9EiUrBUG0DL0bx0MMYe94pmw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/62b8f358a0b4a4fcca9a3de1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								"62b8f358a0b4a4fcca9a3de1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrganisation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjI1NzQwNCwiZXhwIjoxNjU2MjYxMDA0fQ.G4wbsWguQeYXYVd7CouUB9Nm80owNj9HJ1PC6LDOGc2PDKi48g0Vxm65Nj22qn4FSxF7SeQTmn1TSpYAKBcMSQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_id\": \"62ab1f080b46fef8ec87543d\",\r\n    \"title\": \"Test2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOrganisation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjI4NDgyNCwiZXhwIjoxNjU2Mjg4NDI0fQ.kbecBmk_0OY2gs6plBB-_g8oszGxlivWJZEm4jtvSelPu32vZDmRDdQNeI2etS9EiUrBUG0DL0bx0MMYe94pmw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"org5\",\r\n    \"firstName\":\"te\",\r\n    \"lastName\":\"st5\",\r\n    \"email\":\"test5@test.com\",\r\n    \"password\":\"password5\",\r\n    \"confirmPassword\":\"password5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeleteOrganisation",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_id\": \"62bab2aacc9ef8a11fc49b7c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOrganisations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ5NzYzOSwiZXhwIjoxNjU2NTAxMjM5fQ.g10zByBuza8U7XQkuii_RIaTK0loPPu6U0YjHM-5N54FJ-Dz-RULsaI1z7d1i6cHsq7UV1rS7pGQIzHSu7vVig",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeOrganisation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Nzk4NzY1MCwiZXhwIjoxNjU3OTkxMjUwfQ.N0s18clOYH-HaW2ePLVvICcpAtK3beZECCbAKe592-93ilIMlEwahI-Pk-vvk1_1RyxgrWw5etPaOMwr2yb5dw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"org_id\": \"62d2e3578d9e821fa5188e7d\",\r\n    \"remove\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/organisation/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"organisation",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "waf",
+			"item": [
+				{
+					"name": "createWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5Mzc1NSwiZXhwIjoxNjU2NTk3MzU1fQ.6DvQSyEo_wYumlX4B17g2zU6pDsjGVtDYwQ2hkghFDtfcOYuf2XSj4genZ2CxlUbR-FduD5gs_flBb6eWklKHw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ip\":\"127.0.0.2\",\r\n    \"cname\": \"edge-eu.dev.senseguard.io2\",\r\n    \"name\":\"waf1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafs",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Nzk4NzY1MCwiZXhwIjoxNjU3OTkxMjUwfQ.N0s18clOYH-HaW2ePLVvICcpAtK3beZECCbAKe592-93ilIMlEwahI-Pk-vvk1_1RyxgrWw5etPaOMwr2yb5dw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY2MDA2NCwiZXhwIjoxNjU2NjYzNjY0fQ.3evOJFF94OAk8p4K9EAhqr9GhHc3ixVCRYDhoJ4kmbbimWFW8RjvvU1voqziCR9npeSuZP6G_Pdemff5OX7zcg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"port\": 5001,\r\n    \"ip\":\"127.0.0.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point/62bda11b79450eec4ef610c6",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point",
+								"62bda11b79450eec4ef610c6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjMzMjEyOSwiZXhwIjoxNjU2MzM1NzI5fQ.nXEjwWw_SGzbPzMAMz79vGQ26KyRSomW2FWMbraOLnS9-C7RsJVAlGXO_VdV-tfUlAub1ZGqQ_eEqWkkDCLA2w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point/62b969b8d94186143dfb83aa",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point",
+								"62b969b8d94186143dfb83aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ5MDE3NSwiZXhwIjoxNjU2NDkzNzc1fQ.ectLrTGEHUHoPzazWlZ4-6Q9p6sXy_bJf8-jq8cBmq818shcJGFLN2P03x8-zerqf4_1zMPLWPpmeKcl-EGYzw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point/62b969b8d94186143dfb83aa",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point",
+								"62b969b8d94186143dfb83aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unDeleteWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjMzMjEyOSwiZXhwIjoxNjU2MzM1NzI5fQ.nXEjwWw_SGzbPzMAMz79vGQ26KyRSomW2FWMbraOLnS9-C7RsJVAlGXO_VdV-tfUlAub1ZGqQ_eEqWkkDCLA2w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point/62b969b8d94186143dfb83aa",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point",
+								"62b969b8d94186143dfb83aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableHttps",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjM3NDc5NCwiZXhwIjoxNjU2Mzc4Mzk0fQ.a6u0axMH8p_iUUVIu1X76JEN2qKZV8HA0lYSLCpjc8Q6HIpXZUcwizagEkMI92cc1o-Wz1gEFbCObIcveL4xAg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enable\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/enable_https",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"enable_https"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadCerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjMzNTkyNCwiZXhwIjoxNjU2MzM5NTI0fQ.M_20-INojUBKvfplizigMEyvbX8_QftJa-34XoNN_DGUCiSks7KwTDWmtBDnkjNtuumJw8gJLb119DlL2zLQjA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullchain\":\"-----BEGIN CERTIFICATE-----\\nMIIGejCCBGKgAwIBAgIRALQ+6poNknyUXEbf5JMkWOYwDQYJKoZIhvcNAQEMBQAw\\nSzELMAkGA1UEBhMCQVQxEDAOBgNVBAoTB1plcm9TU0wxKjAoBgNVBAMTIVplcm9T\\nU0wgUlNBIERvbWFpbiBTZWN1cmUgU2l0ZSBDQTAeFw0yMjA1MzAwMDAwMDBaFw0y\\nMjA4MjgyMzU5NTlaMBkxFzAVBgNVBAMMDiouZXZlcnBhZ2UuYXBwMIIBIjANBgkq\\nhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA45pVs+DWkiBhRloYGHLYlsgIe7lG7Uf9\\nIx5HWiS+WjlKFLbbxUho2ZtQT5iSwJXcqJF2WXCYifDeVAQvFtmDbGlXzOmPkeT5\\nEY6sivdofAzS+JyzBuFMzjSOkLNQTpPh5j4yc+GPtVM3PuVhTpNd8yvEMHpFEejT\\nDJC5so+92xZ12Z6xOsLDakAsQYp5oWPN6Vc3TEwmW8lreOvwovgjPh2WUTHX5zZ8\\nXRuvGCjCV4Fnh/5JT/jCcdHq4InU795uD5wlF997Rt+MwE5HSDxpLpyU7p6TxbXO\\nlXQ4ByMNwHfuSzIyB2jFnz9isnGkPNm5DSb7GwXjsE/SxMjjBj9LWwIDAQABo4IC\\niTCCAoUwHwYDVR0jBBgwFoAUyNl4aKLZGWjVPXLeXwo+3LWGhqYwHQYDVR0OBBYE\\nFLlxPdKFji9DUkxcCOVePY5jzppHMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8E\\nAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBJBgNVHSAEQjBAMDQG\\nCysGAQQBsjEBAgJOMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20v\\nQ1BTMAgGBmeBDAECATCBiAYIKwYBBQUHAQEEfDB6MEsGCCsGAQUFBzAChj9odHRw\\nOi8vemVyb3NzbC5jcnQuc2VjdGlnby5jb20vWmVyb1NTTFJTQURvbWFpblNlY3Vy\\nZVNpdGVDQS5jcnQwKwYIKwYBBQUHMAGGH2h0dHA6Ly96ZXJvc3NsLm9jc3Auc2Vj\\ndGlnby5jb20wggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgBGpVXrdfqRIDC1oolp\\n9PN9ESxBdL79SbiFq/L8cP5tRwAAAYEV9cxTAAAEAwBHMEUCIHATKH6OJjSrz5qI\\nE+EuUEe0NosOa2RjnbUXCTTC0qt4AiEAg7JzLrVq7lGozzqn9iXQbsB60Y/eB0Uj\\n/1zJnHz1oP4AdwBByMqx3yJGShDGoToJQodeTjGLGwPr60vHaPCQYpYG9gAAAYEV\\n9cxQAAAEAwBIMEYCIQCCm0cjQacfepSIs7kVlXwpGoNws4pK1mxufdxhvzTcewIh\\nAPLDM37CFLO/TjTg88tE8+qeHz0Zwi4hdfMmkMOFe4IxMCcGA1UdEQQgMB6CDiou\\nZXZlcnBhZ2UuYXBwggxldmVycGFnZS5hcHAwDQYJKoZIhvcNAQEMBQADggIBAF20\\nv7PCjWHJEuGE1MV4pNBuTpWykjgzpchJ274lisAWi/DwEI8qHjoBNA9K1hYHmkdm\\nc11q5W8D42DLrhKj6/9NVOZUenVAy7YdAUEaEYjmk2pItuVJn0LRRIhfUJVptITo\\nF5+VI0kblAwwd4Y46qvnRgXBViJ+5o8nom2leFFazqQmb2nHVg+Cn5r6nRSDva64\\nhDLWXNSnxKjASPOQWkfScE/cu8zMllEPJRqAT1KZf5EAT/w9m9hufhbsL80GRicF\\nlAswNN0uSHpIcbpXgZ16TcXHBgrRnGSwNIVL4xD223k2QFOC6yjad8mNNijf4pBZ\\nLW0v+UL/jhSBHdVksiRpga4gtTwiPFtsEFpDoITCN8ED46diHTn7937YEOcJdC/C\\nmWGveNK4kPPVMR3yXL2CHCDPbVHa2H5tcnTCAVHxoCR5V1PzovpSRRhuEBBxJcl0\\nrWPnlc1C5Efpgz7M+1zGlSnlVtS2inGflTA4Kt/wb33DB3bnbiSihSHv4UhwkHxO\\nrr/Mk+pELkBpF5qoA3CaeeimSdox3/mgwyhH4SQ5SS1qWo60I1G24p2w26jn9qxa\\nZnB1Bj9l5Q4CgrwDb8hqTGb2rm1NTaiN8W3f91o/5/xYvSyRos6l+0W8gGQ8Cjue\\ndQhrqC8U3FkmX9ds26pU5VEbnuBQIoH4xBbq+Ur9\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\nMIIG1TCCBL2gAwIBAgIQbFWr29AHksedBwzYEZ7WvzANBgkqhkiG9w0BAQwFADCB\\niDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0pl\\ncnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNV\\nBAMTJVVTRVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMjAw\\nMTMwMDAwMDAwWhcNMzAwMTI5MjM1OTU5WjBLMQswCQYDVQQGEwJBVDEQMA4GA1UE\\nChMHWmVyb1NTTDEqMCgGA1UEAxMhWmVyb1NTTCBSU0EgRG9tYWluIFNlY3VyZSBT\\naXRlIENBMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAhmlzfqO1Mdgj\\n4W3dpBPTVBX1AuvcAyG1fl0dUnw/MeueCWzRWTheZ35LVo91kLI3DDVaZKW+TBAs\\nJBjEbYmMwcWSTWYCg5334SF0+ctDAsFxsX+rTDh9kSrG/4mp6OShubLaEIUJiZo4\\nt873TuSd0Wj5DWt3DtpAG8T35l/v+xrN8ub8PSSoX5Vkgw+jWf4KQtNvUFLDq8mF\\nWhUnPL6jHAADXpvs4lTNYwOtx9yQtbpxwSt7QJY1+ICrmRJB6BuKRt/jfDJF9Jsc\\nRQVlHIxQdKAJl7oaVnXgDkqtk2qddd3kCDXd74gv813G91z7CjsGyJ93oJIlNS3U\\ngFbD6V54JMgZ3rSmotYbz98oZxX7MKbtCm1aJ/q+hTv2YK1yMxrnfcieKmOYBbFD\\nhnW5O6RMA703dBK92j6XRN2EttLkQuujZgy+jXRKtaWMIlkNkWJmOiHmErQngHvt\\niNkIcjJumq1ddFX4iaTI40a6zgvIBtxFeDs2RfcaH73er7ctNUUqgQT5rFgJhMmF\\nx76rQgB5OZUkodb5k2ex7P+Gu4J86bS15094UuYcV09hVeknmTh5Ex9CBKipLS2W\\n2wKBakf+aVYnNCU6S0nASqt2xrZpGC1v7v6DhuepyyJtn3qSV2PoBiU5Sql+aARp\\nwUibQMGm44gjyNDqDlVp+ShLQlUH9x8CAwEAAaOCAXUwggFxMB8GA1UdIwQYMBaA\\nFFN5v1qqK0rPVIDh2JvAnfKyA2bLMB0GA1UdDgQWBBTI2XhootkZaNU9ct5fCj7c\\ntYaGpjAOBgNVHQ8BAf8EBAMCAYYwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHSUE\\nFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwIgYDVR0gBBswGTANBgsrBgEEAbIxAQIC\\nTjAIBgZngQwBAgEwUAYDVR0fBEkwRzBFoEOgQYY/aHR0cDovL2NybC51c2VydHJ1\\nc3QuY29tL1VTRVJUcnVzdFJTQUNlcnRpZmljYXRpb25BdXRob3JpdHkuY3JsMHYG\\nCCsGAQUFBwEBBGowaDA/BggrBgEFBQcwAoYzaHR0cDovL2NydC51c2VydHJ1c3Qu\\nY29tL1VTRVJUcnVzdFJTQUFkZFRydXN0Q0EuY3J0MCUGCCsGAQUFBzABhhlodHRw\\nOi8vb2NzcC51c2VydHJ1c3QuY29tMA0GCSqGSIb3DQEBDAUAA4ICAQAVDwoIzQDV\\nercT0eYqZjBNJ8VNWwVFlQOtZERqn5iWnEVaLZZdzxlbvz2Fx0ExUNuUEgYkIVM4\\nYocKkCQ7hO5noicoq/DrEYH5IuNcuW1I8JJZ9DLuB1fYvIHlZ2JG46iNbVKA3ygA\\nEz86RvDQlt2C494qqPVItRjrz9YlJEGT0DrttyApq0YLFDzf+Z1pkMhh7c+7fXeJ\\nqmIhfJpduKc8HEQkYQQShen426S3H0JrIAbKcBCiyYFuOhfyvuwVCFDfFvrjADjd\\n4jX1uQXd161IyFRbm89s2Oj5oU1wDYz5sx+hoCuh6lSs+/uPuWomIq3y1GDFNafW\\n+LsHBU16lQo5Q2yh25laQsKRgyPmMpHJ98edm6y2sHUabASmRHxvGiuwwE25aDU0\\n2SAeepyImJ2CzB80YG7WxlynHqNhpE7xfC7PzQlLgmfEHdU+tHFeQazRQnrFkW2W\\nkqRGIq7cKRnyypvjPMkjeiV9lRdAM9fSJvsB3svUuu1coIG1xxI1yegoGM4r5QP4\\nRGIVvYaiI76C0djoSbQ/dkIUUXQuB8AL5jyH34g3BZaaXyvpmnV4ilppMXVAnAYG\\nON51WhJ6W0xNdNJwzYASZYH+tmCWI+N60Gv2NNMGHwMZ7e9bXgzUCZH5FaBFDGR5\\nS9VWqHB73Q+OyIVvIbKYcSc2w/aSuFKGSA==\\n-----END CERTIFICATE-----\\n\",\r\n    \"privkey\": \"-----BEGIN PRIVATE KEY-----\\nMIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQDjmlWz4NaSIGFG\\nWhgYctiWyAh7uUbtR/0jHkdaJL5aOUoUttvFSGjZm1BPmJLAldyokXZZcJiJ8N5U\\nBC8W2YNsaVfM6Y+R5PkRjqyK92h8DNL4nLMG4UzONI6Qs1BOk+HmPjJz4Y+1Uzc+\\n5WFOk13zK8QwekUR6NMMkLmyj73bFnXZnrE6wsNqQCxBinmhY83pVzdMTCZbyWt4\\n6/Ci+CM+HZZRMdfnNnxdG68YKMJXgWeH/klP+MJx0ergidTv3m4PnCUX33tG34zA\\nTkdIPGkunJTunpPFtc6VdDgHIw3Ad+5LMjIHaMWfP2KycaQ82bkNJvsbBeOwT9LE\\nyOMGP0tbAgMBAAECggEBAN9FrUESFSuv+/zpsK17LCFuBXRporxuXFKxB0nUta8I\\neDWt1BXKHKErjTMn9v5ZhOcQG0tN+zWGRnOgzxjZM+WLyYfIrwBt4C9rCLQiVCss\\n4WDlR3I+XfwC7r/gR61twLL+3Lt00GcORSm8FyLfydAcZQ8xQsR442B2MNSL0bEy\\nk75rfIUeEAVUmCzcZs2AS2GTBrnlHslCkfCdRVb8LGUlU9x/CGWkGKKE3hgTfNjx\\nm/OLEdx5UI3mAu68xP1uaj5Lvpv+P2dDR+rduWBuYaVnhMFxVELdPlLnSx9L1oEx\\nrJmDz546OjTOgi1brXGfC7vb+GLX5NzcrhQZ25XoqwECgYEA8ZGsz4FrudarIehN\\ngZ+B2vNXmSP5If53k5DgaP3MboA0dUO4WsnvAC97LX3X8veJ7T/4vltCucm+sqYj\\n0GN07TSZ7PAbFfNMjg79cJlzhjeMrh2H+eCquZUggD8wpYsTWhwb6L3nXGTiNH+5\\nHiJRzsP8hYXnwa8oeqaBmTD+6cECgYEA8TMTElNJv8Lq0FFV7dRxsbaObO3MUA1T\\nIwBcrKL1bSxAdRarWORNrg3D7WP+138QYJPDKnuddgcxnVXBd+3KDRjhX2Dvyyeu\\nrkO1uXhyqTYt8N0GnmbJDnRQosEDtJou93MKn2KFUdFjiCCOQZOzLX9ksMJT5fxG\\nDKAPBELdpBsCgYEApjKkY0tWc1AXA0gQ8wpry9i5vtm6EMJDQJpfWryqhqfb74W8\\n83GU5lrEc2LuTPIzya/Gkii1ep8rfTvCzh9vFben4xS6fdqbI+16PprEmWXkevJE\\nWA1TSEUqTDGtZWeO0+Mc7H6jC7U40AfDs9DG2euK885RybaZsfCWn2/PIcECgYEA\\no24OAB67G9oArQJPjQSjvNyLiLdf9uXwbQjzwm3wifav/iZMF8Ep+UOOfC2DIZUR\\nDb9RQFneCXk6XvcaTh6rB1DSdIQENs0+iQmL+o3oc0soucmpkG7o0IhzkrPhxN+r\\n7zLeAb0JxLRyEmystzZS9AMbwMELhAv5kthpFGQSNf0CgYEAhkNb1BABOpxK3kMb\\nzBUommNB/PzU+SMz0DriU5aBeKo6FsLHSHie+Wz2QTjVtRsVT4kjnleONu5PmVFa\\nbuTeohdGxAJVwfOFa5My+gfALGjF2SvHquYTammzKQvCj767wbu8qiCnMOb1eNlV\\n8oPwKzQUMfHj+Y0UD06OnvEDAvQ=\\n-----END PRIVATE KEY-----\\n\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/upload_certs",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"upload_certs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY5NDQ0MywiZXhwIjoxNjU2Njk4MDQzfQ.aRCTuKDCmdA8ZuuYdx4GAc9zc9-L1-zli7fpDPz3OXalWUNc4U0l6mHE_jjtjJAIbCu9_tqqtjLr0BV2eoA80w",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enable\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/certs",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"certs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "generateCerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njk0MjI5MCwiZXhwIjoxNjU2OTQ1ODkwfQ.QtYyQc7n9ATUMhVDGbTfCezlEd6AMzaK3BgTmSnqwsCk5ubHSAvg-79oDUvt9Biz5eJ0O9WU10_E_y97Ufb5mA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/generate_sg_certs",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"generate_sg_certs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyDomains",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjM0NjY3NCwiZXhwIjoxNjU2MzUwMjc0fQ.wctQ5zaOr64-nC0KYuhFc2P7jqfak_6ycoKi_fvG0W7VRkUIQEdJvHjlTX8zcGaN0XNYrEmWkxYYFHlTX841sg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"domain\": \"spaceigniter.com\",\r\n    \"cert_id\": \"b17705a949db99c9f24318a0a4dd4f9e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/verify_domains",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"verify_domains"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "applySslconfig",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzU3MzU3NywiZXhwIjoxNjYzNTc3MTc3fQ.Ni7zf3LQL89CAhixdKu1bnOXXL6V8xFqeJkTkqGVNGDGGanpfflBnH4rOLvQqXs6tETeWOx-th1uJwxWYJtfjw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/apply_ssl",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"apply_ssl"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBasicWafs",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjgwNjkwNSwiZXhwIjoxNjU2ODEwNTA1fQ.fYa8-63IGwsRJqlLd1K_IKElYPndCb2OuFGDZrNrtJSJ2UqpC5RuqKuCMbu8mBJW2Nz57uKxTUs3qjRd0k6epA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeWaf",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Nzk4NzY1MCwiZXhwIjoxNjU3OTkxMjUwfQ.N0s18clOYH-HaW2ePLVvICcpAtK3beZECCbAKe592-93ilIMlEwahI-Pk-vvk1_1RyxgrWw5etPaOMwr2yb5dw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"remove\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/waf/point/62d2e2024915e0713b1d462c",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"waf",
+								"point",
+								"62d2e2024915e0713b1d462c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bm_engine",
+			"item": [
+				{
+					"name": "createBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ip\":\"127.0.0.3\",\r\n    \"cname\": \"edge-eu.dev.senseguard.io2\",\r\n    \"name\":\"bm1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBmEngineNodes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"port\": 5002,\r\n    \"ip\":\"127.0.0.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point/6326e7702576bfceee33a97b",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point",
+								"6326e7702576bfceee33a97b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point/6326e7702576bfceee33a97b",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point",
+								"6326e7702576bfceee33a97b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point/6326e7702576bfceee33a97b",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point",
+								"6326e7702576bfceee33a97b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unDeleteBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point/6326e7702576bfceee33a97b",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point",
+								"6326e7702576bfceee33a97b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBasicBmEngineNodes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeBmEngineNode",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQ5Mzk3NCwiZXhwIjoxNjYzNDk3NTc0fQ.5cbximZ0k5YtCwj3w0BroYjo8EiDG1YjNvWHYWeE0XxJlK9dlqY9Wxdmunj8dcE0H3GKNf7F7KR5a86SglGWbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"remove\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm_engine/point/6326e7702576bfceee33a97b",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm_engine",
+								"point",
+								"6326e7702576bfceee33a97b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "impersonate",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZlNGFlODkxYTljYTdhZGRmMmRhMiIsImlhdCI6MTY1NjI1Njc0NiwiZXhwIjoxNjU2MjYwMzQ2fQ.PE1JJRH_WKybn8zkciD-UvpQV_RUm3QXKAnF9aA07xQBOm726FsFkJTizqj-PKngxZ7nOJniTdNf0hCE6GAqFA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test2@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/user/impersonate",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"impersonate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjI5MDk1NywiZXhwIjoxNjU2Mjk0NTU3fQ.Y2VosI1C8T6t8LBE-K5Xzp8Lje_VEzne3qki4tBmACQmFrLsjBTI_GjAzdFnR63CPceSISsAGFtJvKeEIkqOUA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test52@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/user/verify",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5MDc4MywiZXhwIjoxNjU2NTk0MzgzfQ.W5jXGSurTcvMjxAQKEqbZ1KR9SlAc57pQzJrFvx8tGXDYs5CEKewv-98hXxEvhUPvMsFIBs4MRN-oHdzATV-5Q",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/users",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjI5MDk1NywiZXhwIjoxNjU2Mjk0NTU3fQ.Y2VosI1C8T6t8LBE-K5Xzp8Lje_VEzne3qki4tBmACQmFrLsjBTI_GjAzdFnR63CPceSISsAGFtJvKeEIkqOUA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62b8f358a0b4a4fcca9a3de1",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"test53\",\r\n    \"firstName\":\"te\",\r\n    \"lastName\":\"st53\",\r\n    \"email\":\"test53@test.com\",\r\n    \"password\":\"password53\",\r\n    \"confirmPassword\":\"password53\",\r\n    \"role\":3,\r\n    \"verify\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/users",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reportUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYwNDUzMiwiZXhwIjoxNjU2NjA4MTMyfQ.aTqOdmzqsGYhserkEV6wfhKctNTqVc2hemqVN8PmBx7WBYPvp1YsP9iEGZLNOXak6kzUxIeAkl6xTE04MQ-msw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": 3,\r\n    \"time_range\": {\r\n        \"time_zone\": \"+08:00\",\r\n        \"from\": \"2022-06-27T09:00:00\",\r\n        \"to\": \"2022-07-01T00:00:00\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/user/report",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disableUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5MDc4MywiZXhwIjoxNjU2NTk0MzgzfQ.W5jXGSurTcvMjxAQKEqbZ1KR9SlAc57pQzJrFvx8tGXDYs5CEKewv-98hXxEvhUPvMsFIBs4MRN-oHdzATV-5Q",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"62bb99d073208dc6404fb2e1\",\r\n    \"action\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/users/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1Njk1MCwiZXhwIjoxNjU2NTYwNTUwfQ.LMnH2AlvSXqSWDJcf-Q3zb12L81_tfxqaXRlPIIeIlL4rHp6B9ro-xYOSF2fDKZDxrYdGZ7F76O4E7XnEUwbrA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"62bb99d073208dc6404fb2e1\",\r\n    \"action\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/users/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeleteUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1Njk1MCwiZXhwIjoxNjU2NTYwNTUwfQ.LMnH2AlvSXqSWDJcf-Q3zb12L81_tfxqaXRlPIIeIlL4rHp6B9ro-xYOSF2fDKZDxrYdGZ7F76O4E7XnEUwbrA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"62bb99d073208dc6404fb2e1\",\r\n    \"action\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/users/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5MDc4MywiZXhwIjoxNjU2NTk0MzgzfQ.W5jXGSurTcvMjxAQKEqbZ1KR9SlAc57pQzJrFvx8tGXDYs5CEKewv-98hXxEvhUPvMsFIBs4MRN-oHdzATV-5Q",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"62bb99d073208dc6404fb2e1\",\r\n    \"action\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/users/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5MDc4MywiZXhwIjoxNjU2NTk0MzgzfQ.W5jXGSurTcvMjxAQKEqbZ1KR9SlAc57pQzJrFvx8tGXDYs5CEKewv-98hXxEvhUPvMsFIBs4MRN-oHdzATV-5Q",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/users/62bb99d073208dc6404fb2e1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"62bb99d073208dc6404fb2e1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health",
+			"item": [
+				{
+					"name": "getServerHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjM1MzI1MiwiZXhwIjoxNjU2MzU2ODUyfQ.SHy3jh6_3VYfRo3QF_tRuna6b5ZZ6XB9v7W47eyK0FJdynOqnnKhXOxSmQKoCaBWfOmGSgdM2YxTqaHPRdWW4Q",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/server",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"server"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njc3MDY4MiwiZXhwIjoxNjU2Nzc0MjgyfQ.quFRwJfbkhQvp9mu335e9gEcr3QLARceH4xCUHUZ3ti1emBytWyJ-rr_vXt1Hu9VnezGxavbTBCXbUElbLzMQw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/waf/62bef896cf7c8f23cf0d8c80",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"waf",
+								"62bef896cf7c8f23cf0d8c80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafEdgeStats",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzU3MDA0NCwiZXhwIjoxNjYzNTczNjQ0fQ.nOjVpYghZgKpb0fp81rTdiQujDSr76iUtCNPclLntYqrFFehkZMCrjroe6BldkF913Msg7vCZwOfaq2pmW0zFQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time_range\": {\r\n        \"period\": \"0d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/edge/stats/627331d2f615504965466437",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"edge",
+								"stats",
+								"627331d2f615504965466437"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafEdgeHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzU3MDA0NCwiZXhwIjoxNjYzNTczNjQ0fQ.nOjVpYghZgKpb0fp81rTdiQujDSr76iUtCNPclLntYqrFFehkZMCrjroe6BldkF913Msg7vCZwOfaq2pmW0zFQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/edge/62bef896cf7c8f23cf0d8c80",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"edge",
+								"62bef896cf7c8f23cf0d8c80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWafStats",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njg1NDUwOCwiZXhwIjoxNjU2ODU4MTA4fQ.kIEU8QA7_FGAL6ivIk2zJh5WJL-NspC6K_2mfnAnMy8-I8IPvWBeGv4yEUjZbSSVCYgwuGeY5WjYBaPbztWjlA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time_range\": {\r\n        \"period\": \"1d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/waf/stats/627331d2f615504965466437",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"waf",
+								"stats",
+								"627331d2f615504965466437"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBmEngineHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzU3MDA0NCwiZXhwIjoxNjYzNTczNjQ0fQ.nOjVpYghZgKpb0fp81rTdiQujDSr76iUtCNPclLntYqrFFehkZMCrjroe6BldkF913Msg7vCZwOfaq2pmW0zFQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/bm_engine/6327d3e1c1f38a155bc302f2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"bm_engine",
+								"6327d3e1c1f38a155bc302f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBmEngineStats",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzU3MDA0NCwiZXhwIjoxNjYzNTczNjQ0fQ.nOjVpYghZgKpb0fp81rTdiQujDSr76iUtCNPclLntYqrFFehkZMCrjroe6BldkF913Msg7vCZwOfaq2pmW0zFQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time_range\": {\r\n        \"period\": \"0d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/bm_engine/stats/6327d3e1c1f38a155bc302f2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"bm_engine",
+								"stats",
+								"6327d3e1c1f38a155bc302f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdEngineHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYyOTgyNywiZXhwIjoxNjY0NjMzNDI3fQ.n0dclKV-qYg8E5haWsYI_316DO9qsFw7K9MZDIbbfL7yzbI5iJQaa-REP4adgE7GRuURfYwC1H5S3YuE5MyrxA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/ad_engine/63383680a95ea5c679a70536",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"ad_engine",
+								"63383680a95ea5c679a70536"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdEngineStats",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDYyOTgyNywiZXhwIjoxNjY0NjMzNDI3fQ.n0dclKV-qYg8E5haWsYI_316DO9qsFw7K9MZDIbbfL7yzbI5iJQaa-REP4adgE7GRuURfYwC1H5S3YuE5MyrxA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time_range\": {\r\n        \"period\": \"0d\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/health/ad_engine/stats/63383680a95ea5c679a70536",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"health",
+								"ad_engine",
+								"stats",
+								"63383680a95ea5c679a70536"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "ssl",
+					"item": [
+						{
+							"name": "getSslConfig",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+										"type": "default"
+									},
+									{
+										"key": "Organisation",
+										"value": "62bab2f8cc9ef8a11fc49b9f",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"site_id\": \"test.com\"\r\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/config/ssl/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"config",
+										"ssl",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "waf",
+					"item": [
+						{
+							"name": "getWafConfig",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+										"type": "default"
+									},
+									{
+										"key": "Organisation",
+										"value": "62bab2f8cc9ef8a11fc49b9f",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"site_id\":\"test.com\"\r\n}"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/api/config/waf/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"config",
+										"waf",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "site",
+			"item": [
+				{
+					"name": "getSites",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/site",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBasicSites",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2Mjg1NywiZXhwIjoxNjU2NDY2NDU3fQ.AkCNQWnwDHWOYSDRhtzbfIq9Fibs0A02Wbvt-XOgw2-xgWeFloPpBNvsIW1TwK80j7Ymzxi52fU1efBoPv2biA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/site/basis",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"site",
+								"basis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjQ2NDY4MiwiZXhwIjoxNjU2NDY4MjgyfQ.EM-S5L-SN6L-0Tv7ZLK1iW5X7MClLdnW1EIUv8VBM0PON7ruZYIW7BCZ39tpBMZbTsrD4LBkCIad1oFtRFrDyA",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bab2f8cc9ef8a11fc49b9f",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"spaceigniter.com\",\r\n    \"site_name\":\"Space Igniter\",\r\n    \"site_addr\":\"www.baidu.com\",\r\n    \"subdomains\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/site",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeleteSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzE4MzM0MCwiZXhwIjoxNjU3MTg2OTQwfQ.AI9uW1LMgiplA2rtgokicb1RiQD7f1_7hKi3qs1oSLtWY7qEhbLwWFtoEHskcIxvu_U5hZrpnBYYg0OV-tEv_A",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62bcf4c358d796fcf473b3e3",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":[\"baidu.com\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/site",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"site"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeSite",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Nzk4NzY1MCwiZXhwIjoxNjU3OTkxMjUwfQ.N0s18clOYH-HaW2ePLVvICcpAtK3beZECCbAKe592-93ilIMlEwahI-Pk-vvk1_1RyxgrWw5etPaOMwr2yb5dw",
+								"type": "default"
+							},
+							{
+								"key": "Organisation",
+								"value": "62d2e3578d9e821fa5188e7d",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\":\"google.com\",\r\n    \"remove\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/site",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"site"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feature",
+			"item": [
+				{
+					"name": "createFeature",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"feature_id\": 11,\r\n    \"title\": \"Role Based Access Control\",\r\n    \"type\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFeatures",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFeature",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFeature",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"feature_id\": 2,\r\n    \"title\": \"Signature WAF\",\r\n    \"type\": \"0\",\r\n    \"isDeleted\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFeature",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeleteFeature",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY4MTc5NiwiZXhwIjoxNjU2Njg1Mzk2fQ.DMQ0L1VBv3nV4zPnTwDR5lzURJDUq1vIlfJ1SNeTuu8KcfZCHQLOXfm5eAv0GWz2RqdgzRuDBJd_WnrDmdsGdg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/feature/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"feature",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ssl",
+			"item": [
+				{
+					"name": "updateZerosslApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"api_key\": \"2661d177f2feda9412eb23046bdde0c4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ssl/zerossl_api_key",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ssl",
+								"zerossl_api_key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentZerosslApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU2OTIzMiwiZXhwIjoxNjU2NTcyODMyfQ.rpkgc0HNZZt6C1onCUFBAZG2LaEe7fwyppJtWltg2IB7GYvFoO_t7BmKsKaxMSAnbJiR78EW-76bpKnn8J_D3A",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ssl/zerossl_api_key/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ssl",
+								"zerossl_api_key",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getZerosslApiKeyHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ssl/zerossl_api_key/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ssl",
+								"zerossl_api_key",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSslCertProvision",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MTQ5NSwiZXhwIjoxNjU2NTU1MDk1fQ.9Rd3u9eYIRwMfTPEYR8F5Atl0yMndFWqyXQuLcmguuYe59syJd-t2hUo3fX7D8JEzi_5gi0bDxCxL1zP4Xm_Ug",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ssl/cert_provision",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ssl",
+								"cert_provision"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "updateStripeApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU3OTMxNCwiZXhwIjoxNjU2NTgyOTE0fQ.7GlSRxsNqFPinig-cZv8O6WXSs3iKGobIDOfG-jo4GDcR5p4ru7R4ceJ-yrTt7M8hqIVxUaVP156NS8xmih94g",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"publishable_key\": \"pk_test_51LAsinL1SD32RD2bUmk0gFzJNjDgWuIGQAcAfiiknYbjG73tnDgrWTK7ceoshk5UQFkbP5nAoycLllJP4NZgUg4k0064WYvwUq\",\r\n    \"secret_key\": \"sk_test_51LAsinL1SD32RD2b8eh3egCXC3LSk7X1SCeKAb2gutCSDEUDOwaXg9yzKuGn3ZhqG5YI9oIRySjGqGmVUpX4vYaF00xhjsgIgb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/stripe_api_key",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"stripe_api_key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentStripeApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU3OTMxNCwiZXhwIjoxNjU2NTgyOTE0fQ.7GlSRxsNqFPinig-cZv8O6WXSs3iKGobIDOfG-jo4GDcR5p4ru7R4ceJ-yrTt7M8hqIVxUaVP156NS8xmih94g",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/stripe_api_key/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"stripe_api_key",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStripeApiKeyHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzA5NTc3MiwiZXhwIjoxNjU3MDk5MzcyfQ.W-U3_Wc_K9q1bI26foSsAqbbl87gRxhmovVxGtCYTYalay30YXxT3l0jtIf1cudWuleOfbNtqnq-s6UC1TBXSw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/stripe_api_key/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"stripe_api_key",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPaymentIntentById",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU5MDc4MywiZXhwIjoxNjU2NTk0MzgzfQ.W5jXGSurTcvMjxAQKEqbZ1KR9SlAc57pQzJrFvx8tGXDYs5CEKewv-98hXxEvhUPvMsFIBs4MRN-oHdzATV-5Q",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/pi/pi_3LGH1LL1SD32RD2b19PtxfFw",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"pi",
+								"pi_3LGH1LL1SD32RD2b19PtxfFw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createManualPayment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzAzMjQ5NSwiZXhwIjoxNjU3MDM2MDk1fQ.KzTqxp8QhdZMNI7Y2ibkgjeeqdo_jSqSF5szWpGPfk0D56epPNzLNsj9OHOt-6USLzegYhz8Qj97R0Y8un6fww",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 100,\r\n    \"period\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/custom/62c196b28c1ec5055d25f6f9",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"custom",
+								"62c196b28c1ec5055d25f6f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getManualPaymentHistory4Org",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njg1Nzk1MSwiZXhwIjoxNjU2ODYxNTUxfQ.AMEiIGtWxMvE5w9mHrXuw8ANWth2eHIQHxAyyHRj2-7tlV2dyBuktvC8XrmRFOxawzizKDaakmA9ktllVVmsrA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/custom/history/62c189937af2acc2f88e9034",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"custom",
+								"history",
+								"62c189937af2acc2f88e9034"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRateLimitBill",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MDY5Njk0MywiZXhwIjoxNjYwNzAwNTQzfQ.g4mPqjJ3AThp8HyMLnHBiR5EJXTkTx-BAD5V56XSRCSwGZwer1t3AZxRnJelGndQu6v7SVRRn3blc6lRXrZJkQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"free_requests\": 10000,\r\n    \"unit_requests\": 10000,\r\n    \"unit_price\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/rate_limit_bill",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"rate_limit_bill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentRateLimitBill",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MDY5Njk0MywiZXhwIjoxNjYwNzAwNTQzfQ.g4mPqjJ3AThp8HyMLnHBiR5EJXTkTx-BAD5V56XSRCSwGZwer1t3AZxRnJelGndQu6v7SVRRn3blc6lRXrZJkQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/rate_limit_bill/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"rate_limit_bill",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRateLimitBillHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MDY5Njk0MywiZXhwIjoxNjYwNzAwNTQzfQ.g4mPqjJ3AThp8HyMLnHBiR5EJXTkTx-BAD5V56XSRCSwGZwer1t3AZxRnJelGndQu6v7SVRRn3blc6lRXrZJkQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/rate_limit_bill/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"rate_limit_bill",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBMPayment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5MTUzMiwiZXhwIjoxNjYzMjk1MTMyfQ.9GUijAkTvWcWbtxBppGsxLSP1wi9Nz3TPcfZ5rtr1efj_btBBbW7kaN_MJUWMiXib4wkSP2ke1tu9UWXxcF-zA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 100,\r\n    \"period\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/bm/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"bm",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBMPaymentHistory4Org",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5MTUzMiwiZXhwIjoxNjYzMjk1MTMyfQ.9GUijAkTvWcWbtxBppGsxLSP1wi9Nz3TPcfZ5rtr1efj_btBBbW7kaN_MJUWMiXib4wkSP2ke1tu9UWXxcF-zA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/bm/history/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"bm",
+								"history",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "es",
+			"item": [
+				{
+					"name": "updateESApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"api_key\": \"LW1RRWhZRUJNMWNudlRLNU9kbXU6WXR3MVlnaUlRRS1OT3NDbkR1TzZzQQ==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/api_key",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"api_key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentESApiKey",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/api_key/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"api_key",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getESApiKeyHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/api_key/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"api_key",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateESAddress",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU2OTIzMiwiZXhwIjoxNjU2NTcyODMyfQ.rpkgc0HNZZt6C1onCUFBAZG2LaEe7fwyppJtWltg2IB7GYvFoO_t7BmKsKaxMSAnbJiR78EW-76bpKnn8J_D3A",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"https://senseguard.es.eu-west-1.aws.found.io\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/address",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentESAddress",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU2OTIzMiwiZXhwIjoxNjU2NTcyODMyfQ.rpkgc0HNZZt6C1onCUFBAZG2LaEe7fwyppJtWltg2IB7GYvFoO_t7BmKsKaxMSAnbJiR78EW-76bpKnn8J_D3A",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/address/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"address",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getESAddressHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU1MzIzOSwiZXhwIjoxNjU2NTU2ODM5fQ.1ysKgKT73cUNXdjLc4KtAjGlWvMy_wW-JXZQX3FyQs7X4nAjMk1RIC9m2ErgXpYn9Z6JbYPA-NXnr_FlB_F8bA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/address/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"address",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getESHealth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU2OTIzMiwiZXhwIjoxNjU2NTcyODMyfQ.rpkgc0HNZZt6C1onCUFBAZG2LaEe7fwyppJtWltg2IB7GYvFoO_t7BmKsKaxMSAnbJiR78EW-76bpKnn8J_D3A",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/es/health",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"es",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPaymentHistory4Org",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjU3OTMxNCwiZXhwIjoxNjU2NTgyOTE0fQ.7GlSRxsNqFPinig-cZv8O6WXSs3iKGobIDOfG-jo4GDcR5p4ru7R4ceJ-yrTt7M8hqIVxUaVP156NS8xmih94g",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/payment/history/62bcf4c358d796fcf473b3e3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"payment",
+								"history",
+								"62bcf4c358d796fcf473b3e3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rule",
+			"item": [
+				{
+					"name": "enableCrsRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY2MDA2NCwiZXhwIjoxNjU2NjYzNjY0fQ.3evOJFF94OAk8p4K9EAhqr9GhHc3ixVCRYDhoJ4kmbbimWFW8RjvvU1voqziCR9npeSuZP6G_Pdemff5OX7zcg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rule_id\": \"941\",\r\n    \"enable\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/enable_crs_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"enable_crs_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableCrsSecRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY2MDA2NCwiZXhwIjoxNjU2NjYzNjY0fQ.3evOJFF94OAk8p4K9EAhqr9GhHc3ixVCRYDhoJ4kmbbimWFW8RjvvU1voqziCR9npeSuZP6G_Pdemff5OX7zcg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sec_rule_id\": \"905100\",\r\n    \"enable\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/enable_crs_sec_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"enable_crs_sec_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYwNzI1NywiZXhwIjoxNjU2NjEwODU3fQ.eFISdjJNzNuVcgOUGW3EOrx8asw9EJxSKLmbueIUCbPK34l7rNqX1BcIDpGpBzelOXolhL8VjERFwLNyCiINLg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"XSS Filter - Category 4: Javascript URI Vector\",\r\n    \"content\": \"SecRule REQUEST_COOKIES|!REQUEST_COOKIES:/__utm/|REQUEST_COOKIES_NAMES|REQUEST_HEADERS:User-Agent|REQUEST_HEADERS:Referer|ARGS_NAMES|ARGS|XML:/* \\\"@rx (?i)[a-z]+=(?:[^:=]+:.+;)*?[^:=]+:url\\\\(javascript\\\" \\\\\\n    \\\"id:409001,\\\\\\n    phase:2,\\\\\\n    block,\\\\\\n    capture,\\\\\\n    t:none,t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls,t:removeWhitespace,\\\\\\n    msg:'XSS Filter - Category 4: Javascript URI Vector',\\\\\\n    logdata:'Matched Data: %{TX.0} found within %{MATCHED_VAR_NAME}: %{MATCHED_VAR}',\\\\\\n    tag:'application-multi',\\\\\\n    tag:'language-multi',\\\\\\n    tag:'platform-multi',\\\\\\n    tag:'attack-xss',\\\\\\n    tag:'paranoia-level/1',\\\\\\n    tag:'OWASP_CRS',\\\\\\n    tag:'capec/1000/152/242',\\\\\\n    ctl:auditLogParts=+E,\\\\\\n    ver:'OWASP_CRS/3.4.0-dev',\\\\\\n    severity:'CRITICAL',\\\\\\n    setvar:'tx.xss_score=+%{tx.critical_anomaly_score}',\\\\\\n    setvar:'tx.inbound_anomaly_score_pl1=+%{tx.critical_anomaly_score}'\\\"\\n\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllGlobalCustomRules",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYwNzI1NywiZXhwIjoxNjU2NjEwODU3fQ.eFISdjJNzNuVcgOUGW3EOrx8asw9EJxSKLmbueIUCbPK34l7rNqX1BcIDpGpBzelOXolhL8VjERFwLNyCiINLg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYwNzI1NywiZXhwIjoxNjU2NjEwODU3fQ.eFISdjJNzNuVcgOUGW3EOrx8asw9EJxSKLmbueIUCbPK34l7rNqX1BcIDpGpBzelOXolhL8VjERFwLNyCiINLg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom/409000",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom",
+								"409000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYwNzI1NywiZXhwIjoxNjU2NjEwODU3fQ.eFISdjJNzNuVcgOUGW3EOrx8asw9EJxSKLmbueIUCbPK34l7rNqX1BcIDpGpBzelOXolhL8VjERFwLNyCiINLg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"XSS Filter - Category 4: Javascript URI Vector\",\r\n    \"content\": \"SecRule REQUEST_COOKIES|!REQUEST_COOKIES:/__utm/|REQUEST_COOKIES_NAMES|REQUEST_HEADERS:User-Agent|REQUEST_HEADERS:Referer|ARGS_NAMES|ARGS|XML:/* \\\"@rx (?i)[a-z]+=(?:[^:=]+:.+;)*?[^:=]+:url\\\\(javascript\\\" \\\\\\n    \\\"id:409000,\\\\\\n    phase:2,\\\\\\n    block,\\\\\\n    capture,\\\\\\n    t:none,t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls,t:removeWhitespace,\\\\\\n    msg:'XSS Filter - Category 4: Javascript URI Vector',\\\\\\n    logdata:'Matched Data: %{TX.0} found within %{MATCHED_VAR_NAME}: %{MATCHED_VAR}',\\\\\\n    tag:'application-multi',\\\\\\n    tag:'language-multi',\\\\\\n    tag:'platform-multi',\\\\\\n    tag:'attack-xss',\\\\\\n    tag:'paranoia-level/1',\\\\\\n    tag:'OWASP_CRS',\\\\\\n    tag:'capec/1000/152/242',\\\\\\n    ctl:auditLogParts=+E,\\\\\\n    ver:'OWASP_CRS/3.4.0-dev',\\\\\\n    severity:'CRITICAL',\\\\\\n    setvar:'tx.xss_score=+%{tx.critical_anomaly_score}',\\\\\\n    setvar:'tx.inbound_anomaly_score_pl1=+%{tx.critical_anomaly_score}'\\\"\\n\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom/409000",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom",
+								"409000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYzMzg4NSwiZXhwIjoxNjU2NjM3NDg1fQ.uK2RHFnAG5ZkovXEZ6Cy-DJjvgYXWTjTWmowb5wvzwnE-9_0XCg9ip9mxzAt7jXpljY1vEd1vLKcqop3NiU5Ow",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom/409001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom",
+								"409001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undeleteGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjYzMzg4NSwiZXhwIjoxNjU2NjM3NDg1fQ.uK2RHFnAG5ZkovXEZ6Cy-DJjvgYXWTjTWmowb5wvzwnE-9_0XCg9ip9mxzAt7jXpljY1vEd1vLKcqop3NiU5Ow",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom/409001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom",
+								"409001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCrsRuleConfig",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkzNjc0MiwiZXhwIjoxNjU2OTQwMzQyfQ.f3hZpuss3DgPbri_SL6WcONpEOLNQzFFoyLd_LnZiEEj-E7zFhZl-9812Rvc0BjhqQNCmxVGvJxbv4NJznN-vg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rule_id\": \"400\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/get_crs_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"get_crs_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableCustomSecRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkzODY3NiwiZXhwIjoxNjU2OTQyMjc2fQ.lSWqtksc_dHj20KHJ2_NFQpJaBA4CUa1zjo12cSxRcCMgzr9DHr3H8kfz4XzmrUsmRB2IbgNxekPfyJYJfb1lQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sec_rule_id\": \"409001\",\r\n    \"enable\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/enable_crs_sec_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"enable_crs_sec_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enableAiSecRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkzODY3NiwiZXhwIjoxNjU2OTQyMjc2fQ.lSWqtksc_dHj20KHJ2_NFQpJaBA4CUa1zjo12cSxRcCMgzr9DHr3H8kfz4XzmrUsmRB2IbgNxekPfyJYJfb1lQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sec_rule_id\": \"410011\",\r\n    \"enable\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/enable_crs_sec_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"enable_crs_sec_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCrsRules",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlpuRVJaM3ZiNUdCMjhKd2F1a0ZBYyJ9.eyJpc3MiOiJodHRwczovL2Rldi1sLTduMGZmcS51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM3ODc0NTAyMzQ5MTAwNzk1MTgiLCJhdWQiOlsiaHR0cHM6Ly9kZXYtbC03bjBmZnEudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJodHRwczovL2Rldi1sLTduMGZmcS51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjY2NjIwNzYwLCJleHAiOjE2NjY3MDcxNjAsImF6cCI6IndKck82bHRKUW9PU3h6elV4eW9hYm5pRnRodWhMbkpTIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.hbE5C08zpaCblDNzNl62mJHuCQU5n1X7s_Mm4DmVztw38FGXgYxVgPmFJ9pxxobgpmFQ7tNpxeDHXWtqFOs44wffls-59g1AXDklO9amgUZ5UheouAsD4KAHeuZF-xbS8My4p07ozW6ggHWrm4aZcubim3eEfNiluZXej8CPB9mMYOgbGDTxBbkvBi9-ZHROjA8WnGJMwzf4nQ8VbibXVEC8bhgVrS21BbSikwVkZPsdpcdvd-T7kEHowWxjZSXE7n1SpIS6d4x_Wqqdsh8f_AGen09gruZrfbzCM-CJbHtkIfJIZk_Yuytt_Xk589G_O-JB7Qv6arD3cgDMkS-CSg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/crsrule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"crsrule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeGlobalCustomRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Nzk4NzY1MCwiZXhwIjoxNjU3OTkxMjUwfQ.N0s18clOYH-HaW2ePLVvICcpAtK3beZECCbAKe592-93ilIMlEwahI-Pk-vvk1_1RyxgrWw5etPaOMwr2yb5dw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"remove\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/custom/409001",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"custom",
+								"409001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSdSigRules",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDc4OTEzNywiZXhwIjoxNjY0NzkyNzM3fQ.00_nB7lGl3wXVumbb1qBj9hSFkap878vbzQp5R0XhLH9IcnsqyLfO2mIWMCYxLrbUlA7B7p63QzT_Tb0-eOxvw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/sd_sig_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"sd_sig_rule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCrsSecRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDgwNDA2NywiZXhwIjoxNjY0ODA3NjY3fQ.DebQX5A4OhQ_t1fS8Uz6Mrze9ALieIS4CzyiWbpz0-BSIq95y9WLPBBWnYMA-xqDRDc-kvCjDtarWFLHXRqw_A",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/crssecrule/451110",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"crssecrule",
+								"451110"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCrsSecRule",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDgwNDY4MywiZXhwIjoxNjY0ODA4MjgzfQ.qPC0fMydT3784nj7SizvhLgfvERPy19BbKNH4iDKRWu8zkHmAxribKZDPX5bJy7lrrsW0NeJY96OI-CDvUvfNw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"XSS Filter - Category 4: Javascript URI Vector\",\r\n    \"content\": \"SecRule REQUEST_COOKIES|!REQUEST_COOKIES:/__utm/|REQUEST_COOKIES_NAMES|REQUEST_HEADERS:User-Agent|REQUEST_HEADERS:Referer|ARGS_NAMES|ARGS|XML:/* \\\"@rx (?i)[a-z]+=(?:[^:=]+:.+;)*?[^:=]+:url\\\\(javascript\\\" \\\\\\n    \\\"id:409000,\\\\\\n    phase:2,\\\\\\n    block,\\\\\\n    capture,\\\\\\n    t:none,t:utf8toUnicode,t:urlDecodeUni,t:htmlEntityDecode,t:jsDecode,t:cssDecode,t:removeNulls,t:removeWhitespace,\\\\\\n    msg:'XSS Filter - Category 4: Javascript URI Vector',\\\\\\n    logdata:'Matched Data: %{TX.0} found within %{MATCHED_VAR_NAME}: %{MATCHED_VAR}',\\\\\\n    tag:'application-multi',\\\\\\n    tag:'language-multi',\\\\\\n    tag:'platform-multi',\\\\\\n    tag:'attack-xss',\\\\\\n    tag:'paranoia-level/1',\\\\\\n    tag:'OWASP_CRS',\\\\\\n    tag:'capec/1000/152/242',\\\\\\n    ctl:auditLogParts=+E,\\\\\\n    ver:'OWASP_CRS/3.4.0-dev',\\\\\\n    severity:'CRITICAL',\\\\\\n    setvar:'tx.xss_score=+%{tx.critical_anomaly_score}',\\\\\\n    setvar:'tx.inbound_anomaly_score_pl1=+%{tx.critical_anomaly_score}'\\\"\\n\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/crssecrule/451110",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"crssecrule",
+								"451110"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSdAiRules",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlpuRVJaM3ZiNUdCMjhKd2F1a0ZBYyJ9.eyJpc3MiOiJodHRwczovL2Rldi1sLTduMGZmcS51cy5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTM3ODc0NTAyMzQ5MTAwNzk1MTgiLCJhdWQiOlsiaHR0cHM6Ly9kZXYtbC03bjBmZnEudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJodHRwczovL2Rldi1sLTduMGZmcS51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjY2NjIwNzYwLCJleHAiOjE2NjY3MDcxNjAsImF6cCI6IndKck82bHRKUW9PU3h6elV4eW9hYm5pRnRodWhMbkpTIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCJ9.hbE5C08zpaCblDNzNl62mJHuCQU5n1X7s_Mm4DmVztw38FGXgYxVgPmFJ9pxxobgpmFQ7tNpxeDHXWtqFOs44wffls-59g1AXDklO9amgUZ5UheouAsD4KAHeuZF-xbS8My4p07ozW6ggHWrm4aZcubim3eEfNiluZXej8CPB9mMYOgbGDTxBbkvBi9-ZHROjA8WnGJMwzf4nQ8VbibXVEC8bhgVrS21BbSikwVkZPsdpcdvd-T7kEHowWxjZSXE7n1SpIS6d4x_Wqqdsh8f_AGen09gruZrfbzCM-CJbHtkIfJIZk_Yuytt_Xk589G_O-JB7Qv6arD3cgDMkS-CSg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/rule/sd_ai_rule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"rule",
+								"sd_ai_rule"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "log",
+			"item": [
+				{
+					"name": "getAuditLogs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYmFiMmY4Y2M5ZWY4YTExZmM0OWJhMCIsImlhdCI6MTY1NjY2MzA3OSwiZXhwIjoxNjU2NjY2Njc5fQ.B_YmIUbVZ1J4H600xmbrQyOeD9bH4ChqWCNCDTV9Lg78mc6BUPGojk-_E1rF5krlaOZl2sWnmFVIVeUdXkJhTQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/log/audit",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"log",
+								"audit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAuditLog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjY2MzQxOSwiZXhwIjoxNjU2NjY3MDE5fQ.ltqjdPJesTWECWqTFKsUmTVq4RPihVRQlRh_55Q3MxLnhBELHuJCIToyl6q2Borc9P97cfL915aT3zdyJB3Azw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/log/audit/62bd8f4128064f5ff8f7db95",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"log",
+								"audit",
+								"62bd8f4128064f5ff8f7db95"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "package",
+			"item": [
+				{
+					"name": "getCommonPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzAxODUyNiwiZXhwIjoxNjU3MDIyMTI2fQ.MG6tawtYT2ebNO51_aKHyhQtxPcuWgwwOXiKwhKapdvWOI0Oi1ifAoKyuC7hTeeSdKEiSx6XWXPYHfX7vBnP7Q",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"publishable_key\": \"pk_test_51LAsinL1SD32RD2bUmk0gFzJNjDgWuIGQAcAfiiknYbjG73tnDgrWTK7ceoshk5UQFkbP5nAoycLllJP4NZgUg4k0064WYvwUq\",\r\n    \"secret_key\": \"sk_test_51LAsinL1SD32RD2b8eh3egCXC3LSk7X1SCeKAb2gutCSDEUDOwaXg9yzKuGn3ZhqG5YI9oIRySjGqGmVUpX4vYaF00xhjsgIgb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/common/0",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"common",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCommonPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkzMzc2NCwiZXhwIjoxNjU2OTM3MzY0fQ.bg-VKRO_GHJrIDGcWjgzHUjaXrUPMIFZ_YhDjL_jEzULMv4iYNo_s-nq0tlQUNtIBHgLlXNPbF-tf_PF5MNpoQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 1100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/common/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"common",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCustomPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njg1MDg1MywiZXhwIjoxNjU2ODU0NDUzfQ.ahjPXhq82qQg4u2efFF6nGSdFcqb3tnyCuWGy1heWKk2U5NzrtU5xWlt3XGK2U-OMI-IWuzPtbsjxDxvaovTnA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"features\": [\r\n    {\r\n      \"feature_id\": 1,\r\n      \"value\": 50\r\n    },\r\n    {\r\n      \"feature_id\": 2,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 3,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 4,\r\n      \"value\": -1\r\n    },\r\n    {\r\n      \"feature_id\": 5,\r\n      \"value\": 60\r\n    },\r\n    {\r\n      \"feature_id\": 6,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 7,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 8,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 9,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 10,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 11,\r\n      \"value\": true\r\n    }\r\n  ],\r\n  \"price\": 10000,\r\n  \"period\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/custom/62c196b28c1ec5055d25f6f9",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"custom",
+								"62c196b28c1ec5055d25f6f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjgzNjE2NywiZXhwIjoxNjU2ODM5NzY3fQ.UCg52fhUjQa3t_S_cS_6K2JuKAKKUi-0jbs3J5vrWXbdAL-YocDdsNROD0dxI9BNDBHAQgFZmDLnrzCvsksB5g",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"features\": [\r\n    {\r\n      \"feature_id\": 1,\r\n      \"value\": 50\r\n    },\r\n    {\r\n      \"feature_id\": 2,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 3,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 4,\r\n      \"value\": -1\r\n    },\r\n    {\r\n      \"feature_id\": 5,\r\n      \"value\": 60\r\n    },\r\n    {\r\n      \"feature_id\": 6,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 7,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 8,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 9,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 10,\r\n      \"value\": true\r\n    },\r\n    {\r\n      \"feature_id\": 11,\r\n      \"value\": true\r\n    }\r\n  ],\r\n  \"price\": 10000,\r\n  \"period\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/custom/62bcf4c358d796fcf473b3e3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"custom",
+								"62bcf4c358d796fcf473b3e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjgzNjE2NywiZXhwIjoxNjU2ODM5NzY3fQ.UCg52fhUjQa3t_S_cS_6K2JuKAKKUi-0jbs3J5vrWXbdAL-YocDdsNROD0dxI9BNDBHAQgFZmDLnrzCvsksB5g",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/custom/62bcf4c358d796fcf473b3e3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"custom",
+								"62bcf4c358d796fcf473b3e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPrice4CommonPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkyNjQwMywiZXhwIjoxNjU2OTMwMDAzfQ.58c6p2ffcGRDnsRQRsMzE80yGjQ18CeUKctYyGO-fjOW-CnargGoSNQperyTYEDTrkvYgJGW0QdnoWJO9U_y8w",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plan\": 2,\r\n    \"price\": 1000,\r\n    \"priceId\": \"price_1LBeWSL1SD32RD2bPuDLTv1j\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/common/price",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"common",
+								"price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPriceHistory4CommonPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NjkzMzc2NCwiZXhwIjoxNjU2OTM3MzY0fQ.bg-VKRO_GHJrIDGcWjgzHUjaXrUPMIFZ_YhDjL_jEzULMv4iYNo_s-nq0tlQUNtIBHgLlXNPbF-tf_PF5MNpoQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plan\": 2,\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/common/price/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"common",
+								"price",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBmPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5MTUzMiwiZXhwIjoxNjYzMjk1MTMyfQ.9GUijAkTvWcWbtxBppGsxLSP1wi9Nz3TPcfZ5rtr1efj_btBBbW7kaN_MJUWMiXib4wkSP2ke1tu9UWXxcF-zA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number_of_sites\": 1,\r\n    \"price_per_site\":500,\r\n    \"bandwidth\": 1,\r\n    \"price_per_band\": 10,\r\n    \"requests\": 10,\r\n    \"price_per_request\": 20,\r\n    \"period\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/bm/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"bm",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBmPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5MTUzMiwiZXhwIjoxNjYzMjk1MTMyfQ.9GUijAkTvWcWbtxBppGsxLSP1wi9Nz3TPcfZ5rtr1efj_btBBbW7kaN_MJUWMiXib4wkSP2ke1tu9UWXxcF-zA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number_of_sites\": 1,\r\n    \"price_per_site\":500,\r\n    \"bandwidth\": 1,\r\n    \"price_per_band\": 10,\r\n    \"requests\": 10,\r\n    \"price_per_request\": 20,\r\n    \"period\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/bm/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"bm",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBmPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzI5NTI3MSwiZXhwIjoxNjYzMjk4ODcxfQ.pQQfjSdqUawL5BFo4hM5JC9neoBHFY5-bttqzCHG3kVAZOo1m2-F3YpIQyY7oKi63FHxnpqx-JdMTOLHZhFqHg",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/bm/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"bm",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeBmPackage",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzM5Mjg5OSwiZXhwIjoxNjYzMzk2NDk5fQ.vWuALvmh3QcpKLAZfhLcUAOhpTyWdcRCNYmXhwW_iRAnDPprMar4q_V-J35_sKyD9pOWAkHRohhwMyr0_PWzVQ",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/package/bm/6300d44af4d5a6f1f1e83d2a",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"package",
+								"bm",
+								"6300d44af4d5a6f1f1e83d2a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "data",
+			"item": [
+				{
+					"name": "deleteESLogs4Site",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njk0NzE0MCwiZXhwIjoxNjU2OTUwNzQwfQ.pxrUrUQ-iv3SZXUx_zRFnmW3lkVuvjkbHR4HD6h-9i6QbxGea1m8txe1Pm5S-xMeICx93rQRwjG_skW3fUVnbg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\": \"onetrustconsulting.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/data/site",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"data",
+								"site"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "general",
+			"item": [
+				{
+					"name": "getBasicEmailTemplates",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njk1ODc1MSwiZXhwIjoxNjU2OTYyMzUxfQ.viHv6cb35pj5HhJoCmGqnBKeWVAD-6tmEIoF6fJTGJXvAwBUCSACIVG6oHnqJOU6MXvWJ4i7EK0z6eAZwTxUdA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/general/email",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"general",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmailTemplate",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njk1ODc1MSwiZXhwIjoxNjU2OTYyMzUxfQ.viHv6cb35pj5HhJoCmGqnBKeWVAD-6tmEIoF6fJTGJXvAwBUCSACIVG6oHnqJOU6MXvWJ4i7EK0z6eAZwTxUdA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/general/email/0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"general",
+								"email",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmailTemplate",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1Njk1ODc1MSwiZXhwIjoxNjU2OTYyMzUxfQ.viHv6cb35pj5HhJoCmGqnBKeWVAD-6tmEIoF6fJTGJXvAwBUCSACIVG6oHnqJOU6MXvWJ4i7EK0z6eAZwTxUdA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Welcome\",\r\n    \"content\": \"Password Reset for Sense Guard\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/general/email/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"general",
+								"email",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInvoiceHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzAzMjQ5NSwiZXhwIjoxNjU3MDM2MDk1fQ.KzTqxp8QhdZMNI7Y2ibkgjeeqdo_jSqSF5szWpGPfk0D56epPNzLNsj9OHOt-6USLzegYhz8Qj97R0Y8un6fww",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/general/invoice/history/62c196b28c1ec5055d25f6f9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"general",
+								"invoice",
+								"history",
+								"62c196b28c1ec5055d25f6f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInvoice",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY1NzAzMjQ5NSwiZXhwIjoxNjU3MDM2MDk1fQ.KzTqxp8QhdZMNI7Y2ibkgjeeqdo_jSqSF5szWpGPfk0D56epPNzLNsj9OHOt-6USLzegYhz8Qj97R0Y8un6fww",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/general/invoice/17",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"general",
+								"invoice",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "createNotification",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NTIxNzAwNCwiZXhwIjoxNjY1MjIwNjA0fQ.NSenr29tXekz8c19uQRElpQrHllnSRXs2nDHuoTzOH3cPs8pEHBnCd3ADZmaq5RMmruSxP3x-STXGvCZrwdafQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test notification1\",\r\n    \"content\": \"Test content of notification1\\nTest content of notification1\\nTest content of notification1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/notification",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeNotification",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NTIxNzAwNCwiZXhwIjoxNjY1MjIwNjA0fQ.NSenr29tXekz8c19uQRElpQrHllnSRXs2nDHuoTzOH3cPs8pEHBnCd3ADZmaq5RMmruSxP3x-STXGvCZrwdafQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/notification/6341356a857c79f6101229b5",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"notification",
+								"6341356a857c79f6101229b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateNotification",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NTIxNzAwNCwiZXhwIjoxNjY1MjIwNjA0fQ.NSenr29tXekz8c19uQRElpQrHllnSRXs2nDHuoTzOH3cPs8pEHBnCd3ADZmaq5RMmruSxP3x-STXGvCZrwdafQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enable\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/notification/6341356a857c79f6101229b5",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"notification",
+								"6341356a857c79f6101229b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotifications",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NTIxNzAwNCwiZXhwIjoxNjY1MjIwNjA0fQ.NSenr29tXekz8c19uQRElpQrHllnSRXs2nDHuoTzOH3cPs8pEHBnCd3ADZmaq5RMmruSxP3x-STXGvCZrwdafQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/notification",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bm",
+			"item": [
+				{
+					"name": "getBmLicenseStatus4Orgs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzQyMDQxMCwiZXhwIjoxNjYzNDI0MDEwfQ.-6SU7CezuXN2t3u9guNZsjeK8vRrVIO8qgLVczj-j0xMqbpPO6vHcebCoWSQnqMU3brIz5-xPAncKSZ7TfgGCg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"site_id\": \"spaceigniter.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/bm/license",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm",
+								"license"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAwsS3Cfg",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzY0MTc4MywiZXhwIjoxNjYzNjQ1MzgzfQ.JWJI_cYjP77yaWM5AiD2qMxcFucJgzF3lvLGyYOuxSHddLvl7V9nTavN7CCInwCrwBIQ_n9ePNs4FDGlbN-vdA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aws_access_key_id\": \"pk_test_51LAsinL1SD32RD2bUmk0gFzJNjDgWuIGQAcAfiiknYbjG73tnDgrWTK7ceoshk5UQFkbP5nAoycLllJP4NZgUg4k0064WYvwUq\",\r\n    \"aws_secret_access_key\": \"sk_test_51LAsinL1SD32RD2b8eh3egCXC3LSk7X1SCeKAb2gutCSDEUDOwaXg9yzKuGn3ZhqG5YI9oIRySjGqGmVUpX4vYaF00xhjsgIgb\",\r\n    \"aws_storage_bucket_name\": \"bucket\",\r\n    \"aws_s3_region_name\": \"region\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm/aws_s3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm",
+								"aws_s3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentAwsS3Cfg",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzY0MTc4MywiZXhwIjoxNjYzNjQ1MzgzfQ.JWJI_cYjP77yaWM5AiD2qMxcFucJgzF3lvLGyYOuxSHddLvl7V9nTavN7CCInwCrwBIQ_n9ePNs4FDGlbN-vdA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm/aws_s3/current",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm",
+								"aws_s3",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAwsS3CfgHistory",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2MzY0MTc4MywiZXhwIjoxNjYzNjQ1MzgzfQ.JWJI_cYjP77yaWM5AiD2qMxcFucJgzF3lvLGyYOuxSHddLvl7V9nTavN7CCInwCrwBIQ_n9ePNs4FDGlbN-vdA",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/bm/aws_s3/history",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"bm",
+								"aws_s3",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ad",
+			"item": [
+				{
+					"name": "getAdMitigationTimeout",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDcwMDk1NSwiZXhwIjoxNjY0NzA0NTU1fQ.d9UN0OQptwIhA8Ep6ILK8FSA4DhycuDUg49a6990phS7i9gbpM-xYo1KEdEES3uPuVYZUeg-cjqGsXIUzaUFfw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad/mitigation_timeout",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad",
+								"mitigation_timeout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdBlockUrl",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDcwMDk1NSwiZXhwIjoxNjY0NzA0NTU1fQ.d9UN0OQptwIhA8Ep6ILK8FSA4DhycuDUg49a6990phS7i9gbpM-xYo1KEdEES3uPuVYZUeg-cjqGsXIUzaUFfw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad/block_url",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad",
+								"block_url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setAdMitigationTimeout",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDcwMDk1NSwiZXhwIjoxNjY0NzA0NTU1fQ.d9UN0OQptwIhA8Ep6ILK8FSA4DhycuDUg49a6990phS7i9gbpM-xYo1KEdEES3uPuVYZUeg-cjqGsXIUzaUFfw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeout\": 900\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad/mitigation_timeout",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad",
+								"mitigation_timeout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setAdBlockUrl",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDcwMDk1NSwiZXhwIjoxNjY0NzA0NTU1fQ.d9UN0OQptwIhA8Ep6ILK8FSA4DhycuDUg49a6990phS7i9gbpM-xYo1KEdEES3uPuVYZUeg-cjqGsXIUzaUFfw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"/block_ddos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad/block_url",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad",
+								"block_url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "applyAdConfig",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NDcwMDk1NSwiZXhwIjoxNjY0NzA0NTU1fQ.d9UN0OQptwIhA8Ep6ILK8FSA4DhycuDUg49a6990phS7i9gbpM-xYo1KEdEES3uPuVYZUeg-cjqGsXIUzaUFfw",
+								"type": "default"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/admin/ad/applyConfig",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"ad",
+								"applyConfig"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api_key",
+			"item": [
+				{
+					"name": "getOtxApiKeyHistory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NjIyNTY2MywiZXhwIjoxNjY2MjI5MjYzfQ.3WyP5Lt2fLSMN01hsFmhl8eRZvcNQs5PrVua1dJaaT01_H8w7eabxDW43wi-FheSYOakLSHF4YogpyyHzpUinQ",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/api_key/otx/history",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"api_key",
+								"otx",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentOtxApiKey",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NjIyNTY2MywiZXhwIjoxNjY2MjI5MjYzfQ.3WyP5Lt2fLSMN01hsFmhl8eRZvcNQs5PrVua1dJaaT01_H8w7eabxDW43wi-FheSYOakLSHF4YogpyyHzpUinQ",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/api_key/otx/current",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"api_key",
+								"otx",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCurrentAbuseIpDbApiKey",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NjIyNTY2MywiZXhwIjoxNjY2MjI5MjYzfQ.3WyP5Lt2fLSMN01hsFmhl8eRZvcNQs5PrVua1dJaaT01_H8w7eabxDW43wi-FheSYOakLSHF4YogpyyHzpUinQ",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/api_key/abuseipdb/current",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"api_key",
+								"abuseipdb",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAbuseIpDbApiKeyHistory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NjIyNTY2MywiZXhwIjoxNjY2MjI5MjYzfQ.3WyP5Lt2fLSMN01hsFmhl8eRZvcNQs5PrVua1dJaaT01_H8w7eabxDW43wi-FheSYOakLSHF4YogpyyHzpUinQ",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": 0,\r\n    \"size\": 5\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/api_key/abuseipdb/history",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"api_key",
+								"abuseipdb",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAbuseIpDbApiKey",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmY4NTk5NjkwNDkyODQ0N2U3Y2Q1OCIsImlhdCI6MTY2NjIyNTY2MywiZXhwIjoxNjY2MjI5MjYzfQ.3WyP5Lt2fLSMN01hsFmhl8eRZvcNQs5PrVua1dJaaT01_H8w7eabxDW43wi-FheSYOakLSHF4YogpyyHzpUinQ",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"api_key\": \"f47970c3d5d8544be2e178ee14ecc78fe6a212440fa40112c5963a828409740b0aea225214788388\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/admin/api_key/abuseipdb",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"api_key",
+								"abuseipdb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
