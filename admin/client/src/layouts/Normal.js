@@ -97,18 +97,19 @@ const Normal = ({ children }) => {
                 }}
               >
                 <Menu>
-                  {getSidebar(userRole).map((ss) => {
+                  {getSidebar(userRole).map((ss, index) => {
                     let Icon = ss?.icon;
                     if (ss?.children) {
                       return (
                         <SubMenu
+                          key={index}
                           title={ss?.title}
                           icon={<Icon />}
                           defaultOpen={ss?.children.find((m) => currentRoute.indexOf(m?.href) > -1) !== undefined}
                           className={ss?.children.find((m) => currentRoute.indexOf(m?.href) > -1) !== undefined ? "activeSub" : ""}
                         >
-                          {ss?.children.map((m) => (
-                            <MenuItem active={currentRoute.indexOf(m?.href) > -1}>
+                          {ss?.children.map((m, index2) => (
+                            <MenuItem key={index2} active={currentRoute.indexOf(m?.href) > -1}>
                               {m?.title}
                               <Link to={m?.href} />
                             </MenuItem>
@@ -117,7 +118,7 @@ const Normal = ({ children }) => {
                       );
                     } else {
                       return (
-                        <MenuItem icon={<Icon />} className={currentRoute.indexOf(ss?.href) > -1 ? "activeSub" : ""}>
+                        <MenuItem key={index} icon={<Icon />} className={currentRoute.indexOf(ss?.href) > -1 ? "activeSub" : ""}>
                           {ss?.title}
                           <Link to={ss?.href} />
                         </MenuItem>

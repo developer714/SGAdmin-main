@@ -21,7 +21,7 @@ const { NotificationModel } = require("../../models/Notification");
 const { getStripeInstance } = require("../../helpers/paywall");
 const { BMPaymentModel } = require("../../models/BMPayment");
 const { BMPackageModel } = require("../../models/BMPackage");
-const { createAuth0User, deleteAuth0User, deleteAuth0Connection } = require("../../helpers/auth0");
+const { createKeycloakUser, deleteKeycloakUser, deleteKeycloakConnection } = require("../../helpers/keycloak");
 const { CustomPackageModel } = require("../../models/CustomPackage");
 
 async function createOrganisation(params) {
@@ -37,7 +37,9 @@ async function createOrganisation(params) {
   admin.organisation = newOrg._id;
   admin.verified = Date.now();
 
-  admin.user_id = await createAuth0User({
+  console.log("service,admin/organisatoin", admin, newOrg)
+
+  admin.user_id = await createKeycloakUser({
     email: admin.email,
     blocked: false,
     email_verified: true,
@@ -120,7 +122,7 @@ async function removeOneOrganisation(org_id) {
     users.map(async (user) => {
       const uid = user.id;
       await RefreshTokenModel.deleteMany({ user: uid });
-      await deleteAuth0User(user.user_id);
+      await deleteKeycloakUser(user.user_id);
       await UserModel.findByIdAndDelete(uid);
     })
   );
@@ -148,7 +150,7 @@ async function removeOneOrganisation(org_id) {
       logger.error(err);
     }
   }
-  await deleteAuth0Connection(organisation.idp_connection_id);
+  await deleteKeycloakConnection(organisation.idp_connection_id);
   await OrganisationModel.findByIdAndDelete(org_id);
   logger.warn(`Removed organisation [${org_name}] successfully`);
   return true;

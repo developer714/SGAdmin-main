@@ -20,8 +20,6 @@ async function getKeys(user) {
 }
 
 async function createKey(user, data) {
-  // console.log(data);
-  // console.log(user);
   while (true) {
     let key = forge.util.bytesToHex(forge.random.getBytes(32));
 

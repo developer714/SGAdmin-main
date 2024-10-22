@@ -396,7 +396,7 @@ async function updateSite(site_uid, params) {
 
   const subdomains_cache_key = `${CACHE_KEY_ALL_SUBDOMAIN_NAMES_OF_SITE}/${site_id}`;
   cache.set(subdomains_cache_key, subdomains?.map((subdomain) => subdomain.name) ?? [], CACHE_TIMEOUT_SITE_CONFIG);
-  console.log(cache.get(subdomains_cache_key));
+  console.log("service/site", cache.get(subdomains_cache_key));
 
   if (undefined !== enable) {
     await site.populate("waf_config");

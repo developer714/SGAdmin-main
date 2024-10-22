@@ -51,7 +51,7 @@ router.get("/features", authorize([], APIKeyPermissions.USERS), getEnabledFeatur
 router.patch("/", authorize([], APIKeyPermissions.USERS), updateCurrentUserSchema, updateCurrentUser);
 
 // @route    POST api/user/v1/auth/login
-// @desc     Authenticate user in Auth0
+// @desc     Authenticate user in Keycloak
 // @param    token
 // @access   Public
 
@@ -118,7 +118,7 @@ router.post("/reset-password", resetPasswordSchema, resetPassword);
 
 
 // @route    POST api/user/v1/auth/refresh-user
-// @desc     Refresh user info with the access token from Auth0
+// @desc     Refresh user info with the access token from Keycloak
 // @access   Private
 
 router.post("/refresh-user", authorizeToken(), refreshUser);

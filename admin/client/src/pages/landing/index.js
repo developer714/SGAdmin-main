@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { useKeycloak } from "@react-keycloak/web";
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -6,6 +6,7 @@ import { CircularProgress, Typography, Paper } from "@mui/material";
 
 import { ReactComponent as LogoImage } from "../../vendor/logo.svg";
 import useAuth from "../../hooks/useAuth";
+import useKey from "../../hooks/user/useKey";
 
 const Wrapper = styled(Paper)`
   justify-content: center;
@@ -22,52 +23,59 @@ const Brand = styled(LogoImage)`
 `;
 
 function Logo() {
-  const { isAuthenticated, user, isLoading } = useAuth0();
+  const { keycloak, initialized } = useKeycloak();
+  const user = keycloak.tokenParsed;
   const { setAccessToken, setUserId } = useAuth();
   const [URLSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (isLoading) return;
-    if (isAuthenticated) {
+    if (!initialized) return;
+    if (keycloak.authenticated) {
       setAccessToken().then((res) => {
         if (res) {
-          if (user.email_verified !== false) {
-            navigate(window.localStorage.getItem("returnTo"));
+          const userEmailVerified = keycloak.tokenParsed?.email_verified;
+          if (userEmailVerified !== false) {
+            navigate(window.localStorage.getItem("returnTo") || "/home");
           } else {
             navigate("/auth/verify-email");
           }
         }
       });
     } else {
-      if (URLSearchParams.get("error") === "access_denied") {
-        const desc = URLSearchParams.get("error_description");
+      const error = URLSearchParams.get("error");
+      const desc = URLSearchParams.get("error_description");
 
-        if (desc.indexOf("verify-email") === 0) {
-          const user_id = desc.substring(13);
-          setUserId(user_id);
+      if (error === "access_denied") {
+        if (desc?.startsWith("verify-email")) {
+          const userId = desc.substring(13); // Extract user ID from the description
+          setUserId(userId);
           navigate("/auth/verify-email");
         } else {
           navigate(`/auth/forbidden?error_description=${desc}`);
         }
       } else {
-        window.location.href = "https://www.sensedefence.com";
+        // keycloak.login();
       }
     }
-  }, [isAuthenticated, user, isLoading, setAccessToken, navigate, URLSearchParams, setUserId]);
+  }, [keycloak, initialized, setAccessToken, navigate, URLSearchParams, setUserId]);
 
-  return isLoading || isAuthenticated ? (
-    <React.Fragment>
-      <Wrapper align="center">
-        <Brand />
-        <Typography variant="h3" color="primary" gutterBottom mb={6}>
-          Loading ...
-        </Typography>
-        <CircularProgress color="primary" />
-      </Wrapper>
-    </React.Fragment>
-  ) : // <h1>This is landing page</h1>
-  null;
+  if (keycloak.isLoading || !initialized) {
+    return (
+      <React.Fragment>
+        <Wrapper align="center">
+          <Brand />
+          <Typography variant="h3" color="primary" gutterBottom mb={6}>
+            Loading ...
+          </Typography>
+          <CircularProgress color="primary" />
+        </Wrapper>
+      </React.Fragment>
+    );
+  }
+
+  return null; // Or render your landing page content here
 }
 
 export default Logo;

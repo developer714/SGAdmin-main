@@ -3,9 +3,9 @@ const { UserRole } = require("../../constants/User");
 const { DuplicatedError, NotFoundError } = require("../../middleware/error-handler");
 
 const { getAccount, hash, randomTokenString, basicDetails } = require("../../helpers/account");
-
 const RefreshTokenModel = require("../../models/RefreshToken");
-const { createAuth0User, updateAuth0User, deleteAuth0User, deleteAuth0Connection } = require("../../helpers/auth0");
+const { createKeycloakUser, updateKeycloakUser, deleteKeycloakUser, deleteKeycloakConnection } = require("../../helpers/keycloak");
+
 
 async function getAdmins() {
   const accounts = await UserModel.find({
@@ -35,8 +35,8 @@ async function createAdmin(params) {
   // hash password
   account.passwordHash = hash(params.password);
 
-  // Create Auth0 account
-  account.user_id = await createAuth0User({
+  // Create Keycloak account
+  account.user_id = await createKeycloakUser({
     email: params.email,
     blocked: false,
     email_verified: params.verify,
@@ -65,7 +65,7 @@ async function updateAdmin(uid, params) {
     params.passwordHash = hash(params.password);
   }
 
-  await updateAuth0User(targetAccount.user_id, {
+  await updateKeycloakUser(targetAccount.user_id, {
     given_name: params.firstName,
     family_name: params.lastName,
     name: `${params.firstName} ${params.lastName}`,
@@ -102,7 +102,7 @@ async function removeOneAdmin(uid) {
 
   await RefreshTokenModel.deleteMany({ user: account.id });
 
-  await deleteAuth0User(account.user_id);
+  await deleteKeycloakUser(account.user_id);
 
   await UserModel.findByIdAndDelete(uid);
 }

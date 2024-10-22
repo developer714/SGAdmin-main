@@ -4,7 +4,7 @@ const jwksRsa = require("jwks-rsa");
 const config = require("config");
 
 module.exports = authorize;
-const auth0Config = config.get("auth0");
+const keycloakConfig = config.get("keycloak");
 
 function authorize(roles = []) {
     // roles param can be a single role string (e.g. Role.User or 'User')
@@ -20,11 +20,11 @@ function authorize(roles = []) {
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
-                jwksUri: `https://${auth0Config.domain}/.well-known/jwks.json`,
+                jwksUri: `https://${keycloakConfig.domain}/.well-known/jwks.json`,
             }),
 
-            audience: auth0Config.audience,
-            issuer: `https://${auth0Config.domain}/`,
+            audience: keycloakConfig.audience,
+            issuer: `https://${keycloakConfig.domain}/`,
             algorithms: ["RS256"],
         }),
 

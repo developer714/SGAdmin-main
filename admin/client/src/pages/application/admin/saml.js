@@ -24,6 +24,7 @@ import {
 import DeleteProviderModal from "../../../components/pages/application/admin/saml/M_DeleteProvider";
 import useAuth from "../../../hooks/useAuth";
 import { auth0Config } from "../../../config";
+import keycloak from "../../../Keycloak";
 import useIdP from "../../../hooks/user/useIdP";
 
 function SAMLConfig() {
@@ -214,7 +215,7 @@ function SAMLConfig() {
                         disabled
                         value={
                           // prettier-ignore
-                          values.connection_name?.length > 0 ? `https://${auth0Config.domain}/login/callback?connection=${values.connection_name}` : ""
+                          values.connection_name?.length > 0 ? `https://${keycloak.url}/login/callback?connection=${values.connection_name}` : ""
                         }
                       />
                       <Typography mt={1} variant="textSmall">

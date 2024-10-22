@@ -1,14 +1,14 @@
 const { EmailTemplateModel } = require("../../models/EmailTemplate");
 const { NotFoundError } = require("../../middleware/error-handler");
-const { getAuth0EmailTemplate, updateAuth0EmailTemplate } = require("../../helpers/auth0");
-const { Auth0EmailType } = require("../../constants/admin/Email");
+const { getKeycloakEmailTemplate, updateKeycloakEmailTemplate } = require("../../helpers/keycloak");
+const { KeycloakEmailType } = require("../../constants/admin/Email");
 
 async function updateEmailTemplate(type, params) {
   const { title, from, content } = params;
 
-  // update Auth0 template
-  if (!!Auth0EmailType[type]) {
-    await updateAuth0EmailTemplate(Auth0EmailType[type], {
+  // update Keycloak template
+  if (!!KeycloakEmailType[type]) {
+    await updateKeycloakEmailTemplate(KeycloakEmailType[type], {
       body: content,
       subject: title,
     });
@@ -41,14 +41,14 @@ async function getEmailTemplate(type) {
 
   const res = { ...email.toObject(), need_sync: 0 };
 
-  if (!!Auth0EmailType[type]) {
-    const auth0Email = await getAuth0EmailTemplate(Auth0EmailType[type]);
+  if (!!KeycloakEmailType[type]) {
+    const keycloakEmail = await getKeycloakEmailTemplate(KeycloakEmailType[type]);
 
-    if (email.content !== auth0Email.body) {
+    if (email.content !== keycloakEmail.body) {
       res.need_sync = 1;
     }
 
-    if (email.title != auth0Email.subject) {
+    if (email.title != keycloakEmail.subject) {
       res.need_sync = 1;
     }
   }

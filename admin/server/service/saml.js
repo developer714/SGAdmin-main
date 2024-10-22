@@ -1,10 +1,10 @@
 const {
-  getAuth0Connections,
-  getAuth0ConnectionById,
-  updateAuth0Connection,
-  deleteAuth0Connection,
-  createAuth0Connection,
-} = require("../helpers/auth0");
+  getKeycloakConnections,
+  getKeycloakConnectionById,
+  updateKeycloakConnection,
+  deleteKeycloakConnection,
+  createKeycloakConnection,
+} = require("../helpers/keycloak");
 const config = require("config");
 const { FeatureId } = require("../constants/admin/Feature");
 const { UnauthorizedError } = require("../middleware/error-handler");
@@ -12,7 +12,7 @@ const { getPackageFeatureValue } = require("../helpers/paywall");
 const { UserModel } = require("../models/User");
 const { removeUser } = require("./account");
 
-const auth0Config = config.get("auth0");
+const keycloakConfig = config.get("keycloak");
 
 async function checkSamlFeature(user) {
   const { organisation } = user;
@@ -27,21 +27,21 @@ async function checkSamlFeature(user) {
 
 async function getConnections(user) {
   await checkSamlFeature(user);
-  return await getAuth0Connections();
+  return await getKeycloakConnections();
 }
 
 async function getConnectionById(user, connection_id) {
   await checkSamlFeature(user);
   if (user.organisation.idp_connection_id !== connection_id) throw "Invalid SAMLP Id";
-  return await getAuth0ConnectionById(connection_id);
+  return await getKeycloakConnectionById(connection_id);
 }
 
 async function createConnection(user, data) {
   await checkSamlFeature(user);
   const { organisation } = user;
   if (organisation.idp_connection_id) throw "Already have SAML provider.";
-  const { id, name } = await createAuth0Connection({
-    enabled_clients: [auth0Config.frontendId, auth0Config.backendId],
+  const { id, name } = await createKeycloakConnection({
+    enabled_clients: [keycloakConfig.frontendId, keycloakConfig.backendId],
     ...data,
   });
   organisation.idp_connection_id = id;
@@ -53,7 +53,7 @@ async function updateConnection(user, connection_id, data) {
   await checkSamlFeature(user);
   const { organisation } = user;
   if (organisation.idp_connection_id !== connection_id) throw "Invalid SAMLP Id";
-  return await updateAuth0Connection(connection_id, data);
+  return await updateKeycloakConnection(connection_id, data);
 }
 async function deleteConnection(user, connection_id) {
   await checkSamlFeature(user);
@@ -69,7 +69,7 @@ async function deleteConnection(user, connection_id) {
   organisation.idp_connection_id = undefined;
   organisation.idp_connection_name = undefined;
   await organisation.save();
-  return await deleteAuth0Connection(connection_id);
+  return await deleteKeycloakConnection(connection_id);
 }
 
 module.exports = {

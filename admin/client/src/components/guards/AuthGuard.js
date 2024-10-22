@@ -1,25 +1,40 @@
 import * as React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useKeycloak } from "@react-keycloak/web";
 
 import Loader from "../Loader";
 import { isValidToken } from "../../utils/jwt";
 
-// For routes that can only be accessed by authenticated users
-function AuthGuard({ children }) {
-  const { user, logout } = useAuth0();
+function AuthGuard({ children }) { 
+  const { keycloak, initialized } = useKeycloak();
 
-  if (user.email_verified === false) {
+  console.log("authGuard");
+  // Show loader while Keycloak is initializing
+  if (!initialized) {
+    return <Loader />;
+  }
+
+  // If the user is not authenticated, redirect to the login page
+  if (!keycloak.authenticated) {
+    keycloak.login({ redirectUri: window.location.origin });
+    return <Loader />;
+  }
+
+
+  // Check if the email is verified (using Keycloak user information)
+  const emailVerified = keycloak.tokenParsed?.email_verified;
+  if (emailVerified === false) {
     return <Navigate to="/auth/verify-email" />;
   }
 
+  // Access token verification
   const accessToken = window.localStorage.getItem("accessToken");
   if (!!accessToken) {
     if (isValidToken(accessToken)) {
       return <React.Fragment>{children}</React.Fragment>;
     } else {
-      logout({
-        returnTo: window?.location?.origin + "/home",
+      keycloak.logout({
+        redirectUri: window?.location?.origin + "/home",
       });
       return <Loader />;
     }
@@ -35,6 +50,4 @@ function AuthGuard({ children }) {
   }
 }
 
-export default withAuthenticationRequired(AuthGuard, {
-  onRedirecting: () => <Loader />,
-});
+export default AuthGuard;

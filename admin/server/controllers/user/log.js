@@ -64,7 +64,9 @@ function getWafEventLogs(req, res, next) {
   esService
     .getWafEventLogs(req)
     .then((logs) => res.json(logs))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getWafEventLogs2Schema(req, res, next) {

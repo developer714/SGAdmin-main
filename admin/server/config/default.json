@@ -18,18 +18,15 @@
   "openexchangerates": {
     "AppId": "76e85dc8fd864129a74c10ed47105245"
   },
-  "auth0": {
-    "comment": "Auth0 account used for local testbed - david.hang.12138@gmail.com",
-    "domain": "dev-l-7n0ffq.us.auth0.com",
-    "frontendId": "wJrO6ltJQoOSxzzUxyoabniFthuhLnJS",
-
-    "apiDomain": "dev-l-7n0ffq.us.auth0.com",
-    "audience": "https://dev-l-7n0ffq.us.auth0.com/api/v2/",
-    "backendId": "QRjWFqVdSf7fWanYiJ4Fb7OecqFpyHMC",
-    "backendSecret": "PGhoSP6Ldm28XPhMy4pWQQ8-eMUwBeHC36v5gt_jANyq46P93ORS_2ixq1CugKgA",
-
-    "dbConnectionName": "Username-Password-Authentication",
-
-    "actionTokenSecret": "1234567890"
+  "keycloak": {
+    "serverUrl": "http://localhost:8080",
+    "realm": "sense-defence",
+    "clientId": "sense-defence",
+    "frontendId": "my-react-app-pkce",
+    "backendId": "my-react-app-pkce",
+    "clientSecret": "GevzGFWDiKpGdAt8lJjPbPteBSDDXI5y",
+    "grandType": "password",
+    "username": "goldkane",
+    "password": "123123"
   }
 }

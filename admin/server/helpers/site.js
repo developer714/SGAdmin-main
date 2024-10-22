@@ -53,13 +53,17 @@ async function getBasicSitesInOrg(org) {
 }
 
 async function getBasicActiveSitesInOrg(org) {
-  const sites = await SiteModel.find({
-    owner_id: org._id,
-    deleted: { $in: [null, undefined] },
-  })
-    .select("id site_id addr created_date deleted")
-    .sort({ created_date: -1 });
-  return sites;
+  try {
+    const sites = await SiteModel.find({
+      owner_id: org._id,
+      deleted: { $in: [null, undefined] },
+    })
+      .select("id site_id addr created_date deleted")
+      .sort({ created_date: -1 });
+    return sites;
+  } catch (error) {
+    return [];
+  }
 }
 
 async function getAllSubdomainNamesInSite(site_id) {

@@ -31,15 +31,15 @@ const { FeatureId } = require("../constants/admin/Feature");
 const { convertDate2Timestamp, getPastDate } = require("../helpers/time");
 const { COMMON_DATA_RETENTION_PERIOD } = require("../constants/admin/Data");
 const {
-  createAuth0User,
-  updateAuth0User,
-  deleteAuth0User,
-  resendAuth0VerificationEmail,
-  deleteAuth0Connection,
-  getAuth0ConnectionById,
-} = require("../helpers/auth0");
+  createKeycloakUser,
+  updateKeycloakUser,
+  deleteKeycloakUser,
+  resendKeycloakVerificationEmail,
+  deleteKeycloakConnection,
+  getKeycloakConnectionById,
+} = require("../helpers/keycloak");
 
-const auth0Config = config.get("auth0");
+const keycloak = config.get("keycloak");
 
 async function getUser(req) {
   return req.user;
@@ -54,7 +54,7 @@ async function authenticate(token) {
   const decoded = jwt.decode(token);
   try {
     try {
-      jwt.verify(token, auth0Config.actionTokenSecret);
+      jwt.verify(token, keycloak.clientSecret);
     } catch (err) {
       throw UnauthorizedError("Token verification failed");
     }
@@ -184,8 +184,8 @@ async function authenticate(token) {
     account.last_login = Date.now();
     await account.save();
 
-    // set app_metadata of Auth0 account
-    await updateAuth0User(decoded.user_id, {
+    // set app_metadata of Keycloak account
+    await updateKeycloakUser(decoded.user_id, {
       connection: decoded.connection,
       app_metadata: { login_success: true },
     });
@@ -195,7 +195,7 @@ async function authenticate(token) {
   } catch (err) {
     try {
       if (err.name === "UnauthorizedError") {
-        await updateAuth0User(decoded.user_id, {
+        await updateKeycloakUser(decoded.user_id, {
           connection: decoded.connection,
           app_metadata: {
             login_success: false,
@@ -203,7 +203,7 @@ async function authenticate(token) {
           },
         });
       } else {
-        await updateAuth0User(decoded.user_id, {
+        await updateKeycloakUser(decoded.user_id, {
           connection: decoded.connection,
           app_metadata: {
             login_success: false,
@@ -334,18 +334,18 @@ async function updateCurrentUser(req) {
   const user = req.user;
   const { title, firstName, lastName, oldPassword, password, confirmPassword } = req.body;
 
-  let need_update_auth0 = false;
+  let need_update_keycloak = false;
   const user_data = {};
   if (isValidString(title)) {
     user.title = title;
   }
   if (isValidString(firstName) && user.firstName != firstName) {
     user.firstName = firstName;
-    need_update_auth0 = true;
+    need_update_keycloak = true;
   }
   if (isValidString(lastName) && user.lastName != lastName) {
     user.lastName = lastName;
-    need_update_auth0 = true;
+    need_update_keycloak = true;
   }
   if (isValidString(password)) {
     if (password != confirmPassword) {
@@ -358,15 +358,15 @@ async function updateCurrentUser(req) {
     //     throw "Invalid password!";
     // }
     user_data.password = password;
-    need_update_auth0 = true;
+    need_update_keycloak = true;
     // user.passwordHash = hash(password);
   }
 
-  if (need_update_auth0) {
-    if (user.user_id.indexOf("auth0") != 0) {
+  if (need_update_keycloak) {
+    if (user.user_id.indexOf("keycloak") != 0) {
       throw "You can't change username or password of social/SSO account.";
     }
-    await updateAuth0User(user.user_id, {
+    await updateKeycloakUser(user.user_id, {
       given_name: user.firstName,
       family_name: user.lastName,
       name: `${user.firstName} ${user.lastName}`,
@@ -466,7 +466,7 @@ async function resetPassword({ token, password }) {
 
 async function refreshUser(token) {
   try {
-    const response = await axios.get(`https://${auth0Config.domain}/userinfo`, {
+    const response = await axios.get(`${keycloak.serverUrl}/realms/${keycloak.realm}/protocol/openid-connect/token`, {
       headers: {
         Authorization: token,
       },
@@ -481,10 +481,10 @@ async function refreshUser(token) {
   user_data.given_name = user_data.given_name || "";
   user_data.family_name = user_data.family_name || "";
 
-  if (user_data.sub.indexOf("auth0") != 0) {
+  if (user_data.sub.indexOf("keycloak") != 0) {
     // login using third-party IdP
     if (user_data.email_verified === false) {
-      await updateAuth0User(user_data.sub, {
+      await updateKeycloakUser(user_data.sub, {
         email_verified: true,
       });
     }
@@ -629,15 +629,15 @@ async function createUser(req) {
   let is_sso_account = false;
   if (organisation.idp_connection_id) {
     const email_domain = account.email.substr(account.email.indexOf("@") + 1);
-    const connInfo = await getAuth0ConnectionById(organisation.idp_connection_id);
+    const connInfo = await getKeycloakConnectionById(organisation.idp_connection_id);
     if (connInfo.options.domain_aliases.find((domain) => domain === email_domain)) {
       is_sso_account = true;
     }
   }
 
-  // Create Auth0 account
+  // Create Keycloak account
   if (!is_sso_account) {
-    account.user_id = await createAuth0User({
+    account.user_id = await createKeycloakUser({
       email: params.email,
       blocked: false,
       email_verified: params.verify,
@@ -693,17 +693,17 @@ async function updateUser(req) {
     }
   }
 
-  let need_update_auth0 = false;
+  let need_update_keycloak = false;
   const user_data = {};
   if (isValidString(params.title)) {
     targetAccount.title = params.title;
   }
   if (isValidString(params.firstName) && targetAccount.firstName != params.firstName) {
-    need_update_auth0 = true;
+    need_update_keycloak = true;
     targetAccount.firstName = params.firstName;
   }
   if (isValidString(params.lastName) && targetAccount.lastName != params.lastName) {
-    need_update_auth0 = true;
+    need_update_keycloak = true;
     targetAccount.lastName = params.lastName;
   }
   if (isValidString(params.password)) {
@@ -717,15 +717,15 @@ async function updateUser(req) {
     //     throw "Invalid password!";
     // }
     user_data.password = password;
-    need_update_auth0 = true;
+    need_update_keycloak = true;
     // user.passwordHash = hash(password);
   }
 
-  if (need_update_auth0) {
-    if (targetAccount.user_id.indexOf("auth0") != 0) {
+  if (need_update_keycloak) {
+    if (targetAccount.user_id.indexOf("keycloak") != 0) {
       throw "You can't change username or password of social/SSO account.";
     }
-    await updateAuth0User(targetAccount.user_id, {
+    await updateKeycloakUser(targetAccount.user_id, {
       given_name: targetAccount.firstName,
       family_name: targetAccount.lastName,
       name: `${targetAccount.firstName} ${targetAccount.lastName}`,
@@ -830,7 +830,7 @@ async function removeOneUser(uid) {
   }
   await RefreshTokenModel.deleteMany({ user: account.id });
 
-  await deleteAuth0User(account.user_id);
+  await deleteKeycloakUser(account.user_id);
 
   await UserModel.findByIdAndDelete(uid);
 }
@@ -877,8 +877,8 @@ async function removeOldUsers() {
   const usersToRemove = await UserModel.find({ deleted: { $lt: past } });
   await Promise.all(
     usersToRemove.map(async (user) => {
-      await deleteAuth0Connection(user.idp_connection_id);
-      await deleteAuth0User(user.user_id);
+      await deleteKeycloakConnection(user.idp_connection_id);
+      await deleteKeycloakUser(user.user_id);
     })
   );
 
@@ -891,7 +891,7 @@ async function removeOldUsers() {
 }
 
 async function resendVerificationEmail(user_id) {
-  await resendAuth0VerificationEmail(user_id);
+  await resendKeycloakVerificationEmail(user_id);
 }
 
 module.exports = {

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useEffect, useReducer, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { useKeycloak } from '@react-keycloak/web';
 import {
   isValidToken,
   setSession,
@@ -177,9 +178,10 @@ const JWTReducer = (state, action) => {
 const AuthContext = createContext(null);
 
 function AuthProvider({ children }) {
-  const { isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
+  const { keycloak, initialized } = useKeycloak();
+
   const [state, dispatch] = useReducer(JWTReducer, initialState);
-  const [auth0TokenTimer, setAuth0TokenTimer] = useState(null);
+  const [keycloakTokenTimer, setKeycloakTokenTimer] = useState(null);
 
   const setUserRole = useCallback((role) => {
     dispatch({
@@ -190,28 +192,31 @@ function AuthProvider({ children }) {
     });
   }, []);
 
-  const onAuth0AccessTokenUpdated = useCallback((accessToken) => {
-    const exp = getTokenExp(accessToken);
+  const onKeycloakAccessTokenUpdated = useCallback(() => {
+    const exp = keycloak.tokenParsed?.exp * 1000;
     const now = Date.now();
-    if (exp < now / 1000) {
-      logout({ returnTo: window?.location?.origin + "/home" });
+    if (exp < now) {
+      keycloak.logout({ redirectUri: window.location.origin + "/home" });
       return;
     }
-    if (auth0TokenTimer) {
-      clearTimeout(auth0TokenTimer);
+    if (keycloakTokenTimer) {
+      clearTimeout(keycloakTokenTimer);
     }
-    setAuth0TokenTimer(
+    setKeycloakTokenTimer(
       setTimeout(() => {
-        logout({ returnTo: window?.location?.origin + "/home" });
-      }, exp * 1000 - now)
+        keycloak.logout({ redirectUri: window.location.origin + "/home" });
+      }, exp - now)
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (initialized && keycloak.authenticated) {
       const setAccessToken = async () => {
-        const accessToken = await getAccessTokenSilently();
-        onAuth0AccessTokenUpdated(accessToken);
+        // Automatically refresh the token
+        // await keycloak.updateToken(30); // Refresh token if it's about to expire
+        const accessToken = keycloak.token;
+
+        onKeycloakAccessTokenUpdated();
 
         setSession(accessToken);
 
@@ -223,9 +228,11 @@ function AuthProvider({ children }) {
           setSuperSession(accessToken);
         }
       };
+
       setAccessToken();
     }
-  }, [isAuthenticated, getAccessTokenSilently, onAuth0AccessTokenUpdated]);
+  }, [initialized, keycloak, onKeycloakAccessTokenUpdated]);
+
   const setErr = useCallback((msg) => {
     dispatch({
       type: SET_ERROR,
@@ -274,13 +281,18 @@ function AuthProvider({ children }) {
   }, [setErr]);
 
   const setAccessToken = useCallback(async () => {
-    const accessToken = await getAccessTokenSilently();
-    onAuth0AccessTokenUpdated(accessToken);
+
+    // Automatically refresh the token
+    // await keycloak.updateToken(30); // Refresh token if it's about to expire
+    const accessToken = keycloak.token;
+
+    onKeycloakAccessTokenUpdated();
 
     setSession(accessToken);
 
     const response = await axios.get("/auth");
     const user = response.data;
+    console.log(user, keycloak.tokenParsed);
     if (isSuperAdmin(user?.role)) {
       setSession(null);
       setSuperSession(accessToken);
@@ -320,7 +332,7 @@ function AuthProvider({ children }) {
       await getFeatures();
     }
     return true;
-  }, [getAccessTokenSilently, getFeatures, onAuth0AccessTokenUpdated, setUserRole]);
+  }, [keycloak, onKeycloakAccessTokenUpdated, getFeatures, setUserRole]);
 
   const clearFeatures = useCallback(() => {
     dispatch({
@@ -542,11 +554,11 @@ function AuthProvider({ children }) {
   );
 
   const signOut = useCallback(async () => {
-    if (auth0TokenTimer) {
-      clearTimeout(auth0TokenTimer);
-      setAuth0TokenTimer(null);
+    if (keycloakTokenTimer) {
+      clearTimeout(keycloakTokenTimer);
+      setKeycloakTokenTimer(null);
     }
-    await logout({ federated: true });
+    await keycloak.logout({ federated: true });
     setSession(null);
     setSuperSession(null);
     setOrganisationSession(null);
@@ -555,7 +567,7 @@ function AuthProvider({ children }) {
     setOrganisationAdmin(null);
     dispatch({ type: SET_FEATURES, payload: { features: null } });
     dispatch({ type: SIGN_OUT });
-  }, [logout, auth0TokenTimer]);
+  }, [keycloakTokenTimer]);
 
   const signUp = useCallback(async (values) => {
     const response = await axios.post("/auth/register", values);

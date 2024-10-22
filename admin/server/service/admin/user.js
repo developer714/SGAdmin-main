@@ -8,7 +8,7 @@ const { generateJwtToken, basicDetails } = require("../../helpers/account");
 const { convertTimeRangePeriod2Timestamp } = require("../../helpers/time");
 const { UserReportType } = require("../../constants/admin/User");
 const { getMongooseLimitParam } = require("../../helpers/db");
-const { updateAuth0User } = require("../../helpers/auth0");
+const { updateKeycloakUser } = require("../../helpers/keycloak");
 
 /*
 async function impersonateUser(email) {
@@ -63,7 +63,7 @@ async function verifyUser(email) {
 
   if (!account) throw `User '${email}' not found`;
 
-  await updateAuth0User(account.user_id, {
+  await updateKeycloakUser(account.user_id, {
     email_verified: true,
   });
 

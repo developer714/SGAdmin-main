@@ -12,9 +12,9 @@ const EmailType = {
   MAX: 9,
 };
 
-const Auth0EmailType = {
+const KeycloakEmailType = {
   1: "verify_email",
   2: "reset_email",
 };
 
-module.exports = { EmailType, Auth0EmailType };
+module.exports = { EmailType, KeycloakEmailType };

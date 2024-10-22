@@ -7,6 +7,7 @@ import { Button, Checkbox, FormControlLabel, Grid, Paper, Typography } from "@mu
 import { ReactComponent as Logo } from "../../vendor/logo.svg";
 import { useSearchParams } from "react-router-dom";
 import { auth0Config } from "../../config";
+import keycloak from "../../Keycloak";
 
 const Brand = styled(Logo)`
   fill: ${(props) => props.theme.palette.primary.main};
@@ -34,7 +35,7 @@ function AgreePolicy() {
 
   const handleChange = (e) => setAcceptTerms(e.target.checked);
   const handleContinue = (e) => {
-    window.location.href = `https://${auth0Config.domain}/continue?state=${originalState}`;
+    window.location.href = `https://${keycloak.url}/continue?state=${originalState}`;
   };
 
   return (

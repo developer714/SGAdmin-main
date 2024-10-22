@@ -428,9 +428,9 @@ function Home() {
                   </Typography>
                   <Grid container spacing={1} sx={{ mt: "15px" }}>
                     {top_regional_traffics === null
-                      ? [1, 2, 3, 4, 5].map((t) => {
+                      ? [1, 2, 3, 4, 5].map((t, i) => {
                           return (
-                            <>
+                            <React.Fragment key={i}>
                               <Grid item xs={6} p={2}>
                                 <Skeleton
                                   height="15px"
@@ -451,13 +451,13 @@ function Home() {
                                   }}
                                 />
                               </Grid>
-                            </>
+                            </React.Fragment>
                           );
                         })
                       : top_regional_traffics?.map((t, i) => {
                           if (i < 5) {
                             return (
-                              <>
+                              <React.Fragment key={i}>
                                 <Grid item xs={6}>
                                   <Typography variant="h3" gutterBottom>
                                     {regionNames.of(t.country_iso_code)}
@@ -468,7 +468,7 @@ function Home() {
                                     {t.count}
                                   </Typography>
                                 </Grid>
-                              </>
+                              </React.Fragment>
                             );
                           } else {
                             return null;
@@ -500,9 +500,9 @@ function Home() {
                   </Typography>
                   <Grid container spacing={1} sx={{ mt: "15px" }}>
                     {top_regional_detections === null
-                      ? [1, 2, 3, 4, 5].map((t) => {
+                      ? [1, 2, 3, 4, 5].map((t, index) => {
                           return (
-                            <>
+                            <React.Fragment key={index}>
                               <Grid item xs={6} p={2}>
                                 <Skeleton
                                   height="15px"
@@ -523,13 +523,13 @@ function Home() {
                                   }}
                                 />
                               </Grid>
-                            </>
+                            </React.Fragment>
                           );
                         })
                       : top_regional_detections?.map((t, i) => {
                           if (i < 5) {
                             return (
-                              <>
+                              <React.Fragment key={i}>
                                 <Grid item xs={6}>
                                   <Typography variant="h3" gutterBottom>
                                     {regionNames.of(t.country_iso_code)}
@@ -540,10 +540,10 @@ function Home() {
                                     {t.count}
                                   </Typography>
                                 </Grid>
-                              </>
+                              </React.Fragment>
                             );
                           } else {
-                            return <></>;
+                            return <React.Fragment key={i}></React.Fragment>;
                           }
                         })}
                   </Grid>

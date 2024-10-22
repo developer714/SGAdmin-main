@@ -31,6 +31,7 @@ const { deleteAllOldAdAccessLogs } = require("./service/es");
 const { loadWebhookProcess, uploadToExternalWebhooks } = require("./service/notify/webhook");
 const { checkCertsExpiry } = require("./service/config/ssl");
 
+
 const app = express();
 app.use(helmet());
 
@@ -80,56 +81,59 @@ app.use(errorHandler);
 /*
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
-    // Set static folder
-    app.use(express.static("client/build"));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  // Set static folder
+  app.use(express.static("client/build"));
+  
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
-}
-*/
-app.on("db_ready", async () => {
-  try {
-    let bMustApply = await CertificateGeneration.LoadRootCA();
-    await loadSgCerts();
-    if (isSecondaryOmb()) {
-      await loadWafSslConfig(undefined, true);
     }
-
-    if (bMustApply) {
-      await wafService.applySgCertConfig();
-    }
-  } catch (err) {
-    logger.error(err);
-  }
-
-  // loadStripeInstance regardless the result of the previous operations.
-  try {
-    await loadStripeInstance();
-  } catch (err) {
-    logger.error(err);
-  }
-  if (!isSecondaryOmb()) {
-    await loadWebhookProcess();
-    checkAllLicenses();
-    deleteAllOldAdAccessLogs();
-    checkHealth4Sites();
-    checkCertsExpiry();
-    wafService.checkHealth4WafEngineNodes();
-    edgeService.checkHealth4RlEngineNodes();
-    bmEngineService.checkHealth4BmEngineNodes();
-    adEngineService.checkHealth4AdEngineNodes();
-    esEngineService.checkHealth4EsEngineNodes();
-    ombServiceService.checkHealth4OmbServiceNodes();
-    regionService.checkHealth4AllRegions(true);
-  } else {
-    uploadToExternalWebhooks();
-  }
-
-  // start the Express server
-  app.listen(INTERNAL_PORT, () => logger.info(`SenseDefence Admin backend server started on port ${INTERNAL_PORT}`));
-});
-
-mongoose.connection.once("open", () => {
-  app.emit("db_ready");
-});
+    */
+   app.on("db_ready", async () => {
+     try {
+       let bMustApply = await CertificateGeneration.LoadRootCA();
+       await loadSgCerts();
+       if (isSecondaryOmb()) {
+         await loadWafSslConfig(undefined, true);
+        }
+        
+        if (bMustApply) {
+          await wafService.applySgCertConfig();
+        }
+      } catch (err) {
+        logger.error(err);
+      }
+      
+      // loadStripeInstance regardless the result of the previous operations.
+      try {
+        await loadStripeInstance();
+      } catch (err) {
+        logger.error(err);
+      }
+      if (!isSecondaryOmb()) {
+        await loadWebhookProcess();
+        checkAllLicenses();
+        deleteAllOldAdAccessLogs();
+        checkHealth4Sites();
+        checkCertsExpiry();
+        wafService.checkHealth4WafEngineNodes();
+        edgeService.checkHealth4RlEngineNodes();
+        bmEngineService.checkHealth4BmEngineNodes();
+        adEngineService.checkHealth4AdEngineNodes();
+        esEngineService.checkHealth4EsEngineNodes();
+        ombServiceService.checkHealth4OmbServiceNodes();
+        regionService.checkHealth4AllRegions(true);
+      } else {
+        uploadToExternalWebhooks();
+      }
+      
+      // start the Express server
+      app.listen(INTERNAL_PORT, () => logger.info(`SenseDefence Admin backend server started on port ${INTERNAL_PORT}`));
+      
+      console.log("server is running at port" + INTERNAL_PORT);
+    });
+    
+    mongoose.connection.once("open", () => {
+      app.emit("db_ready");
+    });
+    

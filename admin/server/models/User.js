@@ -57,7 +57,7 @@ const UserSchema = Schema({
     ref: "organisation",
   },
 
-  // Auth0 fields
+  // Keycloak fields
   user_id: {
     type: String,
     unique: true,

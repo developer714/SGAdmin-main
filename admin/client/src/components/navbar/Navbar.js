@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useKeycloak } from "@react-keycloak/web";
 import styled from "@emotion/styled";
 import { withTheme } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
@@ -154,15 +154,7 @@ const Navbar = ({ navbarItems, showSidebar }) => {
     height: 100px;
   `;
 
-  const {
-    // user,
-    // isAuthenticated,
-    logout,
-  } = useAuth0();
-  // const logoutWithRedirect = () =>
-  //     logout({
-  //         returnTo: window.location.origin,
-  //     });
+  const { keycloak } = useKeycloak();
 
   const theme = useTheme();
   const isLG = useMediaQuery(theme.breakpoints.up("lg"));
@@ -191,10 +183,8 @@ const Navbar = ({ navbarItems, showSidebar }) => {
   };
   const handleSignOut = async () => {
     await signOut();
-    logout();
-    // logoutWithRedirect();
+    keycloak.logout();
     setAnchorEl(null);
-    // navigate("/auth/signin");
   };
   const handleProfile = async () => {
     setAnchorEl(null);

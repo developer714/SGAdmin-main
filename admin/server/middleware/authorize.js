@@ -19,7 +19,7 @@ const logger = require("../helpers/logger");
 const { getUserRoleString } = require("../helpers/account");
 
 module.exports = authorize;
-const auth0Config = config.get("auth0");
+const keycloakConfig = config.get("keycloak");
 
 const g_TokenAuthMap = new Map();
 
@@ -55,15 +55,15 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
             g_jwksKeys = [];
           }
           if (!g_jwksKeys?.length) {
-            const res = await axios.get(`https://${auth0Config.domain}/.well-known/jwks.json`);
+            const res = await axios.get(`${keycloakConfig.serverUrl}/realms/${keycloakConfig.realm}/protocol/openid-connect/certs`);
             const keys = res.data?.keys;
             if (!keys?.length) {
-              return next(new Error("Failed to get auth0 jwks"));
+              return next(new Error(("Failed to get Keycloak JWKS")));
             }
             g_jwksKeys = keys;
             g_jwksLastUpdatedAt = Date.now();
             const kids = keys.map((key) => key?.kid);
-            logger.info(`Auth0 JWKS keyset updated at ${new Date(g_jwksLastUpdatedAt)?.toISOString()}, kids=${kids}`);
+            logger.info(`Keycloak JWKS updated at ${new Date(g_jwksLastUpdatedAt).toISOString()}, kids=${kids}`);
           }
           let verified = false;
           for (let idx = 0; idx < g_jwksKeys.length; idx++) {
@@ -73,8 +73,8 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
               token,
               pem,
               {
-                audience: auth0Config.audience,
-                issuer: `https://${auth0Config.domain}/`,
+                audience: keycloakConfig.clientId,
+                issuer: `${keycloakConfig.serverUrl}/realms/${keycloakConfig.realm}`,
                 algorithms: ["RS256"],
               },
               (error, decoded) => {
@@ -96,7 +96,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
             return next(new Error("Token is invalid"));
           }
         } catch (err) {
-          return next(new Error("Failed to get auth0 jwks"));
+          return next(new Error("Failed to get keycloak jwks"));
         }
       }
     },
@@ -105,11 +105,11 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
                 cache: true,
                 rateLimit: true,
                 jwksRequestsPerMinute: 5,
-                jwksUri: `https://${auth0Config.domain}/.well-known/jwks.json`,
+                jwksUri: `https://${keycloakConfig.domain}/.well-known/jwks.json`,
             }),
 
-            audience: auth0Config.audience,
-            issuer: `https://${auth0Config.domain}/`,
+            audience: keycloakConfig.audience,
+            issuer: `https://${keycloakConfig.domain}/`,
             algorithms: ["RS256"],
         }),*/
 

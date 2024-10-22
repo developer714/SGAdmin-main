@@ -1,7 +1,7 @@
 const express = require("express");
 const { isSecondaryOmb } = require("../../../helpers/env");
-
 const router = express.Router();
+
 
 if (isSecondaryOmb()) {
   router.use("/v1/node", require("./node"));

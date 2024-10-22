@@ -17,90 +17,116 @@ function getBasicStats(req, res, next) {
   esService
     .getBasicStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getBasicWafStats(req, res, next) {
   esService
     .getBasicWafStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTrafficStats(req, res, next) {
   esService
     .getTrafficStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getRegionalTrafficStats(req, res, next) {
   esService
     .getRegionalTrafficStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopRegionTrafficStats(req, res, next) {
   esService
     .getTopRegionTrafficStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopRegionDetectionStats(req, res, next) {
   esService
     .getTopRegionDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopSourceDetectionStats(req, res, next) {
   esService
     .getTopSourceDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopPathDetectionStats(req, res, next) {
   esService
     .getTopPathDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 function getTopUaDetectionStats(req, res, next) {
   esService
     .getTopUaDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopDetectionTypeStats(req, res, next) {
   esService
     .getTopDetectionTypeStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopHttpMethodDetectionStats(req, res, next) {
   esService
     .getTopHttpMethodDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getTopHttpResCodeDetectionStats(req, res, next) {
   esService
     .getTopHttpResCodeDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getRegionalDetectionStats(req, res, next) {
   esService
     .getRegionalDetectionStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 function getDetectStatsSchema(req, res, next) {
@@ -123,7 +149,9 @@ function getDetectStats(req, res, next) {
   esService
     .getDetectStats(req)
     .then((stats) => res.json(stats))
-    .catch(next);
+    .catch((next) => {
+      res.json([]);
+    });
 }
 
 module.exports = {
