@@ -5,12 +5,12 @@ const keycloakConfig = config.get("keycloak");
 
 const getAdminToken = async () => {
   const params = new URLSearchParams({
-    client_id: keycloakConfig.clientId,
+    client_id: keycloakConfig.backendId,
     client_secret: keycloakConfig.clientSecret,
-    grant_type: keycloakConfig.grandType,
-    username: keycloakConfig.username,
-    password: keycloakConfig.password,
+    grant_type: keycloakConfig.grandType
   });
+
+  // http://localhost:8080/realms/keycloak-react-auth/protocol/openid-connect/token`,
 
   try {
     const res = await axios.post(
@@ -37,19 +37,16 @@ const createKeycloakUser = async (userData) => {
   const token = await getAdminToken();
   console.log(userData);
   const newUser = {
-    username: "newuser",
-    email: "newuser@example.com",
-    enabled: true,
-    firstName: "John",
-    lastName: "Doe",
-    credentials: [
-        {
-            type: "password",
-            value: "password",
-            temporary: false
-        }
-    ],
-    
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "enabled": true,
+    "firstName": "John",
+    "lastName": "Doe",
+    "credentials": [{
+      "type": "password",
+      "value": "password123",
+      "temporary": false
+    }]
   }
   try {
     const res = await axios.post(
@@ -57,8 +54,8 @@ const createKeycloakUser = async (userData) => {
       newUser,
       {
         headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
+          'Authorization': token,
+          'Content-Type': 'application/json',
         },
       }
     );

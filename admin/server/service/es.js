@@ -1731,7 +1731,6 @@ async function getTrafficStats(req) {
 
 async function getRegionalTrafficStats(req) {
   const { site_id, time_range } = req.body;
-  console.log(site_id, time_range);
   let postParam = {
     size: 0,
     aggregations: {

@@ -28,6 +28,7 @@ let g_jwksKeys = [];
 let g_jwksLastUpdatedAt = Date.now();
 
 function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
+
   // roles param can be a single role string (e.g. Role.User or 'User')
   // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
   if (typeof roles === "number") {
@@ -73,7 +74,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
               token,
               pem,
               {
-                audience: keycloakConfig.clientId,
+                audience: keycloakConfig.frontendId,
                 issuer: `${keycloakConfig.serverUrl}/realms/${keycloakConfig.realm}`,
                 algorithms: ["RS256"],
               },

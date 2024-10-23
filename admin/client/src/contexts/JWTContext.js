@@ -195,8 +195,9 @@ function AuthProvider({ children }) {
   const onKeycloakAccessTokenUpdated = useCallback(() => {
     const exp = keycloak.tokenParsed?.exp * 1000;
     const now = Date.now();
+    console.log(exp - now);
     if (exp < now) {
-      keycloak.logout({ redirectUri: window.location.origin + "/home" });
+      keycloak.logout({ redirectUri: window.location.origin});
       return;
     }
     if (keycloakTokenTimer) {
@@ -204,7 +205,7 @@ function AuthProvider({ children }) {
     }
     setKeycloakTokenTimer(
       setTimeout(() => {
-        keycloak.logout({ redirectUri: window.location.origin + "/home" });
+        keycloak.logout({ redirectUri: window.location.origin });
       }, exp - now)
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -213,7 +214,7 @@ function AuthProvider({ children }) {
     if (initialized && keycloak.authenticated) {
       const setAccessToken = async () => {
         // Automatically refresh the token
-        // await keycloak.updateToken(30); // Refresh token if it's about to expire
+        await keycloak.updateToken(30); // Refresh token if it's about to expire
         const accessToken = keycloak.token;
 
         onKeycloakAccessTokenUpdated();
@@ -283,7 +284,7 @@ function AuthProvider({ children }) {
   const setAccessToken = useCallback(async () => {
 
     // Automatically refresh the token
-    // await keycloak.updateToken(30); // Refresh token if it's about to expire
+    await keycloak.updateToken(30); // Refresh token if it's about to expire
     const accessToken = keycloak.token;
 
     onKeycloakAccessTokenUpdated();

@@ -20,13 +20,10 @@
   },
   "keycloak": {
     "serverUrl": "http://localhost:8080",
-    "realm": "sense-defence",
-    "clientId": "sense-defence",
+    "realm": "keycloak-react-auth",
     "frontendId": "my-react-app-pkce",
-    "backendId": "my-react-app-pkce",
-    "clientSecret": "GevzGFWDiKpGdAt8lJjPbPteBSDDXI5y",
-    "grandType": "password",
-    "username": "goldkane",
-    "password": "123123"
+    "backendId": "www",
+    "clientSecret": "lskv51m30EeGvhAHq61sZxejicLBsuhP",
+    "grandType": "client_credentials"
   }
 }
