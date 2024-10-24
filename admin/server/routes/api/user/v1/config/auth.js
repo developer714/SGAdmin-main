@@ -6,12 +6,12 @@ const { UserRole } = require("../../../../../constants/User");
 const { configSiteSchema } = require("../../../../../controllers/user/site");
 
 const {
-  getBmConfig,
-  updateBmConfigSchema,
-  updateBmConfig,
+  getAuConfig,
+  updateAuConfigSchema,
+  updateAuConfig,
   /*
-    enableBmSchema,
-    enableBm,
+    enableAuSchema,
+    enableAu,
     setAuthActionSchema,
     setAuthAction,
     */
@@ -25,10 +25,11 @@ const {
   deleteAuthException,
   saveAuthExceptionsOrderSchema,
   saveAuthExceptionsOrder,
-  // getBmLicenseStatus,
+  // getAuLicenseStatus,
 } = require("../../../../../controllers/user/config/auth");
-const { APIKeyPermissions } = require("../../../../../constants/Api");
 
+
+const { APIKeyPermissions } = require("../../../../../constants/Api");
 const router = express.Router();
 
 // @route    GET api/user/v1/config/auth/:site_uid/config
@@ -36,7 +37,7 @@ const router = express.Router();
 // @param
 // @access   Private
 
-router.get("/:site_uid/config", authorize([], APIKeyPermissions.AUTH), auth_config, getBmConfig);
+router.get("/:site_uid/config", authorize([], APIKeyPermissions.AUTH), auth_config, getAuConfig);
 
 // @route    PATCH api/user/v1/config/auth/:site_uid/config
 // @desc     Return the current auth management configuration
@@ -47,8 +48,8 @@ router.patch(
   "/:site_uid/config",
   authorize([UserRole.SUPPORT_ADMIN, UserRole.SUPER_ADMIN, UserRole.ORGANISATION_ACCOUNT, UserRole.NORMAL_USER], APIKeyPermissions.AUTH),
   auth_config,
-  updateBmConfigSchema,
-  updateBmConfig
+  updateAuConfigSchema,
+  updateAuConfig
 );
 
 /*
@@ -68,9 +69,9 @@ router.post(
         ],
         APIKeyPermissions.AUTH
     ),
-    enableBmSchema,
+    enableAuSchema,
     auth_config,
-    enableBm
+    enableAu
 );
 
 // @route    POST api/user/v1/config/auth/config/action
@@ -170,7 +171,7 @@ router.delete(
 router.get(
     "/license",
     authorize([], APIKeyPermissions.AUTH),
-    getBmLicenseStatus
+    getAuLicenseStatus
 );
 */
 

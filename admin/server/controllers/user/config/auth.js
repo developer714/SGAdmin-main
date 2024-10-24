@@ -22,6 +22,8 @@ function updateAuConfigSchema(req, res, next) {
   validateRequest(req, next, schema);
 }
 
+
+
 function updateAuConfig(req, res, next) {
   const { site_uid } = req.params;
   authService

@@ -16,7 +16,6 @@ const { getFieldsFromConditions, isValidFwRuleCondition } = require("../../helpe
 const { LicenseLevel } = require("../../constants/Paywall");
 const { getCustomPackage4Org } = require("../../helpers/organisation");
 const { UnitPriceId } = require("../../constants/admin/Price");
-
 async function getAuConfig(site_uid) {
   const site = await SiteModel.findById(site_uid).populate("auth_config");
   if (!site) {
