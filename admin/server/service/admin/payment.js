@@ -20,6 +20,7 @@ const { BMPaymentModel } = require("../../models/BMPayment");
 const { getSimpleOrganisation, getCustomPackage4Org } = require("../../helpers/organisation");
 const { UnitPriceId } = require("../../constants/admin/Price");
 const { BotConfigModel } = require("../../models/BotConfig");
+const { AuthConfigModel } = require("../../models/AuthConfig");
 const { SiteModel } = require("../../models/Site");
 const { RateLimitRuleModel } = require("../../models/RateLimitRule");
 
@@ -219,6 +220,9 @@ const CountableUnitPriceIds = [
   UnitPriceId.BOT_MANAGEMENT_PRICE_SITE_DOMAIN,
   UnitPriceId.BOT_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB,
   UnitPriceId.BOT_MANAGEMENT_REQUESTS_DELIVERED_PER_10K,
+  UnitPriceId.AUTH_MANAGEMENT_PRICE_SITE_DOMAIN,
+  UnitPriceId.AUTH_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB,
+  UnitPriceId.AUTH_MANAGEMENT_REQUESTS_DELIVERED_PER_10K,
   UnitPriceId.RATE_LIMITING_BASE_PRICE_SITE_DOMAIN,
   UnitPriceId.RATE_LIMITING_TRAFFIC_DELIVERED_PER_GB,
   UnitPriceId.RATE_LIMITING_REQUESTS_DELIVERED_PER_10K,
@@ -259,8 +263,18 @@ async function getActuallyUsedValue(org, unit_price_id) {
       return org.bot_traffic_account?.traffic_bytes;
 
     case UnitPriceId.BOT_MANAGEMENT_REQUESTS_DELIVERED_PER_10K:
-      return org.bot_traffic_account?.requests_number;
+      return org.auth_traffic_account?.requests_number;
+    case UnitPriceId.AUTH_MANAGEMENT_PRICE_SITE_DOMAIN:
+      const auEnabledSites = await AuthConfigModel.countDocuments({
+        $and: [{ enabled: true }, { site_id: { $in: siteIdsInOrg } }],
+      });
+      return auEnabledSites;
 
+    case UnitPriceId.AUTH_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB:
+      return org.auth_traffic_account?.traffic_bytes;
+
+    case UnitPriceId.AUTH_MANAGEMENT_REQUESTS_DELIVERED_PER_10K:
+      return org.auth_traffic_account?.requests_number;
     case UnitPriceId.RATE_LIMITING_BASE_PRICE_SITE_DOMAIN:
       const rlEnabledSites = await RateLimitRuleModel.find({
         $and: [{ enabled: true }, { site_id: { $in: siteIdsInOrg } }],
@@ -308,12 +322,14 @@ async function getLicenseStatus4Orgs(from, size) {
         switch (unit_price_id) {
           case UnitPriceId.REQUESTS_DELIVERED_PER_10K:
           case UnitPriceId.BOT_MANAGEMENT_REQUESTS_DELIVERED_PER_10K:
+          case UnitPriceId.AUTH_MANAGEMENT_REQUESTS_DELIVERED_PER_10K:
           case UnitPriceId.RATE_LIMITING_REQUESTS_DELIVERED_PER_10K:
           case UnitPriceId.DDOS_REQUESTS_DELIVERED_PER_10K:
             package *= 10000;
             break;
           case UnitPriceId.TRAFFIC_DELIVERED_PER_GB:
           case UnitPriceId.BOT_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB:
+          case UnitPriceId.AUTH_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB:
           case UnitPriceId.RATE_LIMITING_TRAFFIC_DELIVERED_PER_GB:
           case UnitPriceId.DDOS_TRAFFIC_DELIVERED_PER_GB:
             package *= 1024 * 1024 * 1024;

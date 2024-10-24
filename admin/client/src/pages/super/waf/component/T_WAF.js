@@ -113,6 +113,8 @@ const EnhancedTableHead = (props) => {
     headCells[0].label = "RL Engine";
   } else if (WafNodeType.BM_ENGINE === type) {
     headCells[0].label = "BM Engine";
+  } else if (WafNodeType.AU_ENGINE === type) {
+    headCells[0].label = "AU Engine";
   } else if (WafNodeType.AD_ENGINE === type) {
     headCells[0].label = "AD Engine";
   } else if (WafNodeType.ES_ENGINE === type) {
@@ -467,6 +469,8 @@ function EnhancedTable({ type }) {
                         ? " RL engines"
                         : WafNodeType.BM_ENGINE === type
                         ? " BM engines"
+                        : WafNodeType.AU_ENGINE === type
+                        ? " AU engines"
                         : WafNodeType.AD_ENGINE === type
                         ? " AD engines"
                         : WafNodeType.ES_ENGINE === type

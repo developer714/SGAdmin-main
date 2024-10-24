@@ -65,6 +65,6 @@ AUEngineSchema.virtual("isActive").get(function () {
   return this.last_ping_at.getTime() + 3 * CHECK_WAFS_HEALTH_PERIOD > Date.now();
 });
 
-const BMEngineModel = mongoose.model("bmenginenode", AUEngineSchema);
+const AUEngineModel = mongoose.model("auenginenode", AUEngineSchema);
 
-module.exports = { BMEngineModel, AUEngineSchema };
+module.exports = { AUEngineModel, AUEngineSchema };

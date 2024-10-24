@@ -14,6 +14,7 @@ const APIKeyPermissions = {
   SSO: { value: 11, title: "SSO" },
   NOTIFICATION: { value: 12, title: "Notification" },
   DDOS: { value: 13, title: "Ddos" },
+  AUTH: { value: 14, title: "Auth" },
 };
 
 const APIKeyState = {

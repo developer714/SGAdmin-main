@@ -16,6 +16,7 @@ const path = require("path");
 const { checkAllLicenses } = require("./service/paywall");
 const wafService = require("./service/admin/nodes/waf_engine");
 const edgeService = require("./service/admin/nodes/rl_engine");
+const auEngineService = require("./service/admin/nodes/au_engine");
 const bmEngineService = require("./service/admin/nodes/bm_engine");
 const adEngineService = require("./service/admin/nodes/ad_engine");
 const esEngineService = require("./service/admin/nodes/es_engine");
@@ -119,6 +120,7 @@ if (process.env.NODE_ENV === "production") {
         wafService.checkHealth4WafEngineNodes();
         edgeService.checkHealth4RlEngineNodes();
         bmEngineService.checkHealth4BmEngineNodes();
+        auEngineService.checkHealth4AuEngineNodes();
         adEngineService.checkHealth4AdEngineNodes();
         esEngineService.checkHealth4EsEngineNodes();
         ombServiceService.checkHealth4OmbServiceNodes();
@@ -130,7 +132,7 @@ if (process.env.NODE_ENV === "production") {
       // start the Express server
       app.listen(INTERNAL_PORT, () => logger.info(`SenseDefence Admin backend server started on port ${INTERNAL_PORT}`));
       
-      console.log("server is running at port" + INTERNAL_PORT);
+      console.log("Server is running at port " + INTERNAL_PORT);
     });
     
     mongoose.connection.once("open", () => {

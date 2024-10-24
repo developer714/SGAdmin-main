@@ -24,6 +24,7 @@ const ExpressionKeyField = {
   AS_NUMBER: "asn",
   JA3_FINGERPRINT: "ja3_fingerprint",
   BOT_SCORE: "bot_score",
+  AUTH_SCORE: "auth_score",
 };
 
 const ExpressionKeyTitle = {
@@ -41,6 +42,7 @@ const ExpressionKeyTitle = {
   asn: "AS Number",
   ja3_fingerprint: "JA3 Fingerprint",
   bot_score: "Bot Score",
+  auth_score: "Auth Score",
 };
 
 const FwAction = {

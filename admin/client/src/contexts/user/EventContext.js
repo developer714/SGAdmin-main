@@ -5,13 +5,16 @@ import { WafType } from "../../utils/constants";
 
 const GET_EVENTS = "GET_EVENTS";
 const GET_BOT_EVENTS = "GET_BOT_EVENTS";
+const GET_AUTH_EVENTS = "GET_AUTH_EVENTS";
 const GET_RL_EVENTS = "GET_RL_EVENTS";
 const GET_TOTAL_EVENTS_COUNT = "GET_TOTAL_EVENTS_COUNT";
 const GET_TOTAL_BOT_EVENTS_COUNT = "GET_TOTAL_BOT_EVENTS_COUNT";
+const GET_TOTAL_AUTH_EVENTS_COUNT = "GET_TOTAL_AUTH_EVENTS_COUNT";
 const GET_TOTAL_RL_EVENTS_COUNT = "GET_TOTAL_RL_EVENTS_COUNT";
 const SET_CURRENT_STATUS = "SET_CURRENT_STATUS";
 const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
 const GET_SINGLE_BOT_EVENT = "GET_SINGLE_BOT_EVENT";
+const GET_SINGLE_AUTH_EVENT = "GET_SINGLE_AUTH_EVENT";
 const GET_SINGLE_RL_EVENT = "GET_SINGLE_RL_EVENT";
 const GET_WAF_EVENT_STATS = "GET_WAF_EVENT_STATS";
 const GET_BOT_EVENT_STATS = "GET_BOT_EVENT_STATS";
@@ -25,10 +28,13 @@ const initialState = {
   event: null,
   botEvents: null,
   botEvent: null,
+  authEvents: null,
+  authEvent: null,
   rlEvents: null,
   rlEvent: null,
   wafEventStats: null,
   botEventStats: null,
+  authEventStats: null,
   rlEventStats: null,
   total_events_count: 0,
   total_bot_events_count: 0,
@@ -52,6 +58,11 @@ const EventReducer = (state, action) => {
         ...state,
         botEvents: action.payload.botEvents,
       };
+    case GET_AUTH_EVENTS:
+    return {
+      ...state,
+      authEvents: action.payload.authEvents,
+    };
     case GET_RL_EVENTS:
       return {
         ...state,
@@ -67,6 +78,11 @@ const EventReducer = (state, action) => {
         ...state,
         total_bot_events_count: action.payload.total_bot_events_count,
       };
+    case GET_TOTAL_AUTH_EVENTS_COUNT:
+    return {
+      ...state,
+      total_auth_events_count: action.payload.total_auth_events_count,
+    };
     case GET_TOTAL_RL_EVENTS_COUNT:
       return {
         ...state,
@@ -82,6 +98,11 @@ const EventReducer = (state, action) => {
         ...state,
         botEvent: action.payload.botEvent,
       };
+    case GET_SINGLE_AUTH_EVENT:
+      return {
+      ...state,
+      authEvent: action.payload.authEvent,
+    };
     case GET_SINGLE_RL_EVENT:
       return {
         ...state,
@@ -97,6 +118,11 @@ const EventReducer = (state, action) => {
         ...state,
         botEventStats: action.payload.botEventStats,
       };
+    case GET_BOT_EVENT_STATS:
+      return {
+      ...state,
+      authEventStats: action.payload.authEventStats,
+    };
     case GET_RL_EVENT_STATS:
       return {
         ...state,

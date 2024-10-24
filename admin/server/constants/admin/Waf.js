@@ -28,7 +28,8 @@ const WafNodeType = {
   AD_ENGINE: 3,
   OMB_SERVICE: 4,
   ES_ENGINE: 5,
-  MAX: 5,
+  AU_ENGINE: 6,
+  MAX: 6,
 };
 
 const INTERNAL_PORT = parseInt(process.env.PORT, 10) || (isSecondaryOmb() ? 5005 : 5000);

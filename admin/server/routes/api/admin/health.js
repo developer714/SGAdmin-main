@@ -13,6 +13,8 @@ const {
   getWafEdgeStats,
   getBmEngineHealth,
   getBmEngineStats,
+  getAuEngineHealth,
+  getAuEngineStats,
   getAdEngineHealth,
   getAdEngineStats,
   getOmbServiceHealth,
@@ -101,6 +103,29 @@ router.post(
   authorize([UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN, UserRole.PAYMENT_ADMIN, UserRole.READONLY_ADMIN]),
   getWafStatsSchema,
   getBmEngineStats
+);
+
+// @route    GET api/admin/health/au_engine/:node_id
+// @desc     Return a health status of AU Engine node
+// @param
+// @access   Private
+
+router.get(
+  "/au_engine/:node_id",
+  authorize([UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN, UserRole.PAYMENT_ADMIN, UserRole.READONLY_ADMIN]),
+  getAuEngineHealth
+);
+
+// @route    POST api/admin/health/au_engine/stats/:node_id
+// @desc     Return a statistics information of AU Engine node
+// @param    time_range
+// @access   Private
+
+router.post(
+  "/au_engine/stats/:node_id",
+  authorize([UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN, UserRole.PAYMENT_ADMIN, UserRole.READONLY_ADMIN]),
+  getWafStatsSchema,
+  getAuEngineStats
 );
 
 // @route    GET api/admin/health/ad_engine/:node_id

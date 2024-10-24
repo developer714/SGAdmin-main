@@ -8,8 +8,6 @@ import { isValidToken } from "../../utils/jwt";
 function SuperGuard({ children }) {
   const { keycloak, initialized } = useKeycloak();
 
-  console.log("SuperGuard");
-
   // Show loader while Keycloak is initializing
   if (!initialized) {
     return <Loader />;

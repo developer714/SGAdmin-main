@@ -62,7 +62,6 @@ function PersonalProfile() {
               onSubmit={async (values, { resetForm, setErrors, setStatus, setSubmitting, setValue }) => {
                 try {
                   const response = await updateOrganisation(values);
-                  // console.log("submit", organisation);
                   if (response) {
                     resetForm();
                     setErrors({ success: "Title has been changed successfully." });

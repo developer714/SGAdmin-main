@@ -60,7 +60,6 @@ async function authenticate(token) {
     }
 
     const { email } = decoded;
-    // console.log(decoded);
 
     let account = await UserModel.findOne({
       user_id: decoded.user_id,
@@ -77,7 +76,6 @@ async function authenticate(token) {
       }
     }
 
-    // console.log(account);
 
     if (!account) {
       // new user - register
@@ -587,7 +585,6 @@ async function getUserById(id, user) {
 async function createUser(req) {
   const { user } = req;
   const { organisation } = user;
-  // console.log(user);
   if (undefined === organisation) {
     throw "Organisation undefined";
   }

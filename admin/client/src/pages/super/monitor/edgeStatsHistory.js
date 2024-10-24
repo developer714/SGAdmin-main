@@ -116,6 +116,8 @@ function SAWAFEdgeStatsHistory({ type }) {
             ? "SA WAF Engine Past Time Stats"
             : WafNodeType.BM_ENGINE === type
             ? "SA BM Engine Past Time Stats"
+            : WafNodeType.AU_ENGINE === type
+            ? "SA AU Engine Past Time Stats"
             : WafNodeType.ES_ENGINE === type
             ? "SA ES Engine Past Time Stats"
             : "SA RL Engine Past Time Stats"
@@ -128,6 +130,8 @@ function SAWAFEdgeStatsHistory({ type }) {
               ? "WAF Engine "
               : WafNodeType.BM_ENGINE === type
               ? "BM Engine "
+              : WafNodeType.AU_ENGINE === type
+              ? "AU Engine "
               : WafNodeType.ES_ENGINE === type
               ? "ES Engine "
               : "RL Engine "}
@@ -187,6 +191,8 @@ function SAWAFEdgeStatsHistory({ type }) {
               ? "WAF Engine"
               : WafNodeType.BM_ENGINE === type
               ? "BM Engine"
+              : WafNodeType.AU_ENGINE === type
+              ? "AU Engine"
               : WafNodeType.ES_ENGINE === type
               ? "ES Engine"
               : "RL Engine"}

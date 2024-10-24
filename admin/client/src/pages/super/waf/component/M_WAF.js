@@ -79,6 +79,8 @@ function WAFModal({ type, open, handleClose, waf, loading }) {
                             ? "RL Engine "
                             : WafNodeType.BM_ENGINE === type
                             ? "BM Engine "
+                            : WafNodeType.AU_ENGINE === type
+                            ? "AU Engine "
                             : WafNodeType.ES_ENGINE === type
                             ? "ES Engine "
                             : WafNodeType.AD_ENGINE === type

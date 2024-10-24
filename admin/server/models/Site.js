@@ -150,6 +150,18 @@ SiteSchema.virtual("bot_config", {
   foreignField: "site_id",
 });
 
+SiteSchema.virtual("auth_exceptions", {
+  ref: "authexception",
+  localField: "_id",
+  foreignField: "site_id",
+});
+
+SiteSchema.virtual("auth_config", {
+  ref: "authconfig",
+  localField: "_id",
+  foreignField: "site_id",
+});
+
 SiteSchema.virtual("ddos_config", {
   ref: "ddosconfig",
   localField: "_id",

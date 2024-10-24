@@ -17,7 +17,8 @@ const FeatureId = {
   SENSEDEFENCE_SIGNATURE_WAF: 15,
   B2B_SAML: 16,
   BOT_MANAGEMENT: 17,
-  MAX: 17,
+  AUTH_MANAGEMENT: 18,
+  MAX: 18,
 };
 
 const FeatureDataType = {

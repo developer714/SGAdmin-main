@@ -44,6 +44,8 @@ function SAWAFList({ type }) {
             ? " RL Engine "
             : WafNodeType.BM_ENGINE === type
             ? " BM Engine"
+            : WafNodeType.AU_ENGINE === type
+            ? " AU Engine"
             : WafNodeType.AD_ENGINE === type
             ? " AD Engine"
             : WafNodeType.OMB_SERVICE === type
@@ -60,6 +62,8 @@ function SAWAFList({ type }) {
               ? "Rate Limit Engine "
               : WafNodeType.BM_ENGINE === type
               ? "Bot Management Engine "
+              : WafNodeType.AU_ENGINE === type
+              ? "Auth Management Engine "
               : WafNodeType.ES_ENGINE === type
               ? "Elastic Search Engine "
               : WafNodeType.AD_ENGINE === type
@@ -88,6 +92,8 @@ function SAWAFList({ type }) {
               ? " RL Engine"
               : WafNodeType.BM_ENGINE === type
               ? " BM Engine"
+              : WafNodeType.AU_ENGINE === type
+              ? " AU Engine"
               : WafNodeType.ES_ENGINE === type
               ? " ES Engine"
               : WafNodeType.AD_ENGINE === type

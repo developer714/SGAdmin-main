@@ -6,8 +6,6 @@ import { useKeycloak } from "@react-keycloak/web";
 function GuestGuard({ children }) {
   const { keycloak, initialized } = useKeycloak();
 
-  console.log("guestGuard");
-
   // If Keycloak is initialized and the user is authenticated, redirect to the home page
   if (initialized && keycloak.authenticated) {
     return <Navigate to="/" />;

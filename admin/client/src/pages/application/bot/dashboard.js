@@ -16,6 +16,7 @@ import useAuth from "../../../hooks/useAuth";
 import useSite from "../../../hooks/user/useSite";
 import useEvent from "../../../hooks/user/useEvent";
 import useBMConfig from "../../../hooks/user/useBMConfig";
+import useAUConfig from "../../../hooks/user/useAUConfig";
 import { formatDateOnly, formatTimeOnly } from "../../../utils/format";
 import BotScoreTotalChart from "../../../components/pages/application/bot/C_BotScoreTotal";
 

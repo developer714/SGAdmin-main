@@ -10,6 +10,7 @@ router.use("/rule", require("./rule"));
 router.use("/ssl", require("./ssl"));
 router.use("/waf", require("./waf"));
 router.use("/bot", require("./bot"));
+router.use("/auth", require("./auth"));
 router.use("/ddos", require("./ddos"));
 
 module.exports = router;

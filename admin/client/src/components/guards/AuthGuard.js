@@ -8,7 +8,6 @@ import { isValidToken } from "../../utils/jwt";
 function AuthGuard({ children }) { 
   const { keycloak, initialized } = useKeycloak();
 
-  console.log("authGuard");
   // Show loader while Keycloak is initializing
   if (!initialized) {
     return <Loader />;

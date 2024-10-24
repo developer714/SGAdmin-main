@@ -174,6 +174,34 @@ function getBotEventLog(req, res, next) {
     .catch(next);
 }
 
+
+function getAuthEventLogsSchema(req, res, next) {
+  const schema = Joi.object({
+    site_id: Joi.string().empty(""),
+    time_range: Joi.required(),
+    conditions: Joi.array(),
+    action: Joi.number().integer().min(WafAction.BLOCK).max(WafAction.ALL).default(WafAction.ALL),
+    from: Joi.number().integer().empty("").default(0),
+    count: Joi.number().integer().min(1).required(),
+  });
+  validateRequest(req, next, schema);
+}
+
+function getAuthEventLogs(req, res, next) {
+  esService
+    .getAuthEventLogs(req)
+    .then((logs) => res.json(logs))
+    .catch(next);
+}
+
+function getAuthEventLog(req, res, next) {
+  const { bot_event_id } = req.params;
+  esService
+    .getAuthEventLog(bot_event_id)
+    .then((logs) => res.json(logs))
+    .catch(next);
+}
+
 function getRlEventLogs(req, res, next) {
   esService
     .getRlEventLogs(req)
@@ -203,6 +231,9 @@ module.exports = {
   getBotEventLogsSchema,
   getBotEventLogs,
   getBotEventLog,
+  getAuthEventLogsSchema,
+  getAuthEventLogs,
+  getAuthEventLog,
   getRlEventLogs,
   getRlEventLog,
 };

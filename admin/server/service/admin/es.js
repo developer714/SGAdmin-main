@@ -20,6 +20,7 @@ const { getAllActiveWafEngineNodes } = require("./nodes/waf_engine");
 const { getAllActiveRlEngineNodes } = require("./nodes/rl_engine");
 const { getAllActiveAdEngineNodes } = require("./nodes/ad_engine");
 const { getAllActiveBmEngineNodes } = require("./nodes/bm_engine");
+const { getAllActiveAuEngineNodes } = require("./nodes/au_engine");
 const { isValidString } = require("../../helpers/validator");
 
 async function updateESApiKey(api_key) {
@@ -200,6 +201,19 @@ async function applyEsConfig() {
   });
   const bmEngines = await getAllActiveBmEngineNodes();
   bmEngines.map((waf) => {
+    const payload = { node_id: waf.id };
+    const jwtToken = generateWafJwtToken("POST", real_url, payload);
+    cbs.push(async () => {
+      try {
+        logger.debug(`POST ${waf.cname} ${url}`);
+        await post2WafNodeApi(waf, url, payload, jwtToken, true);
+      } catch (err) {
+        logger.error(err);
+      }
+    });
+  });
+  const auEngines = await getAllActiveAuEngineNodes();
+  auEngines.map((waf) => {
     const payload = { node_id: waf.id };
     const jwtToken = generateWafJwtToken("POST", real_url, payload);
     cbs.push(async () => {

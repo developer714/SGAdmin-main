@@ -21,9 +21,12 @@
   "keycloak": {
     "serverUrl": "http://localhost:8080",
     "realm": "keycloak-react-auth",
+    "clientId": "my-react-app-pkce",
     "frontendId": "my-react-app-pkce",
     "backendId": "www",
     "clientSecret": "lskv51m30EeGvhAHq61sZxejicLBsuhP",
-    "grandType": "client_credentials"
+    "grandType": "password",
+    "username": "myadmin",
+    "password": "myadmin"
   }
 }

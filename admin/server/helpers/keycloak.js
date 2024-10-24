@@ -5,9 +5,10 @@ const keycloakConfig = config.get("keycloak");
 
 const getAdminToken = async () => {
   const params = new URLSearchParams({
-    client_id: keycloakConfig.backendId,
-    client_secret: keycloakConfig.clientSecret,
-    grant_type: keycloakConfig.grandType
+    client_id: keycloakConfig.clientId,
+    grant_type: keycloakConfig.grandType,
+    username: keycloakConfig.username,
+    password: keycloakConfig.password
   });
 
   // http://localhost:8080/realms/keycloak-react-auth/protocol/openid-connect/token`,
@@ -22,10 +23,8 @@ const getAdminToken = async () => {
         },
       }
     );
-    console.log("helpers/keycloak/getTokenSuccess", res.data);
     return `Bearer ${res.data.access_token}`;
   } catch (err) {
-    console.log("helpers/keycloak/getTokenError", err.response.data);
     throw err.response.data.error_description || "Failed to get management token";
   }
 };
@@ -35,23 +34,10 @@ const createKeycloakUser = async (userData) => {
   // https://keycloak.com/docs/api/management/v2/#!/Users/post_users
   // Required role - create:users
   const token = await getAdminToken();
-  console.log(userData);
-  const newUser = {
-    "username": "newuser",
-    "email": "newuser@example.com",
-    "enabled": true,
-    "firstName": "John",
-    "lastName": "Doe",
-    "credentials": [{
-      "type": "password",
-      "value": "password123",
-      "temporary": false
-    }]
-  }
   try {
     const res = await axios.post(
       `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/users`,
-      newUser,
+      userData,
       {
         headers: {
           'Authorization': token,
@@ -59,10 +45,8 @@ const createKeycloakUser = async (userData) => {
         },
       }
     );
-    console.log("helpers/keycloak/createUserSuccess", res.data);
     return res.data.id;
   } catch (err) {
-    console.log("helpers/keycloak/createUserError", err.response);
     throw err.response.data.errorMessage || "Failed to create user";
   }
 };

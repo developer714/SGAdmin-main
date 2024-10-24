@@ -16,6 +16,9 @@ const {
   getBotEventLogsSchema,
   getBotEventLogs,
   getBotEventLog,
+  getAuthEventLogsSchema,
+  getAuthEventLogs,
+  getAuthEventLog,
   getRlEventLogs,
   getRlEventLog,
 } = require("../../../../controllers/user/log");
@@ -81,6 +84,21 @@ router.post("/bot_event", authorize([], APIKeyPermissions.LOGS), getBotEventLogs
 // @access   Private
 
 router.get("/bot_event/:bot_event_id", authorize([], APIKeyPermissions.LOGS), getBotEventLog);
+
+
+// @route    POST api/user/v1/log/auth_event
+// @desc     Return auth event logs from ES cloud
+// @param	 site_id, time_range, conditions, from, count
+// @access   Private
+
+router.post("/auth_event", authorize([], APIKeyPermissions.LOGS), getAuthEventLogsSchema, auth_config, getAuthEventLogs);
+
+// @route    GET api/user/v1/log/auth_event/:auth_event_id
+// @desc     Return an auth event logs from ES cloud
+// @param
+// @access   Private
+
+router.get("/auth_event/:auth_event_id", authorize([], APIKeyPermissions.LOGS), getAuthEventLog);
 
 // @route    POST api/user/v1/log/rl_event
 // @desc     Return RL event logs from ES cloud

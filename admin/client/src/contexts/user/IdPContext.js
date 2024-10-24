@@ -40,7 +40,6 @@ function IdPProvider({ children }) {
   const [state, dispatch] = useReducer(IdPReducer, initialState);
 
   const setCid = useCallback((msg) => {
-    // console.log("Set Cid", msg);
     dispatch({
       type: SET_CID,
       payload: { cid: msg },
@@ -48,7 +47,6 @@ function IdPProvider({ children }) {
   }, []);
 
   const setProvider = useCallback((msg) => {
-    // console.log("Set provider", msg);
     dispatch({
       type: SET_PROVIDER,
       payload: { provider: msg },

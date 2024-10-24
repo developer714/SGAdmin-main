@@ -94,6 +94,7 @@ function isValidFwRuleCondition(conditions, allowEmpty = false) {
           }
           break;
         case ExpressionKeyField.BOT_SCORE:
+        case ExpressionKeyField.AUTH_SCORE:
         case ExpressionKeyField.AS_NUMBER:
           if (
             ![

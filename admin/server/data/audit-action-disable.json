@@ -73,6 +73,9 @@
         "bm_engine": {
           "point": ["", ":node_id"]
         },
+        "au_engine": {
+          "point": ["", ":node_id"]
+        },
         "ad_engine": {
           "point": ["", ":node_id"]
         },
@@ -88,6 +91,7 @@
           "waf": [":waf_id"],
           "edge": [":edge_id"],
           "bm_engine": [":node_id"],
+          "au_engine": [":node_id"],
           "ad_engine": [":node_id"],
           "es_engine": [":node_id"],
           "omb_service": [":node_id"]
@@ -214,6 +218,9 @@
         "bm_engine": {
           "point": [""]
         },
+        "au_engine": {
+          "point": [""]
+        },
         "ad_engine": {
           "point": [""]
         },
@@ -234,6 +241,9 @@
             "stats": [":edge_id"]
           },
           "bm_engine": {
+            "stats": [":node_id"]
+          },
+          "au_engine": {
             "stats": [":node_id"]
           },
           "ad_engine": {

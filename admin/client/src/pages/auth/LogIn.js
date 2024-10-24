@@ -37,7 +37,6 @@ function LogIn() {
       .post("/api/user/v1/auth/login", { token })
       .then(() => {
         (window.location.href = continueURL)
-        console.log("ffff");
       })
       .catch((err) => {
         const message = err.response?.data?.message || err.message;

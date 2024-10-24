@@ -31,7 +31,6 @@ function AgreePolicy() {
   const [searchParams] = useSearchParams();
   const originalState = searchParams.get("state");
 
-  // console.log(originalState);
 
   const handleChange = (e) => setAcceptTerms(e.target.checked);
   const handleContinue = (e) => {

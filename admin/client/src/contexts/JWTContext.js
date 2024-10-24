@@ -195,7 +195,6 @@ function AuthProvider({ children }) {
   const onKeycloakAccessTokenUpdated = useCallback(() => {
     const exp = keycloak.tokenParsed?.exp * 1000;
     const now = Date.now();
-    console.log(exp - now);
     if (exp < now) {
       keycloak.logout({ redirectUri: window.location.origin});
       return;
@@ -293,7 +292,6 @@ function AuthProvider({ children }) {
 
     const response = await axios.get("/auth");
     const user = response.data;
-    console.log(user, keycloak.tokenParsed);
     if (isSuperAdmin(user?.role)) {
       setSession(null);
       setSuperSession(accessToken);
@@ -559,7 +557,7 @@ function AuthProvider({ children }) {
       clearTimeout(keycloakTokenTimer);
       setKeycloakTokenTimer(null);
     }
-    await keycloak.logout({ federated: true });
+    await keycloak.logout({redirectUri: window.location.origin});
     setSession(null);
     setSuperSession(null);
     setOrganisationSession(null);

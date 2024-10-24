@@ -25,10 +25,8 @@ const { createKeycloakUser, deleteKeycloakUser, deleteKeycloakConnection } = req
 const { CustomPackageModel } = require("../../models/CustomPackage");
 
 async function createOrganisation(params) {
-  console.log(params);
   const { title, firstName, lastName, email, password } = params;
   const newOrg = new OrganisationModel({ title, start_date: Date.now() });
-  await newOrg.save();
   const admin = new UserModel({
     firstName,
     lastName,
@@ -38,21 +36,21 @@ async function createOrganisation(params) {
   admin.passwordHash = hash(password);
   admin.organisation = newOrg._id;
   admin.verified = Date.now();
-
-  console.log("service,admin/organisatoin", admin, newOrg)
-
+  
   admin.user_id = await createKeycloakUser({
     email: admin.email,
-    blocked: false,
-    email_verified: true,
-    given_name: admin.firstName,
-    family_name: admin.lastName,
-    name: `${admin.firstName} ${admin.lastName}`,
-    nickname: `${admin.firstName} ${admin.lastName}`,
-    password: password,
-    verify_email: true,
+    enabled: true,
+    firstName: admin.firstName,
+    lastName: admin.lastName,
+    username: admin.firstName + " " + admin.lastName,
+    credentials: [{
+      type: "password",
+      value: password,
+      temporary: false
+    }]
   });
-
+  
+  await newOrg.save();
   await admin.save();
   // await newOrg.save();
   return newOrg;

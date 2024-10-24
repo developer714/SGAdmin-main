@@ -41,6 +41,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
     // authenticate JWT token and attach user to request object (req.user)
     // expressjwt({ secret, algorithms: ["HS512"] }),
     async (req, res, next) => {
+
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return next(UnauthorizedError("No bearer token found"));
@@ -74,7 +75,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
               token,
               pem,
               {
-                audience: keycloakConfig.frontendId,
+                audience: keycloakConfig.clientId,
                 issuer: `${keycloakConfig.serverUrl}/realms/${keycloakConfig.realm}`,
                 algorithms: ["RS256"],
               },

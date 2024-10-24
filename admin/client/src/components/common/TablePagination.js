@@ -21,7 +21,6 @@ function TablePaginationActions(props) {
   const totalPages = Math.ceil(count / rowsPerPage);
   const startPageIndex = Math.max(0, page - 2);
   const endPageIndex = Math.min(totalPages - 1, page + 2);
-  // console.log(page, count);
   const indexArray = [];
   if (startPageIndex > 0) indexArray.push("...");
   for (let i = startPageIndex; i <= endPageIndex; i++) indexArray.push(i);
