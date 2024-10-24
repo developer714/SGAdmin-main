@@ -183,7 +183,7 @@ function SAPaymentHistoryCustom() {
       </Grid>
       <Divider my={4} />
       <ButtonGroup variant="outlined" fullWidth>
-        <Button
+        {/* <Button
           variant={"outlined"}
           color="primary"
           py={3}
@@ -201,8 +201,8 @@ function SAPaymentHistoryCustom() {
           >
             Normal
           </Typography>
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           variant="contained"
           color="primary"
           py={3}
@@ -220,7 +220,7 @@ function SAPaymentHistoryCustom() {
           >
             Custom
           </Typography>
-        </Button>
+        </Button> */}
       </ButtonGroup>
       <CollapseAlert errOpen={errOpen} setErrOpen={setErrOpen} setErr={setErr} errMsg={errMsg} />
 

@@ -464,16 +464,16 @@ const routes = [
           </PaymentProvider>
         ),
       },
+      // {
+      //   path: "payment/history",
+      //   element: (
+      //     <PaymentProvider>
+      //       <SAPaymentHistoryOriginal />
+      //     </PaymentProvider>
+      //   ),
+      // },
       {
         path: "payment/history",
-        element: (
-          <PaymentProvider>
-            <SAPaymentHistoryOriginal />
-          </PaymentProvider>
-        ),
-      },
-      {
-        path: "payment/history/custom",
         element: (
           <PaymentProvider>
             <SAPaymentHistoryCustom />

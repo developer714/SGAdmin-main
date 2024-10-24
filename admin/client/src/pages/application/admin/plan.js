@@ -373,156 +373,156 @@ function PlanSummary() {
               </Grid>
             );
           }
-          return (
-            <Grid item sx={{ width: "316px" }}>
-              <Box
-                sx={{
-                  height: "100%",
-                  background: "white",
-                  borderRadius: "8px",
-                  padding: subscription?.license === level ? "35px 14px" : "38px 17px",
-                  border: subscription?.license === level ? "solid 3px green" : "none",
-                }}
-              >
-                {price && plans && plans[level] ? (
-                  <>
-                    <Typography variant="textBig" color={mainColor}>
-                      {getLicenseLevelString(level)}
-                    </Typography>
-                    <Typography pt={5} color={mainColor}>
-                      {getDescription(level)}
-                    </Typography>
-                    <Box display="flex" flexDirection="row" alignItems="center">
-                      <Typography variant="h1" py={7} mr={3} color={mainColor} sx={{ width: "100px" }}>
-                        {price[level]
-                          ? Currency[price[level]["local_price"]["currency"]]["symbol"] +
-                            " " +
-                            String(Math.round(parseInt(parseInt(price[level]["local_price"]["unit_amount"]) * 100) / 10000))
-                          : "Free"}
-                      </Typography>
-                      <Box>
-                        {price[level] ? (
-                          <Typography variant="textSmall" color={mainColor}>
-                            Per {price[level]["price"]["recurring"]["interval"]}
-                            <br />
-                            ex. VAT / {price[level]["price"]["recurring"]["interval"]}
-                            <br /> or{" "}
-                            {Currency[price[level]["local_price"]["currency"]]["symbol"] +
-                              " " +
-                              String(
-                                Math.round(
-                                  parseInt(
-                                    (parseInt(price[level]["local_price"]["unit_amount"]) *
-                                      (100 + parseInt(price[level]["tax"]["percentage"]))) /
-                                      100
-                                  ) / 100
-                                )
-                              ) +
-                              " incl. VAT / " +
-                              price[level]["price"]["recurring"]["interval"]}
-                          </Typography>
-                        ) : (
-                          <Typography variant="textSmall" color={mainColor}>
-                            No Card details needed
-                          </Typography>
-                        )}
-                      </Box>
-                    </Box>
-                    <Divider />
+          // return (
+          //   <Grid item sx={{ width: "316px" }}>
+          //     <Box
+          //       sx={{
+          //         height: "100%",
+          //         background: "white",
+          //         borderRadius: "8px",
+          //         padding: subscription?.license === level ? "35px 14px" : "38px 17px",
+          //         border: subscription?.license === level ? "solid 3px green" : "none",
+          //       }}
+          //     >
+          //       {price && plans && plans[level] ? (
+          //         <>
+          //           <Typography variant="textBig" color={mainColor}>
+          //             {getLicenseLevelString(level)}
+          //           </Typography>
+          //           <Typography pt={5} color={mainColor}>
+          //             {getDescription(level)}
+          //           </Typography>
+          //           <Box display="flex" flexDirection="row" alignItems="center">
+          //             <Typography variant="h1" py={7} mr={3} color={mainColor} sx={{ width: "100px" }}>
+          //               {price[level]
+          //                 ? Currency[price[level]["local_price"]["currency"]]["symbol"] +
+          //                   " " +
+          //                   String(Math.round(parseInt(parseInt(price[level]["local_price"]["unit_amount"]) * 100) / 10000))
+          //                 : "Free"}
+          //             </Typography>
+          //             <Box>
+          //               {price[level] ? (
+          //                 <Typography variant="textSmall" color={mainColor}>
+          //                   Per {price[level]["price"]["recurring"]["interval"]}
+          //                   <br />
+          //                   ex. VAT / {price[level]["price"]["recurring"]["interval"]}
+          //                   <br /> or{" "}
+          //                   {Currency[price[level]["local_price"]["currency"]]["symbol"] +
+          //                     " " +
+          //                     String(
+          //                       Math.round(
+          //                         parseInt(
+          //                           (parseInt(price[level]["local_price"]["unit_amount"]) *
+          //                             (100 + parseInt(price[level]["tax"]["percentage"]))) /
+          //                             100
+          //                         ) / 100
+          //                       )
+          //                     ) +
+          //                     " incl. VAT / " +
+          //                     price[level]["price"]["recurring"]["interval"]}
+          //                 </Typography>
+          //               ) : (
+          //                 <Typography variant="textSmall" color={mainColor}>
+          //                   No Card details needed
+          //                 </Typography>
+          //               )}
+          //             </Box>
+          //           </Box>
+          //           <Divider />
 
-                    <Box mt={7} minHeight="500px">
-                      <Typography variant="h3Bold" pb={1} color={mainColor}>
-                        Everything in Community
-                      </Typography>
-                      {plans[level]?.features?.map((x) => {
-                        return (
-                          <>
-                            {x.type === FeatureDataType.NUMBER && x?.value !== 0 ? (
-                              <Box display="flex" alignItems="center" pt={3.5}>
-                                <FeatureCheckIcon />
-                                <Typography variant="textSmll" ml={2} color={mainColor}>
-                                  {x?.value < 0
-                                    ? "Unlimited " + x?.title
-                                    : formatNumbers(x?.value) + " × " + (x?.unit ? x?.unit + " " : " ") + x?.title}
-                                </Typography>
-                              </Box>
-                            ) : x.type !== FeatureDataType.NUMBER && x?.value === true ? (
-                              <Box display="flex" alignItems="center" pt={3.5}>
-                                <FeatureCheckIcon />
-                                <Typography variant="textSmll" ml={2} color={mainColor}>
-                                  {x?.title}
-                                </Typography>
-                              </Box>
-                            ) : (
-                              <></>
-                            )}
-                          </>
-                        );
-                      })}
-                    </Box>
-                    <Box display="flex" justifyContent="end" alignItems="end">
-                      {LicenseLevel.ENTERPRISE === subscription?.license && subscription?.current_period_end * 1000 > Date.now() ? (
-                        <></>
-                      ) : subscription?.license < level ? (
-                        <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "upgrade")}>
-                          Upgrade
-                        </Button>
-                      ) : subscription?.license === level ? (
-                        subscription?.cancel_at_period_end ? (
-                          <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "patch")}>
-                            Re-activate
-                          </Button>
-                        ) : (
-                          <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "delete")}>
-                            Cancel
-                          </Button>
-                        )
-                      ) : (
-                        <Button fullWidth variant="outlined" color="primary" onClick={() => handleOpen(level, "downgrade")}>
-                          Downgrade
-                        </Button>
-                      )}
-                    </Box>
-                  </>
-                ) : (
-                  <>
-                    <Typography variant="h2" p={2} py={6} textAlign="center">
-                      {getLicenseLevelString(level)}
-                    </Typography>
-                    <Divider />
-                    <Typography variant="h2" py={4} textAlign="center">
-                      {getDescription(level)}
-                    </Typography>
-                    <Box m={4} pb={4} textAlign="center">
-                      <Typography py={1} sx={{ fontSize: "20px", fontWeight: "bold" }}>
-                        <Skeleton variant="square" sx={{ width: "60%", borderRadius: "10px" }} />
-                      </Typography>
-                      <Typography pt={2} sx={{ fontSize: "16px", fontWeight: "600" }}>
-                        <Skeleton variant="square" sx={{ width: "80%", borderRadius: "10px" }} />
-                      </Typography>
-                      <Typography pt={2} sx={{ fontSize: "16px", fontWeight: "600" }}>
-                        <Skeleton variant="square" sx={{ width: "60%", borderRadius: "10px" }} />
-                      </Typography>
-                    </Box>
-                    <Box mx={4}>
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((x) => {
-                        return (
-                          <Box display="flex" alignItems="center">
-                            <Skeleton
-                              variant="square"
-                              sx={{ width: "24px", height: "24px", borderRadius: "12px", margin: "6px 12px 6px 0px" }}
-                            />
-                            <Skeleton variant="square" sx={{ width: "80%", height: "24px", borderRadius: "10px" }} />
-                          </Box>
-                        );
-                      })}
-                    </Box>
-                    <Skeleton variant="square" sx={{ marginTop: "32px", height: "68px", borderRadius: "4px", fontSize: "18px" }} />
-                  </>
-                )}
-              </Box>
-            </Grid>
-          );
+          //           <Box mt={7} minHeight="500px">
+          //             <Typography variant="h3Bold" pb={1} color={mainColor}>
+          //               Everything in Community
+          //             </Typography>
+          //             {plans[level]?.features?.map((x) => {
+          //               return (
+          //                 <>
+          //                   {x.type === FeatureDataType.NUMBER && x?.value !== 0 ? (
+          //                     <Box display="flex" alignItems="center" pt={3.5}>
+          //                       <FeatureCheckIcon />
+          //                       <Typography variant="textSmll" ml={2} color={mainColor}>
+          //                         {x?.value < 0
+          //                           ? "Unlimited " + x?.title
+          //                           : formatNumbers(x?.value) + " × " + (x?.unit ? x?.unit + " " : " ") + x?.title}
+          //                       </Typography>
+          //                     </Box>
+          //                   ) : x.type !== FeatureDataType.NUMBER && x?.value === true ? (
+          //                     <Box display="flex" alignItems="center" pt={3.5}>
+          //                       <FeatureCheckIcon />
+          //                       <Typography variant="textSmll" ml={2} color={mainColor}>
+          //                         {x?.title}
+          //                       </Typography>
+          //                     </Box>
+          //                   ) : (
+          //                     <></>
+          //                   )}
+          //                 </>
+          //               );
+          //             })}
+          //           </Box>
+          //           <Box display="flex" justifyContent="end" alignItems="end">
+          //             {LicenseLevel.ENTERPRISE === subscription?.license && subscription?.current_period_end * 1000 > Date.now() ? (
+          //               <></>
+          //             ) : subscription?.license < level ? (
+          //               <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "upgrade")}>
+          //                 Upgrade
+          //               </Button>
+          //             ) : subscription?.license === level ? (
+          //               subscription?.cancel_at_period_end ? (
+          //                 <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "patch")}>
+          //                   Re-activate
+          //                 </Button>
+          //               ) : (
+          //                 <Button fullWidth variant="contained" color="primary" onClick={() => handleOpen(level, "delete")}>
+          //                   Cancel
+          //                 </Button>
+          //               )
+          //             ) : (
+          //               <Button fullWidth variant="outlined" color="primary" onClick={() => handleOpen(level, "downgrade")}>
+          //                 Downgrade
+          //               </Button>
+          //             )}
+          //           </Box>
+          //         </>
+          //       ) : (
+          //         <>
+          //           <Typography variant="h2" p={2} py={6} textAlign="center">
+          //             {getLicenseLevelString(level)}
+          //           </Typography>
+          //           <Divider />
+          //           <Typography variant="h2" py={4} textAlign="center">
+          //             {getDescription(level)}
+          //           </Typography>
+          //           <Box m={4} pb={4} textAlign="center">
+          //             <Typography py={1} sx={{ fontSize: "20px", fontWeight: "bold" }}>
+          //               <Skeleton variant="square" sx={{ width: "60%", borderRadius: "10px" }} />
+          //             </Typography>
+          //             <Typography pt={2} sx={{ fontSize: "16px", fontWeight: "600" }}>
+          //               <Skeleton variant="square" sx={{ width: "80%", borderRadius: "10px" }} />
+          //             </Typography>
+          //             <Typography pt={2} sx={{ fontSize: "16px", fontWeight: "600" }}>
+          //               <Skeleton variant="square" sx={{ width: "60%", borderRadius: "10px" }} />
+          //             </Typography>
+          //           </Box>
+          //           <Box mx={4}>
+          //             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((x) => {
+          //               return (
+          //                 <Box display="flex" alignItems="center">
+          //                   <Skeleton
+          //                     variant="square"
+          //                     sx={{ width: "24px", height: "24px", borderRadius: "12px", margin: "6px 12px 6px 0px" }}
+          //                   />
+          //                   <Skeleton variant="square" sx={{ width: "80%", height: "24px", borderRadius: "10px" }} />
+          //                 </Box>
+          //               );
+          //             })}
+          //           </Box>
+          //           <Skeleton variant="square" sx={{ marginTop: "32px", height: "68px", borderRadius: "4px", fontSize: "18px" }} />
+          //         </>
+          //       )}
+          //     </Box>
+          //   </Grid>
+          // );
         })}
       </Grid>
       <ConfirmModal open={open} handleClose={handleClose} newPlan={newPlan} action={action} />

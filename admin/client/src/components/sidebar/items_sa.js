@@ -219,10 +219,10 @@ function Items() {
         href: "/super/application/payment/feature",
         title: "Feature Management",
       },
-      {
-        href: "/super/application/payment/common",
-        title: "Common Package",
-      },
+      // {
+      //   href: "/super/application/payment/common",
+      //   title: "Common Package",
+      // },
       {
         href: "/super/application/payment/custom",
         title: "Custom Package",
@@ -300,7 +300,7 @@ function Items() {
     children: [
       {
         href: "/super/application/auth/aws_s3",
-        title: "AWS S3 Configuration",
+        title: "Auth_AWS S3 Configuration",
       },
     ],
   };
