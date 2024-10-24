@@ -557,7 +557,6 @@ function AuthProvider({ children }) {
       clearTimeout(keycloakTokenTimer);
       setKeycloakTokenTimer(null);
     }
-    await keycloak.logout({redirectUri: window.location.origin});
     setSession(null);
     setSuperSession(null);
     setOrganisationSession(null);
@@ -566,6 +565,7 @@ function AuthProvider({ children }) {
     setOrganisationAdmin(null);
     dispatch({ type: SET_FEATURES, payload: { features: null } });
     dispatch({ type: SIGN_OUT });
+    await keycloak.logout({redirectUri: window.location.origin});
   }, [keycloakTokenTimer]);
 
   const signUp = useCallback(async (values) => {
