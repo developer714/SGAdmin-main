@@ -25,6 +25,7 @@ if (isSecondaryOmb()) {
   router.use("/general", require("./general"));
   router.use("/notification", require("./notification"));
   router.use("/bm", require("./bm"));
+  router.use("/au", require("./au"));
   router.use("/ad", require("./ad"));
   router.use("/bm_engine", require("./nodes/bm_engine"));
   router.use("/au_engine", require("./nodes/au_engine"));

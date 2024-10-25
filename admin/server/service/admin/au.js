@@ -63,14 +63,16 @@ async function getCurrentAwsS3Cfg() {
 
 async function getAwsS3CfgHistory(from, size) {
   const cfgs = await pcService.getPeriodicConfigs(PeriodicConfigRecordType.AWS_S3_BUCKET_CONFIGURATION, from, size);
-
-  const data = cfgs.data.map((cfg) => ({
-    aws_access_key_id: getMaskedString(cfg.value.aws_access_key_id),
-    aws_secret_access_key: getMaskedString(cfg.value.aws_secret_access_key),
-    aws_storage_bucket_name: getMaskedString(cfg.value.aws_storage_bucket_name),
-    aws_s3_region_name: cfg.value.aws_s3_region_name,
-    updated: cfg.updated,
-  }));
+  const data = cfgs.data.map((cfg) => {
+    let val = typeof cfg.value === "object" ? cfg.value: JSON.parse(cfg.value);
+    return ({
+      aws_access_key_id: getMaskedString(val.aws_access_key_id),
+      aws_secret_access_key: getMaskedString(val.aws_secret_access_key),
+      aws_storage_bucket_name: getMaskedString(val.aws_storage_bucket_name),
+      aws_s3_region_name: val.aws_s3_region_name,
+      updated: cfg.updated,
+    })
+  });
   const history = { total: cfgs.total, data };
   return history;
 }

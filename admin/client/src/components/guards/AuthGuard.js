@@ -4,9 +4,11 @@ import { useKeycloak } from "@react-keycloak/web";
 
 import Loader from "../Loader";
 import { isValidToken } from "../../utils/jwt";
+import useAuth from "../../hooks/useAuth";
 
 function AuthGuard({ children }) { 
   const { keycloak, initialized } = useKeycloak();
+  const {signOut} = useAuth();
 
   // Show loader while Keycloak is initializing
   if (!initialized) {
@@ -15,6 +17,7 @@ function AuthGuard({ children }) {
 
   // If the user is not authenticated, redirect to the login page
   if (!keycloak.authenticated) {
+    signOut();
     keycloak.login({ redirectUri: window.location.origin });
     return <Loader />;
   }
@@ -32,9 +35,10 @@ function AuthGuard({ children }) {
     if (isValidToken(accessToken)) {
       return <React.Fragment>{children}</React.Fragment>;
     } else {
-      keycloak.logout({
-        redirectUri: window?.location?.origin + "/home",
-      });
+      signOut();
+      // keycloak.logout({
+      //   redirectUri: window?.location?.origin + "/home",
+      // });
       return <Loader />;
     }
   } else if (!!window.localStorage.getItem("accessSuperToken")) {

@@ -196,7 +196,8 @@ function AuthProvider({ children }) {
     const exp = keycloak.tokenParsed?.exp * 1000;
     const now = Date.now();
     if (exp < now) {
-      keycloak.logout({ redirectUri: window.location.origin});
+      signOut();
+      // keycloak.logout({ redirectUri: window.location.origin});
       return;
     }
     if (keycloakTokenTimer) {
@@ -204,7 +205,8 @@ function AuthProvider({ children }) {
     }
     setKeycloakTokenTimer(
       setTimeout(() => {
-        keycloak.logout({ redirectUri: window.location.origin });
+        signOut();
+        // keycloak.logout({ redirectUri: window.location.origin });
       }, exp - now)
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

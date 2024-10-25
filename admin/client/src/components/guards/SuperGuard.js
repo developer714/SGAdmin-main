@@ -3,10 +3,12 @@ import { Navigate } from "react-router-dom";
 import { useKeycloak } from "@react-keycloak/web";
 import Loader from "../Loader";
 import { isValidToken } from "../../utils/jwt";
+import useAuth from "../../hooks/useAuth";
 
 // For routes that can only be accessed by authenticated users with a super token
 function SuperGuard({ children }) {
   const { keycloak, initialized } = useKeycloak();
+  const {signOut} = useAuth();
 
   // Show loader while Keycloak is initializing
   if (!initialized) {
@@ -19,9 +21,7 @@ function SuperGuard({ children }) {
       return <React.Fragment>{children}</React.Fragment>;
     } else {
       // Logout if the super token is invalid
-      keycloak.logout({
-        redirectUri: window?.location?.origin + "/home",
-      });
+      signOut();
       return <Loader />;
     }
   } else if (!!window.localStorage.getItem("accessToken")) {

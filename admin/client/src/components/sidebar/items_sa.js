@@ -294,12 +294,12 @@ function Items() {
     ],
   };
   const AuthManagementSection = {
-    href: "/super/application",
+    href: "/super/application/au",
     icon: EngineeringIcon,
     title: "Auth Management",
     children: [
       {
-        href: "/super/application/auth/aws_s3",
+        href: "/super/application/au/aws_s3",
         title: "Auth_AWS S3 Configuration",
       },
     ],

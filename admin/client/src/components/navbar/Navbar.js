@@ -183,7 +183,7 @@ const Navbar = ({ navbarItems, showSidebar }) => {
   };
   const handleSignOut = async () => {
     await signOut();
-    keycloak.logout();
+    // keycloak.logout();
     setAnchorEl(null);
   };
   const handleProfile = async () => {
