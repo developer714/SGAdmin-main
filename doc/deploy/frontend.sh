@@ -250,51 +250,69 @@ function restart_nginx {
 }
 
 function install_keycloak_server {
-    # Update system and install OpenJDK 11
-sudo apt update
-sudo apt install -y openjdk-11-jdk postgresql wget unzip
+    sudo apt update && sudo apt upgrade -y
 
-# Download and install Keycloak
-wget https://github.com/keycloak/keycloak/releases/download/22.0.1/keycloak-22.0.1.zip
-unzip keycloak-22.0.1.zip && rm keycloak-22.0.1.zip
-sudo mv keycloak-22.0.1 /opt/keycloak
+    sudo apt install software-properties-common ca-certificates chrony -y
+    sudo vi /etc/chrony/chrony.conf
+    sudo systemctl restart chrony.service
 
-# Set JAVA_HOME globally
-echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" | sudo tee -a /etc/environment
-source /etc/environment
+    sudo apt install openjdk-17-jre-headless openjdk-17-jdk-headless -y
+    wget https://github.com/keycloak/keycloak/releases/download/21.0.1/keycloak-21.0.1.tar.gz
+    sudo vi /etc/environment
+    JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+    source /etc/environment
+    tar zxvf keycloak-21.0.1.tar.gz
 
-# Start and enable PostgreSQL
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
+    sudo mv keycloak-21.0.1 keycloak
 
-# Set up PostgreSQL user and database for Keycloak
-sudo -i -u postgres psql <<EOF
-CREATE USER keycloak_user WITH PASSWORD 'password';
-CREATE DATABASE keycloak_db OWNER keycloak_user;
-ALTER USER keycloak_user CREATEDB;
-EOF
+    sudo mv keycloak /opt/
+    sudo vi /opt/keycloak/conf/keycloak.conf
+    db=postgres
+    db-username=DB_USER_NAME
+    db-password=DB_PASSWORD
+    db-url=jdbc:postgresql://localhost/keycloak
+    health-enabled=true
+    metrics-enabled=true
 
-# Configure Keycloak as a systemd service
-sudo tee /etc/systemd/system/keycloak.service > /dev/null <<EOF
-[Unit]
-Description=Keycloak Server
-After=network.target
+    # HTTP
+    #http-enabled=true
+    #hostname-strict=false
+    #hostname-strict-https=false
+    #log=console,file
 
-[Service]
-User=$USER
-Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-WorkingDirectory=/opt/keycloak
-ExecStart=/opt/keycloak/bin/kc.sh start --optimized
-Restart=always
+    proxy=edge
+    hostname=kullanici-panel.fatlan.com
+    #hostname=kullanici-panel.fatlan.com:8080
+    cd /opt/keycloak/bin/
+    export KEYCLOAK_ADMIN=admin
+    export KEYCLOAK_ADMIN_PASSWORD=KYC_PASS
+    ./kc.sh --verbose build
 
-[Install]
-WantedBy=multi-user.target
-EOF
+    ./kc.sh --verbose start
 
-# Reload systemd, enable, and start Keycloak service
-sudo systemctl daemon-reload
-sudo systemctl enable keycloak
-sudo systemctl start keycloak
+    ctrl+c
+    sudo vim /etc/systemd/system/keycloak.service
+    [Unit]
+    Description=Keycloak Identity Provider
+    Requires=network.target
+    After=syslog.target network.target
+
+    [Service]
+    Type=idle
+    User=ubuntu
+    Group=ubuntu
+    #RemainAfterExit=yes
+    LimitNOFILE=102642
+    ExecStart=/opt/keycloak/bin/kc.sh start --log=console,file
+    #WorkingDirectory=/opt/keycloak
+    StandardOutput=null
+
+    [Install]
+    WantedBy=multi-user.target
+    sudo systemctl daemon-reload
+    sudo systemctl enable keycloak.service
+    sudo systemctl start keycloak.service
+    sudo systemctl status keycloak.service
 
 
 }
