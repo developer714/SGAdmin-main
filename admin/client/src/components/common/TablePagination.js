@@ -34,9 +34,10 @@ function TablePaginationActions(props) {
       <Button variant="outlined" onClick={(e) => onPageChange(e, Math.max(0, page - 1))}>
         <PrevIcon />
       </Button>
-      {indexArray.map((value) => {
+      {indexArray.map((value, index) => {
         return (
           <Button
+            key={index}
             variant="outlined"
             onClick={(e) => onPageChange(e, value)}
             disabled={typeof value !== "number"}

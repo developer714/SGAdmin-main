@@ -4,7 +4,7 @@ import { CircularProgress, Paper, Typography } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../vendor/logo.svg";
-import { auth0Config } from "../../config";
+// import { keycloakConfig } from "../../config";
 import keycloak from "../../Keycloak";
 
 import axios from "axios";

@@ -444,7 +444,7 @@ function EnhancedTable({ pattern }) {
           {UserRole.READONLY_USER === userRole ? "View" : "Edit"}
         </MenuItem>
         {UserRole.READONLY_USER === userRole ? (
-          <></>
+          null
         ) : (
           <MenuItem onClick={deleteClick} disableRipple>
             <DeleteIcon />

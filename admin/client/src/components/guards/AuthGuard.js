@@ -33,7 +33,7 @@ function AuthGuard({ children }) {
   const accessToken = window.localStorage.getItem("accessToken");
   if (!!accessToken) {
     if (isValidToken(accessToken)) {
-      return <React.Fragment>{children}</React.Fragment>;
+      return children;
     } else {
       signOut();
       // keycloak.logout({
@@ -44,7 +44,7 @@ function AuthGuard({ children }) {
   } else if (!!window.localStorage.getItem("accessSuperToken")) {
     if (!!window.localStorage.getItem("accessOrganisationToken") || !!window.localStorage.getItem("accessImpersonateToken")) {
       // edit organization
-      return <React.Fragment>{children}</React.Fragment>;
+      return children;
     } else {
       return <Navigate to="/super/application/organisation" />;
     }

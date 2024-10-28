@@ -1,8 +1,10 @@
 import Keycloak from "keycloak-js";
+import {keycloakConfig} from "./config";
+
 const keycloak = new Keycloak({
-    url: "http://localhost:8080",
-    realm: "keycloak-react-auth",
-    clientId: "my-react-app-pkce"
+    url: keycloakConfig.domain,
+    realm: keycloakConfig.realm,
+    clientId: keycloakConfig.clientId
 });
 
 export default keycloak;

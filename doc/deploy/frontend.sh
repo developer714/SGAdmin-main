@@ -249,9 +249,60 @@ function restart_nginx {
     sudo systemctl daemon-reload
 }
 
+function install_keycloak_server {
+    # Update system and install OpenJDK 11
+sudo apt update
+sudo apt install -y openjdk-11-jdk postgresql wget unzip
+
+# Download and install Keycloak
+wget https://github.com/keycloak/keycloak/releases/download/22.0.1/keycloak-22.0.1.zip
+unzip keycloak-22.0.1.zip && rm keycloak-22.0.1.zip
+sudo mv keycloak-22.0.1 /opt/keycloak
+
+# Set JAVA_HOME globally
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" | sudo tee -a /etc/environment
+source /etc/environment
+
+# Start and enable PostgreSQL
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+# Set up PostgreSQL user and database for Keycloak
+sudo -i -u postgres psql <<EOF
+CREATE USER keycloak_user WITH PASSWORD 'password';
+CREATE DATABASE keycloak_db OWNER keycloak_user;
+ALTER USER keycloak_user CREATEDB;
+EOF
+
+# Configure Keycloak as a systemd service
+sudo tee /etc/systemd/system/keycloak.service > /dev/null <<EOF
+[Unit]
+Description=Keycloak Server
+After=network.target
+
+[Service]
+User=$USER
+Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+WorkingDirectory=/opt/keycloak
+ExecStart=/opt/keycloak/bin/kc.sh start --optimized
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Reload systemd, enable, and start Keycloak service
+sudo systemctl daemon-reload
+sudo systemctl enable keycloak
+sudo systemctl start keycloak
+
+
+}
+
 # The following functions must be called in sequence.
 is_debian
 install_deps
+install_keycloak_server
 install_nginx
 install_sd_admin
 prepare_nginx_conf_dir

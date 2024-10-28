@@ -6,7 +6,7 @@ import { Button, Checkbox, FormControlLabel, Grid, Paper, Typography } from "@mu
 
 import { ReactComponent as Logo } from "../../vendor/logo.svg";
 import { useSearchParams } from "react-router-dom";
-import { auth0Config } from "../../config";
+// import { keycloakConfig } from "../../config";
 import keycloak from "../../Keycloak";
 
 const Brand = styled(Logo)`

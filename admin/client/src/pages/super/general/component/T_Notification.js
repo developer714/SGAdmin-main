@@ -419,9 +419,9 @@ function EnhancedTable() {
               orderBy={orderBy}
               // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              // onDeleteClick={disableClick}
-              // onRestoreClick={enableClick}
-              // rowCount={totalCount}
+            // onDeleteClick={disableClick}
+            // onRestoreClick={enableClick}
+            // rowCount={totalCount}
             />
             {notifications === null ? (
               <SkeletonContent rowsPerPage={rowsPerPage} />
@@ -445,7 +445,7 @@ function EnhancedTable() {
                       // aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={`${row?.id}-${index}`}
-                      // selected={isItemSelected}
+                    // selected={isItemSelected}
                     >
                       {/* <TableCell
                                                 role="checkbox"
@@ -587,28 +587,28 @@ function EnhancedTable() {
           View
         </MenuItem>
         {[UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN].includes(adminRole) && (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               Edit
-            </MenuItem>
-            {deleted ? (
-              <MenuItem onClick={enableClick} disableRipple>
+            </MenuItem>,
+            deleted ? (
+              <MenuItem onClick={enableClick} disableRipple key={1}>
                 <RestoreIcon />
                 Enable
               </MenuItem>
             ) : (
-              <MenuItem onClick={disableClick} disableRipple>
+              <MenuItem onClick={disableClick} disableRipple key={1}>
                 <RemoveIcon />
                 Disable
               </MenuItem>
-            )}
-            <hr />
-            <MenuItem onClick={deleteClick} disableRipple>
+            ),
+            <hr key={2} />,
+            <MenuItem onClick={deleteClick} disableRipple key={3}>
               <DeleteIcon />
               Delete
             </MenuItem>
-          </>
+          ]
         )}
       </StyledMenu>
     </>

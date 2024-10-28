@@ -199,6 +199,7 @@ async function getBmEngineStats(node_id, time_range) {
 }
 
 async function getAuEngineHealth(node_id) {
+  
   const waf = await AUEngineModel.findById(node_id);
   if (!waf) {
     throw `AU-Engine node '${node_id}' not found`;
@@ -232,9 +233,11 @@ async function getAuEngineStats(node_id, time_range) {
   let stats = {};
   try {
     const jwtToken = generateWafJwtToken("GET", real_url, {});
+    
     const res = await get2WafNodeApi(waf, url, jwtToken);
     stats = res.data;
   } catch (err) {
+    
     throw err.response?.data?.message || err.message;
   }
 
@@ -434,6 +437,8 @@ module.exports = {
   getWafEdgeStats,
   getBmEngineHealth,
   getBmEngineStats,
+  getAuEngineHealth,
+  getAuEngineStats,
   getAdEngineHealth,
   getAdEngineStats,
   getOmbServiceHealth,

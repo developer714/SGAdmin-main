@@ -18,6 +18,7 @@ const GET_SINGLE_AUTH_EVENT = "GET_SINGLE_AUTH_EVENT";
 const GET_SINGLE_RL_EVENT = "GET_SINGLE_RL_EVENT";
 const GET_WAF_EVENT_STATS = "GET_WAF_EVENT_STATS";
 const GET_BOT_EVENT_STATS = "GET_BOT_EVENT_STATS";
+const GET_AUTH_EVENT_STATS = "GET_AUTH_EVENT_STATS";
 const GET_RL_EVENT_STATS = "GET_RL_EVENT_STATS";
 const SET_ERROR = "SET_ERROR";
 
@@ -118,7 +119,7 @@ const EventReducer = (state, action) => {
         ...state,
         botEventStats: action.payload.botEventStats,
       };
-    case GET_BOT_EVENT_STATS:
+    case GET_AUTH_EVENT_STATS:
       return {
       ...state,
       authEventStats: action.payload.authEventStats,

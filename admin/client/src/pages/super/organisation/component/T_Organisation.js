@@ -673,7 +673,7 @@ function EnhancedTable() {
             Configuration
           </MenuItem>
         ) : (
-          <></>
+          null
         )}
 
         <MenuItem onClick={userClick} disableRipple>
@@ -681,30 +681,30 @@ function EnhancedTable() {
           Users
         </MenuItem>
         {[UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN, UserRole.PAYMENT_ADMIN].includes(adminRole) ? (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               Edit
-            </MenuItem>
-            {deleted ? (
-              <MenuItem onClick={restoreClick} disableRipple>
+            </MenuItem>,
+            deleted ? (
+              <MenuItem onClick={restoreClick} disableRipple key={1}>
                 <RestoreIcon />
                 Restore
               </MenuItem>
             ) : (
-              <MenuItem onClick={deleteClick} disableRipple>
+              <MenuItem onClick={deleteClick} disableRipple key={1}>
                 <DeleteIcon />
                 Delete
               </MenuItem>
-            )}
-            <hr />
-            <MenuItem onClick={removeClick} disableRipple>
+            ),
+            <hr key={2} />,
+            <MenuItem onClick={removeClick} disableRipple key={3}>
               <RemoveIcon />
               Remove
             </MenuItem>
-          </>
+          ]
         ) : (
-          <></>
+          null
         )}
       </StyledMenu>
     </>

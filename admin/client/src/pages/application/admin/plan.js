@@ -6,33 +6,31 @@ import { Box, Grid, Typography, Skeleton, useTheme, Stack } from "@mui/material"
 
 import ConfirmModal from "../../../components/pages/application/admin/paywall/M_Confirm";
 
-import { UserRole, LicenseLevel, FeatureDataType } from "../../../utils/constants";
+import { UserRole, LicenseLevel } from "../../../utils/constants";
 
 import Currency from "../../../components/pages/application/admin/paywall/currency";
 import useAuth from "../../../hooks/useAuth";
 import usePaywall from "../../../hooks/user/usePaywall";
 
-import { Button, Divider, SnackbarAlert } from "../../../components/pages/application/common/styled";
+import { Button, SnackbarAlert } from "../../../components/pages/application/common/styled";
 import { getLicenseLevelString } from "../../../components/pages/application/admin/paywall/common";
-import { formatNumbers } from "../../../utils/format";
 
 import { ReactComponent as PlanCheckIcon } from "../../../vendor/administration/plan_check.svg";
-import { ReactComponent as FeatureCheckIcon } from "../../../vendor/administration/feature_check.svg";
 
-function getDescription(idx) {
-  switch (idx) {
-    case LicenseLevel.COMMUNITY:
-      return "For personal or hobby projects that aren't business-critical";
-    case LicenseLevel.PROFESSIONAL:
-      return "For professional websites that aren't business-critical";
-    case LicenseLevel.BUSINESS:
-      return "This package is ideal for small business operating online";
-    case LicenseLevel.ENTERPRISE:
-      return "This package is ideal for enterprise operating online";
-    default:
-      return "For personal or hobby projects that aren't business-critical";
-  }
-}
+// function getDescription(idx) {
+//   switch (idx) {
+//     case LicenseLevel.COMMUNITY:
+//       return "For personal or hobby projects that aren't business-critical";
+//     case LicenseLevel.PROFESSIONAL:
+//       return "For professional websites that aren't business-critical";
+//     case LicenseLevel.BUSINESS:
+//       return "This package is ideal for small business operating online";
+//     case LicenseLevel.ENTERPRISE:
+//       return "This package is ideal for enterprise operating online";
+//     default:
+//       return "For personal or hobby projects that aren't business-critical";
+//   }
+// }
 function getDateFromSecond(second) {
   const miliSecond = parseInt(second) * 1000;
   const dateTime = new Date(miliSecond);
@@ -66,9 +64,9 @@ function PlanSummary() {
   const {
     getPaymentMethod,
     paymentMethod,
-    getCommonPlan,
-    getCustomPlan,
-    getPrice,
+    // getCommonPlan,
+    // getCustomPlan,
+    // getPrice,
     subscription,
     price,
     retrieveSubscription,
@@ -101,30 +99,30 @@ function PlanSummary() {
   // const [professional, setProfessional] = React.useState(null);
   // const [business, setBusiness] = React.useState(null);
   // const [enterprise, setEnterprise] = React.useState(null);
-  const [plans, setPlans] = React.useState(null);
-  const [newPlan, setNewPlan] = React.useState();
-  const [action, setAction] = React.useState();
+  // const [plans, setPlans] = React.useState(null);
+  // const [newPlan, setNewPlan] = React.useState();
+  // const [action, setAction] = React.useState();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = (idx, action) => {
-    setNewPlan(idx);
-    setAction(action);
-    setOpen(true);
-  };
+  // const handleOpen = (idx, action) => {
+  //   setNewPlan(idx);
+  //   setAction(action);
+  //   setOpen(true);
+  // };
   const handleClose = () => setOpen(false);
   React.useEffect(() => {
     async function getPlans() {
-      const plans = await Promise.all([
-        getCommonPlan(LicenseLevel.COMMUNITY),
-        getCommonPlan(LicenseLevel.PROFESSIONAL),
-        getCommonPlan(LicenseLevel.BUSINESS),
-        getCustomPlan(),
-        getPrice(),
-      ]);
+      // const plans = await Promise.all([
+      //   getCommonPlan(LicenseLevel.COMMUNITY),
+      //   getCommonPlan(LicenseLevel.PROFESSIONAL),
+      //   getCommonPlan(LicenseLevel.BUSINESS),
+      //   getCustomPlan(),
+      //   getPrice(),
+      // ]);
       // setCommunity(plans[0]);
       // setProfessional(plans[1]);
       // setBusiness(plans[2]);
       // setEnterprise(plans[3]);
-      setPlans(plans);
+      // setPlans(plans);
     }
     if (isAuthenticated) {
       if (homeController) homeController.abort();
@@ -372,6 +370,8 @@ function PlanSummary() {
                 </Stack>
               </Grid>
             );
+          }else {
+            return <></>
           }
           // return (
           //   <Grid item sx={{ width: "316px" }}>
@@ -525,7 +525,8 @@ function PlanSummary() {
           // );
         })}
       </Grid>
-      <ConfirmModal open={open} handleClose={handleClose} newPlan={newPlan} action={action} />
+      {/* <ConfirmModal open={open} handleClose={handleClose} newPlan={newPlan} action={action} /> */}
+      <ConfirmModal open={open} handleClose={handleClose} />
       <SnackbarAlert open={snackOpen} onClose={handleSnackClose} severity={success} message={message} />
     </React.Fragment>
   );

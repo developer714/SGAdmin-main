@@ -12,7 +12,7 @@ function GuestGuard({ children }) {
   }
 
   // Allow access to the children components if the user is not authenticated
-  return <React.Fragment>{children}</React.Fragment>;
+  return children;
 }
 
 export default GuestGuard;

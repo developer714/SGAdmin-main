@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 // For routes that can only be accessed by authenticated users with a super token
 function SuperGuard({ children }) {
-  const { keycloak, initialized } = useKeycloak();
+  const { initialized } = useKeycloak();
   const {signOut} = useAuth();
 
   // Show loader while Keycloak is initializing
@@ -18,7 +18,7 @@ function SuperGuard({ children }) {
   const accessSuperToken = window.localStorage.getItem("accessSuperToken");
   if (!!accessSuperToken) {
     if (isValidToken(accessSuperToken)) {
-      return <React.Fragment>{children}</React.Fragment>;
+      return children;
     } else {
       // Logout if the super token is invalid
       signOut();

@@ -1,5 +1,4 @@
 import { createContext, useCallback, useEffect, useReducer, useState } from "react";
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { useKeycloak } from '@react-keycloak/web';
 import {
   isValidToken,
@@ -9,7 +8,6 @@ import {
   setOrganisationName,
   setOrganisationAdmin,
   setImpersonateSession,
-  getTokenExp,
   isSuperAdmin,
 } from "../utils/jwt";
 
@@ -568,7 +566,7 @@ function AuthProvider({ children }) {
     dispatch({ type: SET_FEATURES, payload: { features: null } });
     dispatch({ type: SIGN_OUT });
     await keycloak.logout({redirectUri: window.location.origin});
-  }, [keycloakTokenTimer]);
+  }, [keycloakTokenTimer]);   // eslint-disable-line react-hooks/exhaustive-deps
 
   const signUp = useCallback(async (values) => {
     const response = await axios.post("/auth/register", values);

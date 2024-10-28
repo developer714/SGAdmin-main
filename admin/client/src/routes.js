@@ -157,7 +157,7 @@ import SAZcrmProduct from "./pages/super/zcrm/product";
 import SAZcrmAccountContact from "./pages/super/zcrm/account_contact";
 import SAZcrmQuote from "./pages/super/zcrm/quote";
 import SARateLimitBillConfig from "./pages/super/payment/rateLimitBill";
-import SAPaymentHistoryOriginal from "./pages/super/payment/historyOriginal";
+// import SAPaymentHistoryOriginal from "./pages/super/payment/historyOriginal";
 import SAPaymentHistoryCustom from "./pages/super/payment/historyCustom";
 /*
 import SABMPayment from "./pages/super/bm/payment";
@@ -165,7 +165,7 @@ import SABmLicenseUsage from "./pages/super/bm/license_usage";
 import SABMPackage from "./pages/super/bm/package";
 */
 import SAAwsS3Cfgs from "./pages/super/bm/aws_s3";
-import AU_SAAwsS3Cfgs from "./pages/super/au/aws_s3";
+import AU_SAAwsS3Cfgs from "./pages/super/au/au_aws_s3.js";
 import SAAdCfgs from "./pages/super/ad/config";
 import SAAdException from "./pages/super/ad/exception";
 import SAPaymentCommonPackage from "./pages/super/payment/common";
@@ -570,7 +570,8 @@ const routes = [
         path: "au/aws_s3",
         element: (
           <AUProvider>
-            <AU_SAAwsS3Cfgs />
+            {/* eslint-disable-next-line */}
+            <AU_SAAwsS3Cfgs /> 
           </AUProvider>
         ),
       },

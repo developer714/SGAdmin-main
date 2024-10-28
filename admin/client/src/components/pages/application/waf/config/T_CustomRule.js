@@ -593,16 +593,16 @@ function CustomRuleTable({ refresh, downloadRules }) {
             View
           </MenuItem>
         ) : (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               Edit
-            </MenuItem>
-            <MenuItem onClick={deleteClick} disableRipple>
+            </MenuItem>,
+            <MenuItem onClick={deleteClick} disableRipple key={1}>
               <DeleteIcon />
               Delete
             </MenuItem>
-          </>
+          ]
         )}
       </StyledMenu>
     </div>
