@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Box, Button, Paper, Typography } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
@@ -23,10 +24,11 @@ const Wrapper = styled(Paper)`
 `;
 
 function VerifyEmail() {
+  const [URLSearchParams] = useSearchParams();
   const { user_id, resendVerificationEmail } = useAuth();
   // const [tick, setTick] = useState(0);
   const [message, setMessage] = useState();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //     const interval = setInterval(async () => {
@@ -44,8 +46,12 @@ function VerifyEmail() {
 
   const handleResendClick = async () => {
     setMessage("");
-    const res = await resendVerificationEmail(user_id);
-    setMessage(res.message);
+    const token = URLSearchParams.get("session_token");
+    const res = await resendVerificationEmail(token);
+    if(res.message === "success") {
+      navigate("/home");
+      setMessage(res.message);
+    }
   };
 
   return (

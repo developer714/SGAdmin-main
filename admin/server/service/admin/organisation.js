@@ -40,6 +40,7 @@ async function createOrganisation(params) {
   admin.user_id = await createKeycloakUser({
     email: admin.email,
     enabled: true,
+    emailVerified: true,
     firstName: admin.firstName,
     lastName: admin.lastName,
     username: admin.firstName + " " + admin.lastName,

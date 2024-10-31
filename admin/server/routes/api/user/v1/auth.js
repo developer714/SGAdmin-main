@@ -128,6 +128,6 @@ router.post("/refresh-user", authorizeToken(), refreshUser);
 // @desc     Resend verification email to user
 // @access   Private
 
-router.post("/resend-email", resendVerificationEmail);
+router.post("/resend-email", authorize([], APIKeyPermissions.USERS), resendVerificationEmail);
 
 module.exports = router;

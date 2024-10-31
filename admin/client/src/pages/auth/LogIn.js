@@ -30,7 +30,6 @@ function LogIn() {
   const continueURL = `https://${keycloak.url}/continue?state=${URLSearchParams.get("state")}`;
   const token = URLSearchParams.get("session_token");
   const navigate = useNavigate();
-
   
   useEffect(() => {
     axios

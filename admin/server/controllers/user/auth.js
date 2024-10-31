@@ -223,10 +223,10 @@ function refreshUser(req, res, next) {
 
 function resendVerificationEmail(req, res, next) {
   accountService
-    .resendVerificationEmail(req.body.user_id)
+    .resendVerificationEmail(req.user.user_id)
     .then(() =>
       res.json({
-        message: "Verification email is resent",
+        message: "success",
       })
     )
     .catch(next);

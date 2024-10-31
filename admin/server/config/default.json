@@ -24,9 +24,9 @@
     "clientId": "sense-defence",
     "frontendId": "sense-defence",
     "backendId": "www",
-    "clientSecret": "lskv51m30EeGvhAHq61sZxejicLBsuhP",
+    "clientSecret": "EwTpe5E5FCfgH2xEjg1RN1XHd7spdLBd",
     "grandType": "password",
-    "username": "myadmin",
-    "password": "myadmin"
+    "username": "myuser",
+    "password": "myuser"
   }
 }

@@ -42,13 +42,14 @@ async function createAdmin(params) {
     firstName: params.firstName,
     lastName: params.lastName,
     username: params.firstName + " " + params.lastName,
-    emailVerified: params.verify,
+    emailVerified: true,
     credentials: [{
       type: "password",
       value: params.password,
       temporary: false
     }]
   });
+
 
   // save account
   await account.save();

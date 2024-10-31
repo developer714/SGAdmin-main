@@ -222,7 +222,6 @@ function AuthProvider({ children }) {
 
         const response = await axios.get("/auth");
         const user = response.data;
-
         if (isSuperAdmin(user?.role)) {
           setSession(null);
           setSuperSession(accessToken);
@@ -569,6 +568,7 @@ function AuthProvider({ children }) {
   }, [keycloakTokenTimer]);   // eslint-disable-line react-hooks/exhaustive-deps
 
   const signUp = useCallback(async (values) => {
+    console.log(values); 
     const response = await axios.post("/auth/register", values);
     return response.data;
   }, []);
