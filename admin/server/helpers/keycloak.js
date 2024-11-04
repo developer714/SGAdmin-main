@@ -1,6 +1,5 @@
 const axios = require("axios");
 const config = require("config");
-
 const keycloakConfig = config.get("keycloak");
 
 const getAdminToken = async () => {

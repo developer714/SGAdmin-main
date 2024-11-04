@@ -41,7 +41,7 @@ async function createConnection(user, data) {
   const { organisation } = user;
   if (organisation.idp_connection_id) throw "Already have SAML provider.";
   const { id, name } = await createKeycloakConnection({
-    enabled_clients: [keycloakConfig.frontendId, keycloakConfig.backendId],
+    enabled_clients: [keycloakConfig.clientId, keycloakConfig.clientId],
     ...data,
   });
   organisation.idp_connection_id = id;

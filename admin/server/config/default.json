@@ -22,11 +22,9 @@
     "serverUrl": "https://auth.dev.sensedefence.net:8443",
     "realm": "sense-defence",
     "clientId": "sense-defence",
-    "frontendId": "sense-defence",
-    "backendId": "www",
-    "clientSecret": "EwTpe5E5FCfgH2xEjg1RN1XHd7spdLBd",
+    "clientSecret": "6plwZmQ1eyVxklbcGdAbP6uOlJvsYaK7",
     "grandType": "password",
-    "username": "myuser",
-    "password": "myuser"
+    "username": "myadmin",
+    "password": "myadmin"
   }
 }

@@ -73,6 +73,7 @@
     "react-syntax-highlighter": "15.5.0",
     "redux": "4.2.0",
     "redux-thunk": "2.4.1",
+    "sdadmin": "file:",
     "source-map-explorer": "^2.5.2",
     "web-vitals": "2.1.4",
     "yup": "0.32.11"

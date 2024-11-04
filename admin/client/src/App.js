@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRoutes } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { CacheProvider } from "@emotion/react";
