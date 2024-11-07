@@ -1,9 +1,8 @@
 import React, { useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Grid, Typography, Select, ButtonGroup, Skeleton, TextField } from "@mui/material";
 import { Save as SaveIcon } from "@mui/icons-material";
-import HistoryIcon from "@mui/icons-material/HistoryEduOutlined";
 import CachedIcon from "@mui/icons-material/Cached";
 
 import CustomPaymentHistoryList from "./component/T_CustomPaymentHistory";
@@ -15,7 +14,7 @@ import { DefaultDiscount, UnitPriceId, UserRole } from "../../../utils/constants
 import { formatFloat } from "../../../utils/format";
 
 function SAPaymentHistoryCustom() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { isAuthenticated, adminRole } = useAuth();
   const { getOrganisations, getCustomPaymentHistory, getCustomPlan, createCustomPayment, cusSize, setErr, errMsg } = usePayment();
 
@@ -145,10 +144,10 @@ function SAPaymentHistoryCustom() {
   React.useEffect(() => {
     setErrOpen(true);
   }, [errMsg]);
-  const navigatePage = (link) => {
-    setErr(null);
-    navigate("/super/application/payment/history" + link);
-  };
+  // const navigatePage = (link) => {
+  //   setErr(null);
+  //   navigate("/super/application/payment/history" + link);
+  // };
   const refresh = async () => {
     setErr(null);
     if (curOrg === null || curOrg === undefined) return;
@@ -183,7 +182,7 @@ function SAPaymentHistoryCustom() {
       </Grid>
       <Divider my={4} />
       <ButtonGroup variant="outlined" fullWidth>
-        <Button
+        {/* <Button
           variant={"outlined"}
           color="primary"
           py={3}
@@ -201,8 +200,8 @@ function SAPaymentHistoryCustom() {
           >
             Normal
           </Typography>
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           variant="contained"
           color="primary"
           py={3}
@@ -220,7 +219,7 @@ function SAPaymentHistoryCustom() {
           >
             Custom
           </Typography>
-        </Button>
+        </Button> */}
       </ButtonGroup>
       <CollapseAlert errOpen={errOpen} setErrOpen={setErrOpen} setErr={setErr} errMsg={errMsg} />
 

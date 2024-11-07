@@ -73,6 +73,7 @@ const WafNodeType = {
   AD_ENGINE: 3,
   OMB_SERVICE: 4,
   ES_ENGINE: 5,
+  AU_ENGINE: 6,
 };
 
 const EsNodeType = {
@@ -171,7 +172,8 @@ const ConfigAction = {
   RATE_LIMIT: 8,
   BOT_MANAGEMENT: 16,
   DDOS: 32,
-  MAX: 63,
+  AUTH_MANAGEMENT: 64,
+  MAX: 127,
 };
 const DeleteUserAction = {
   MIN: 1,
@@ -396,10 +398,18 @@ const FeatureId = {
   SENSEDEFENCE_SIGNATURE_WAF: 15,
   B2B_SAML: 16,
   BOT_MANAGEMENT: 17,
-  MAX: 17,
+  AUTH_MANAGEMENT: 18,
+  MAX: 18,
 };
 
 const BotType = {
+  MIN: 1,
+  BAD: 1,
+  GOOD: 2,
+  MAX: 2,
+};
+
+const AuthType = {
   MIN: 1,
   BAD: 1,
   GOOD: 2,
@@ -427,6 +437,16 @@ const BotScore = {
   MAX_HUMAN: 100,
 };
 
+const AuthScore = {
+  MIN_BAD: 1,
+  MAX_BAD: 20,
+  MIN_GOOD: 21,
+  MAX_GOOD: 30,
+  MAX_BOT: 30,
+  MIN_HUMAN: 31,
+  MAX_HUMAN: 100,
+};
+
 const ExpressionKeyField = {
   NONE: "none",
   SOURCE_IP: "src_ip",
@@ -443,6 +463,7 @@ const ExpressionKeyField = {
   AS_NUMBER: "asn",
   JA3_FINGERPRINT: "ja3_fingerprint",
   BOT_SCORE: "bot_score",
+  AUTH_SCORE: "auth_score"
 };
 
 function getExpressionKeyTitle(key) {
@@ -629,7 +650,10 @@ const UnitPriceId = {
   DDOS_REQUESTS_DELIVERED_PER_10K: 14,
   ENTERPRISE_SUPPORT: 15,
   PROFESSIONAL_SERVICES_INTEGRATION: 16,
-  MAX: 16,
+  AUTH_MANAGEMENT_PRICE_SITE_DOMAIN: 17,
+  AUTH_MANAGEMENT_PRICE_SITE_DOMAIN_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB: 18,
+  AUTH_MANAGEMENT_PRICE_SITE_DOMAIN_MANAGEMENT_REQUESTS_DELIVERED_PER_10K: 19,
+  MAX: 19,
 };
 
 const BaseUnitPrice = {
@@ -641,6 +665,9 @@ const BaseUnitPrice = {
   BOT_MANAGEMENT_PRICE_SITE_DOMAIN: 500,
   BOT_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB: 0.1,
   BOT_MANAGEMENT_REQUESTS_DELIVERED_PER_10K: 0.05,
+  AUTH_MANAGEMENT_PRICE_SITE_DOMAIN: 500,
+  AUTH_MANAGEMENT_TRAFFIC_DELIVERED_PER_GB: 0.1,
+  AUTH_MANAGEMENT_REQUESTS_DELIVERED_PER_10K: 0.05,
   RATE_LIMITING_BASE_PRICE_SITE_DOMAIN: 5,
   RATE_LIMITING_TRAFFIC_DELIVERED_PER_GB: 0.1,
   RATE_LIMITING_REQUESTS_DELIVERED_PER_10K: 0.05,
@@ -706,8 +733,10 @@ export {
   DdosSensitivity,
   FeatureId,
   BotType,
+  AuthType,
   SenseDefenceOperator,
   BotScore,
+  AuthScore,
   CardLogo,
   getBrandLabel,
   RuleOperator,

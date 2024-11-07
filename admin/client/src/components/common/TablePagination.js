@@ -21,7 +21,6 @@ function TablePaginationActions(props) {
   const totalPages = Math.ceil(count / rowsPerPage);
   const startPageIndex = Math.max(0, page - 2);
   const endPageIndex = Math.min(totalPages - 1, page + 2);
-  // console.log(page, count);
   const indexArray = [];
   if (startPageIndex > 0) indexArray.push("...");
   for (let i = startPageIndex; i <= endPageIndex; i++) indexArray.push(i);
@@ -35,9 +34,10 @@ function TablePaginationActions(props) {
       <Button variant="outlined" onClick={(e) => onPageChange(e, Math.max(0, page - 1))}>
         <PrevIcon />
       </Button>
-      {indexArray.map((value) => {
+      {indexArray.map((value, index) => {
         return (
           <Button
+            key={index}
             variant="outlined"
             onClick={(e) => onPageChange(e, value)}
             disabled={typeof value !== "number"}

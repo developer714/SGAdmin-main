@@ -68,6 +68,23 @@ function getBmEngineStats(req, res, next) {
     .catch(next);
 }
 
+function getAuEngineHealth(req, res, next) {
+  const { node_id } = req.params;
+  healthService
+    .getAuEngineHealth(node_id)
+    .then((stat) => res.json(stat))
+    .catch(next);
+}
+
+function getAuEngineStats(req, res, next) {
+  const { node_id } = req.params;
+  const { time_range } = req.body;
+  healthService
+    .getAuEngineStats(node_id, time_range)
+    .then((stat) => res.json(stat))
+    .catch(next);
+}
+
 function getAdEngineHealth(req, res, next) {
   const { node_id } = req.params;
   healthService
@@ -128,6 +145,8 @@ module.exports = {
   getWafEdgeStats,
   getBmEngineHealth,
   getBmEngineStats,
+  getAuEngineHealth,
+  getAuEngineStats,
   getAdEngineHealth,
   getAdEngineStats,
   getOmbServiceHealth,

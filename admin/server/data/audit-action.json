@@ -166,6 +166,12 @@
             ":node_id": "Get an BM-Engine node"
           }
         },
+        "au_engine": {
+          "point": {
+            "": "Get basic information of all AU-Engine nodes",
+            ":node_id": "Get an AU-Engine node"
+          }
+        },
         "ad_engine": {
           "point": {
             "": "Get basic information of all AD-Engine nodes",
@@ -197,6 +203,9 @@
             ":edge_id": "Get health status of a RL-Engine node"
           },
           "bm_engine": {
+            ":node_id": "Get health status of a BM-Engine node"
+          },
+          "au_engine": {
             ":node_id": "Get health status of a BM-Engine node"
           },
           "ad_engine": {
@@ -481,6 +490,12 @@
             ":node_id": "Modify a BM-Engine node"
           }
         },
+        "au_engine": {
+          "point": {
+            "": "Get all AU-Engine nodes",
+            ":node_id": "Modify a AU-Engine node"
+          }
+        },
         "ad_engine": {
           "point": {
             "": "Get all AD-Engine nodes",
@@ -517,6 +532,11 @@
           "bm_engine": {
             "stats": {
               ":node_id": "Return connection and bandwidth of a BM-Engine node"
+            }
+          },
+          "au_engine": {
+            "stats": {
+              ":node_id": "Return connection and bandwidth of a AU-Engine node"
             }
           },
           "ad_engine": {
@@ -720,6 +740,11 @@
             "": "Create a new BM-Engine node"
           }
         },
+        "au_engine": {
+          "point": {
+            "": "Create a new AU-Engine node"
+          }
+        },
         "ad_engine": {
           "point": {
             "": "Create a new AD-Engine node"
@@ -872,6 +897,11 @@
             ":node_id": "Delete a BM-Engine node"
           }
         },
+        "au_engine": {
+          "point": {
+            ":node_id": "Delete a AU-Engine node"
+          }
+        },
         "es_engine": {
           "point": {
             ":node_id": "Delete a ES-Engine node"
@@ -1011,6 +1041,11 @@
         "bm_engine": {
           "point": {
             ":node_id": "UnDelete a BM-Engine node"
+          }
+        },
+        "au_engine": {
+          "point": {
+            ":node_id": "UnDelete a AU-Engine node"
           }
         },
         "es_engine": {

@@ -1,13 +1,13 @@
 const axios = require("axios");
 const config = require("config");
-
 const keycloakConfig = config.get("keycloak");
 
 const getAdminToken = async () => {
   const params = new URLSearchParams({
-    client_id: keycloakConfig.backendId,
-    client_secret: keycloakConfig.clientSecret,
-    grant_type: keycloakConfig.grandType
+    client_id: keycloakConfig.clientId,
+    grant_type: keycloakConfig.grandType,
+    username: keycloakConfig.username,
+    password: keycloakConfig.password
   });
 
   // http://localhost:8080/realms/keycloak-react-auth/protocol/openid-connect/token`,
@@ -22,10 +22,8 @@ const getAdminToken = async () => {
         },
       }
     );
-    console.log("helpers/keycloak/getTokenSuccess", res.data);
     return `Bearer ${res.data.access_token}`;
   } catch (err) {
-    console.log("helpers/keycloak/getTokenError", err.response.data);
     throw err.response.data.error_description || "Failed to get management token";
   }
 };
@@ -34,24 +32,12 @@ const getAdminToken = async () => {
 const createKeycloakUser = async (userData) => {
   // https://keycloak.com/docs/api/management/v2/#!/Users/post_users
   // Required role - create:users
+
   const token = await getAdminToken();
-  console.log(userData);
-  const newUser = {
-    "username": "newuser",
-    "email": "newuser@example.com",
-    "enabled": true,
-    "firstName": "John",
-    "lastName": "Doe",
-    "credentials": [{
-      "type": "password",
-      "value": "password123",
-      "temporary": false
-    }]
-  }
   try {
     const res = await axios.post(
       `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/users`,
-      newUser,
+      userData,
       {
         headers: {
           'Authorization': token,
@@ -59,10 +45,10 @@ const createKeycloakUser = async (userData) => {
         },
       }
     );
-    console.log("helpers/keycloak/createUserSuccess", res.data);
-    return res.data.id;
+    const location = res.headers.location;
+    const userId = location.split('/').pop(); // Get the last part of the URL as the ID
+    return userId;
   } catch (err) {
-    console.log("helpers/keycloak/createUserError", err.response);
     throw err.response.data.errorMessage || "Failed to create user";
   }
 };
@@ -104,20 +90,40 @@ const deleteKeycloakUser = async (user_id) => {
   }
 };
 
+const updateRealmSettings = async(enableRegistration) => {
+
+  const token = await getAdminToken();
+  try {
+    await axios.put(`${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}`, {
+      registrationAllowed: enableRegistration,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+      },
+    });
+  } catch (error) {
+    throw error.response.data || "Failed to update realm settings";
+  }
+}
+
 const resendKeycloakVerificationEmail = async (userId) => {
   // https://keycloak.com/docs/api/management/v2#!/Jobs/post_verification_email
   // Required role - update:users
-  const token = await getManagementToken();
+  const token = await getAdminToken();
+  const userData = {
+    emailVerified: true
+  }
   try {
-    await axios.post(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/users/${userId}/send-verify-email`,
-      {},
+    await axios.put(
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/users/${userId}`,
+      userData,
       {
         headers: {
           Authorization: token,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   } catch (err) {
     throw new Error(err.response.data.error_description || "Failed to resend verification email");
@@ -126,10 +132,10 @@ const resendKeycloakVerificationEmail = async (userId) => {
 
 const getKeycloakEmailTemplate = async (templateName) => {
   // Required role - view-identity-providers
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.get(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/email-templates/${templateName}`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/email-templates/${templateName}`,
       {
         headers: {
           Authorization: token,
@@ -147,10 +153,10 @@ const getKeycloakEmailTemplate = async (templateName) => {
 // Function to update user email verified status
 const updateKeycloakEmailTemplate = async (templateName, data) => {
   // Required role - manage-email-templates
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.put(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/email-templates/${templateName}`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/email-templates/${templateName}`,
       data,
       {
         headers: {
@@ -184,10 +190,10 @@ const basicConnectionInfo = (provider) => {
 };
 
 const createKeycloakConnection = async (data) => {
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.post(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/identity-provider/instances`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/identity-provider/instances`,
       data,
       {
         headers: {
@@ -203,10 +209,10 @@ const createKeycloakConnection = async (data) => {
 };
 
 const getKeycloakConnections = async () => {
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.get(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/identity-provider/instances`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/identity-provider/instances`,
       {
         headers: {
           Authorization: token,
@@ -221,10 +227,10 @@ const getKeycloakConnections = async () => {
 };
 
 const getKeycloakConnectionById = async (connection_id) => {
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.get(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
       {
         headers: {
           Authorization: token,
@@ -238,10 +244,10 @@ const getKeycloakConnectionById = async (connection_id) => {
 };
 
 const updateKeycloakConnection = async (connection_id, data) => {
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.put(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
       data,
       {
         headers: {
@@ -258,10 +264,10 @@ const updateKeycloakConnection = async (connection_id, data) => {
 const deleteKeycloakConnection = async (connection_id) => {
   if (!connection_id) return;
 
-  const token = await getManagementToken();
+  const token = await getAdminToken();
   try {
     const res = await axios.delete(
-      `${keycloakConfig.url}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
+      `${keycloakConfig.serverUrl}/admin/realms/${keycloakConfig.realm}/identity-provider/instances/${connection_id}`,
       {
         headers: {
           Authorization: token,
@@ -279,6 +285,7 @@ module.exports = {
   createKeycloakUser,
   updateKeycloakUser,
   deleteKeycloakUser,
+  updateRealmSettings,
   resendKeycloakVerificationEmail,
   getKeycloakEmailTemplate,
   updateKeycloakEmailTemplate,

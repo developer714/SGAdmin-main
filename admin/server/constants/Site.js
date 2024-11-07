@@ -8,7 +8,8 @@ const ConfigAction = {
   RATE_LIMIT: 8,
   BOT_MANAGEMENT: 16,
   DDOS: 32,
-  MAX: 63,
+  AUTH_MANAGEMENT: 63,
+  MAX: 127,
 };
 
 const HealthyStatus = {

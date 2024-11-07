@@ -28,6 +28,7 @@ function KeyComponent({ keyStr, selectKeyStr, padx, pady, advanced }) {
     ExpressionKeyField.CITY_NAME,
     ExpressionKeyField.AS_NUMBER,
     ExpressionKeyField.BOT_SCORE,
+    ExpressionKeyField.AUTH_SCORE,
     ExpressionKeyField.JA3_FINGERPRINT,
   ];
   return (
@@ -153,6 +154,7 @@ function ValueComponent({ keyStr, valueStr, selectValueStr, disabled, padx, pady
   switch (keyStr) {
     case ExpressionKeyField.AS_NUMBER:
     case ExpressionKeyField.BOT_SCORE:
+    case ExpressionKeyField.AUTH_SCORE_SCORE:
       isNumber = true;
       break;
     default:
@@ -179,6 +181,7 @@ function getValidCondFlag(key) {
     asn: [true, true, false, false, true, true, true, true],
     ja3_fingerprint: [true, true, true, true, false, false, false, false],
     bot_score: [true, true, false, false, true, true, true, true],
+    auth_score: [true, true, false, false, true, true, true, true],
     none: [true, true, false, false, false, false, false, false],
   };
   if (key in condFlag) {

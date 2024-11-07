@@ -1,5 +1,4 @@
 import { createContext, useCallback, useEffect, useReducer, useState } from "react";
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { useKeycloak } from '@react-keycloak/web';
 import {
   isValidToken,
@@ -9,7 +8,6 @@ import {
   setOrganisationName,
   setOrganisationAdmin,
   setImpersonateSession,
-  getTokenExp,
   isSuperAdmin,
 } from "../utils/jwt";
 
@@ -195,9 +193,9 @@ function AuthProvider({ children }) {
   const onKeycloakAccessTokenUpdated = useCallback(() => {
     const exp = keycloak.tokenParsed?.exp * 1000;
     const now = Date.now();
-    console.log(exp - now);
     if (exp < now) {
-      keycloak.logout({ redirectUri: window.location.origin});
+      signOut();
+      // keycloak.logout({ redirectUri: window.location.origin});
       return;
     }
     if (keycloakTokenTimer) {
@@ -205,7 +203,8 @@ function AuthProvider({ children }) {
     }
     setKeycloakTokenTimer(
       setTimeout(() => {
-        keycloak.logout({ redirectUri: window.location.origin });
+        signOut();
+        // keycloak.logout({ redirectUri: window.location.origin });
       }, exp - now)
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -223,7 +222,6 @@ function AuthProvider({ children }) {
 
         const response = await axios.get("/auth");
         const user = response.data;
-
         if (isSuperAdmin(user?.role)) {
           setSession(null);
           setSuperSession(accessToken);
@@ -293,7 +291,6 @@ function AuthProvider({ children }) {
 
     const response = await axios.get("/auth");
     const user = response.data;
-    console.log(user, keycloak.tokenParsed);
     if (isSuperAdmin(user?.role)) {
       setSession(null);
       setSuperSession(accessToken);
@@ -559,7 +556,6 @@ function AuthProvider({ children }) {
       clearTimeout(keycloakTokenTimer);
       setKeycloakTokenTimer(null);
     }
-    await keycloak.logout({ federated: true });
     setSession(null);
     setSuperSession(null);
     setOrganisationSession(null);
@@ -568,9 +564,11 @@ function AuthProvider({ children }) {
     setOrganisationAdmin(null);
     dispatch({ type: SET_FEATURES, payload: { features: null } });
     dispatch({ type: SIGN_OUT });
-  }, [keycloakTokenTimer]);
+    await keycloak.logout({redirectUri: window.location.origin});
+  }, [keycloakTokenTimer]);   // eslint-disable-line react-hooks/exhaustive-deps
 
   const signUp = useCallback(async (values) => {
+    console.log(values); 
     const response = await axios.post("/auth/register", values);
     return response.data;
   }, []);

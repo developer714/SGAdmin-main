@@ -539,38 +539,38 @@ function SiteTable({ pattern, refresh, downloadWebsites }) {
           <Typography variant="menuSmall">Configuration</Typography>
         </MenuItem>
         {UserRole.READONLY_USER === userRole ? (
-          <></>
+          null
         ) : (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               <Typography variant="menuSmall">Edit</Typography>
-            </MenuItem>
-            {deleted ? (
-              <MenuItem onClick={restoreClick} disableRipple>
+            </MenuItem>,
+            deleted ? (
+              <MenuItem onClick={restoreClick} disableRipple key={1}>
                 <RestoreIcon />
                 <Typography variant="menuSmall">Restore</Typography>
               </MenuItem>
             ) : (
-              <MenuItem onClick={deleteClick} disableRipple>
+              <MenuItem onClick={deleteClick} disableRipple key={1}>
                 <DeleteIcon />
                 <Typography variant="menuSmall">Delete</Typography>
               </MenuItem>
-            )}
-          </>
+            )
+          ]
         )}
         {sauser && (
-          <>
-            <hr />
-            <MenuItem onClick={deleteLogClick} disableRipple>
+          [
+            <hr key={0} />,
+            <MenuItem key={1} onClick={deleteLogClick} disableRipple>
               <DeleteLogIcon />
               <Typography variant="menuSmall">Remove Log</Typography>
-            </MenuItem>
-            <MenuItem onClick={removeClick} disableRipple>
+            </MenuItem>,
+            <MenuItem key={2} onClick={removeClick} disableRipple>
               <RemoveIcon />
               <Typography variant="menuSmall">Remove</Typography>
             </MenuItem>
-          </>
+          ]
         )}
       </StyledMenu>
       <SnackbarAlert open={snackOpen} onClose={handleSnackClose} severity={success} message={message} />

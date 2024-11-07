@@ -91,6 +91,10 @@ function Items() {
         title: "BM Engine List",
       },
       {
+        href: "/super/application/au_engine/list",
+        title: "AU Engine List",
+      },
+      {
         href: "/super/application/ad_engine/list",
         title: "AD Engine List",
       },
@@ -129,6 +133,10 @@ function Items() {
       {
         href: "/super/application/monitor/bm_engine",
         title: "BM Engine Health",
+      },
+      {
+        href: "/super/application/monitor/au_engine",
+        title: "AU Engine Health",
       },
       {
         href: "/super/application/monitor/ad_engine",
@@ -174,6 +182,14 @@ function Items() {
         title: "BM Engine Past Stats",
       },
       {
+        href: "/super/application/stats/au_engine_real",
+        title: "AU Engine Real Time Stats",
+      },
+      {
+        href: "/super/application/stats/au_engine_past",
+        title: "AU Engine Past Stats",
+      },
+      {
         href: "/super/application/stats/ad_engine_real",
         title: "AD Engine Real Time Stats",
       },
@@ -203,10 +219,10 @@ function Items() {
         href: "/super/application/payment/feature",
         title: "Feature Management",
       },
-      {
-        href: "/super/application/payment/common",
-        title: "Common Package",
-      },
+      // {
+      //   href: "/super/application/payment/common",
+      //   title: "Common Package",
+      // },
       {
         href: "/super/application/payment/custom",
         title: "Custom Package",
@@ -275,6 +291,17 @@ function Items() {
                 title: "Payment",
             },
             */
+    ],
+  };
+  const AuthManagementSection = {
+    href: "/super/application/au",
+    icon: EngineeringIcon,
+    title: "Auth Management",
+    children: [
+      {
+        href: "/super/application/au/aws_s3",
+        title: "Auth_AWS S3 Configuration",
+      },
     ],
   };
   const AntiDdosSection = {
@@ -456,6 +483,7 @@ function Items() {
       PaymentSection,
       ZcrmSection,
       BotManagementSection,
+      AuthManagementSection,
       AntiDdosSection,
       AuditLogSection,
       ProfileSection,

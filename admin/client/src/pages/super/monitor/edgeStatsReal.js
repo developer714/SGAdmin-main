@@ -330,6 +330,8 @@ function SAWAFEdgeStatsReal({ type }) {
             ? "SA WAF Engine Real Time Stats"
             : WafNodeType.BM_ENGINE === type
             ? "SA BM Engine Real Time Stats"
+            : WafNodeType.AU_ENGINE === type
+            ? "SA AU Engine Real Time Stats"
             : WafNodeType.AD_ENGINE === type
             ? "SA AD Engine Real Time Stats"
             : WafNodeType.ES_ENGINE === type
@@ -346,6 +348,8 @@ function SAWAFEdgeStatsReal({ type }) {
               ? "WAF Engine "
               : WafNodeType.BM_ENGINE === type
               ? "BM Engine "
+              : WafNodeType.AU_ENGINE === type
+              ? "AU Engine "
               : WafNodeType.AD_ENGINE === type
               ? "AD Engine "
               : WafNodeType.ES_ENGINE === type

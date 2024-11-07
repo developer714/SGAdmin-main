@@ -9,11 +9,11 @@ export const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-export const auth0Config = {
-  clientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
-  domain: process.env.REACT_APP_AUTH0_DOMAIN,
-  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
-  tenant: process.env.REACT_APP_AUTH0_TENANT,
+export const keycloakConfig = {
+  clientId: process.env.REACT_APP_KEYCLOAK_CLIENT_ID,
+  domain: process.env.REACT_APP_KEYCLOAK_DOMAIN,
+  audience: process.env.REACT_APP_KEYCLOAK_AUDIENCE,
+  realm: process.env.REACT_APP_KEYCLOAK_REALM,
 };
 
 export const cognitoConfig = {

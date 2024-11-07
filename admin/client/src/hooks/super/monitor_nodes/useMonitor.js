@@ -4,6 +4,7 @@ import { MonitorContext } from "../../../contexts/super/monitor_nodes/MonitorCon
 import { WafNodeType } from "../../../utils/constants";
 import useMonitorEdge from "./useMonitorEdge";
 import useMonitorBmEngine from "./useMonitorBmEngine";
+import useMonitorAuEngine from "./useMonitorAuEngine";
 import useMonitorAdEngine from "./useMonitorAdEngine";
 import useMonitorEsEngine from "./useMonitorEsEngine";
 import useMonitorOmbService from "./useMonitorOmbService";
@@ -21,6 +22,8 @@ export const getWAFMonitorHook = (type) => {
       return useMonitorEdge;
     case WafNodeType.BM_ENGINE:
       return useMonitorBmEngine;
+    case WafNodeType.AU_ENGINE:
+      return useMonitorAuEngine;
     case WafNodeType.AD_ENGINE:
       return useMonitorAdEngine;
     case WafNodeType.ES_ENGINE:

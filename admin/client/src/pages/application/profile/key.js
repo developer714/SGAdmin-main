@@ -48,7 +48,6 @@ function PersonalAPIKey() {
 
   // const navigate = useNavigate();
   const { keys, labels, getAllAPIKey } = useKey();
-  // console.log(labels);
 
   const [deleteKeyID, setDeleteKeyID] = useState(0);
   const [openDelete, setOpenDelete] = useState(false);

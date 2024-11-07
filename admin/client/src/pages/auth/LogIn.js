@@ -4,7 +4,7 @@ import { CircularProgress, Paper, Typography } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { ReactComponent as Logo } from "../../vendor/logo.svg";
-import { auth0Config } from "../../config";
+// import { keycloakConfig } from "../../config";
 import keycloak from "../../Keycloak";
 
 import axios from "axios";
@@ -30,14 +30,12 @@ function LogIn() {
   const continueURL = `https://${keycloak.url}/continue?state=${URLSearchParams.get("state")}`;
   const token = URLSearchParams.get("session_token");
   const navigate = useNavigate();
-
   
   useEffect(() => {
     axios
       .post("/api/user/v1/auth/login", { token })
       .then(() => {
         (window.location.href = continueURL)
-        console.log("ffff");
       })
       .catch((err) => {
         const message = err.response?.data?.message || err.message;

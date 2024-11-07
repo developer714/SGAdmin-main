@@ -6,7 +6,7 @@ import { CircularProgress, Typography, Paper } from "@mui/material";
 
 import { ReactComponent as LogoImage } from "../../vendor/logo.svg";
 import useAuth from "../../hooks/useAuth";
-import useKey from "../../hooks/user/useKey";
+// import useKey from "../../hooks/user/useKey";
 
 const Wrapper = styled(Paper)`
   justify-content: center;
@@ -24,7 +24,7 @@ const Brand = styled(LogoImage)`
 
 function Logo() {
   const { keycloak, initialized } = useKeycloak();
-  const user = keycloak.tokenParsed;
+  // const user = keycloak.tokenParsed;
   const { setAccessToken, setUserId } = useAuth();
   const [URLSearchParams] = useSearchParams();
 

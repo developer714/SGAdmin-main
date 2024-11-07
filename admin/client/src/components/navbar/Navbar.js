@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useKeycloak } from "@react-keycloak/web";
 import styled from "@emotion/styled";
 import { withTheme } from "@emotion/react";
 import { useTheme } from "@mui/material/styles";
@@ -154,8 +153,6 @@ const Navbar = ({ navbarItems, showSidebar }) => {
     height: 100px;
   `;
 
-  const { keycloak } = useKeycloak();
-
   const theme = useTheme();
   const isLG = useMediaQuery(theme.breakpoints.up("lg"));
   const navigate = useNavigate();
@@ -183,7 +180,7 @@ const Navbar = ({ navbarItems, showSidebar }) => {
   };
   const handleSignOut = async () => {
     await signOut();
-    keycloak.logout();
+    // keycloak.logout();
     setAnchorEl(null);
   };
   const handleProfile = async () => {
@@ -377,11 +374,11 @@ const Navbar = ({ navbarItems, showSidebar }) => {
         onClose={handleClose}
       >
         {UserRole.ORGANISATION_ACCOUNT < userRole ? (
-          <></>
+          null
         ) : !(isFeatureEnabled(FeatureId.TEAM_MANAGEMENT) && isFeatureEnabled(FeatureId.ROLE_BASED_ACCESS_CONTROL)) ? (
-          <></>
+          null
         ) : sauser && (!orgName || !orgAdmin) && !user ? (
-          <></>
+          null
         ) : (
           <MenuItem disableRipple onClick={handleUsers}>
             <Settings />
@@ -389,7 +386,7 @@ const Navbar = ({ navbarItems, showSidebar }) => {
           </MenuItem>
         )}
         {sauser && orgName && orgAdmin ? (
-          <></>
+          null
         ) : (
           <MenuItem disableRipple onClick={handleProfile}>
             <AccountCircleOutlinedIcon />

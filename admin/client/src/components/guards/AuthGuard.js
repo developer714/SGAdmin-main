@@ -4,11 +4,12 @@ import { useKeycloak } from "@react-keycloak/web";
 
 import Loader from "../Loader";
 import { isValidToken } from "../../utils/jwt";
+import useAuth from "../../hooks/useAuth";
 
 function AuthGuard({ children }) { 
   const { keycloak, initialized } = useKeycloak();
+  const {signOut} = useAuth();
 
-  console.log("authGuard");
   // Show loader while Keycloak is initializing
   if (!initialized) {
     return <Loader />;
@@ -16,6 +17,7 @@ function AuthGuard({ children }) {
 
   // If the user is not authenticated, redirect to the login page
   if (!keycloak.authenticated) {
+    signOut();
     keycloak.login({ redirectUri: window.location.origin });
     return <Loader />;
   }
@@ -31,17 +33,18 @@ function AuthGuard({ children }) {
   const accessToken = window.localStorage.getItem("accessToken");
   if (!!accessToken) {
     if (isValidToken(accessToken)) {
-      return <React.Fragment>{children}</React.Fragment>;
+      return children;
     } else {
-      keycloak.logout({
-        redirectUri: window?.location?.origin + "/home",
-      });
+      signOut();
+      // keycloak.logout({
+      //   redirectUri: window?.location?.origin + "/home",
+      // });
       return <Loader />;
     }
   } else if (!!window.localStorage.getItem("accessSuperToken")) {
     if (!!window.localStorage.getItem("accessOrganisationToken") || !!window.localStorage.getItem("accessImpersonateToken")) {
       // edit organization
-      return <React.Fragment>{children}</React.Fragment>;
+      return children;
     } else {
       return <Navigate to="/super/application/organisation" />;
     }

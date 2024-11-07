@@ -17,6 +17,7 @@ const { APIKeyPermissions, APIKeyState } = require("../constants/Api");
 const { ApiKeyModel } = require("../models/ApiKeys");
 const logger = require("../helpers/logger");
 const { getUserRoleString } = require("../helpers/account");
+const { updateRealmSettings, resendKeycloakVerificationEmail } = require("../helpers/keycloak");
 
 module.exports = authorize;
 const keycloakConfig = config.get("keycloak");
@@ -41,6 +42,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
     // authenticate JWT token and attach user to request object (req.user)
     // expressjwt({ secret, algorithms: ["HS512"] }),
     async (req, res, next) => {
+
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return next(UnauthorizedError("No bearer token found"));
@@ -74,7 +76,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
               token,
               pem,
               {
-                audience: keycloakConfig.frontendId,
+                audience: keycloakConfig.clientId,
                 issuer: `${keycloakConfig.serverUrl}/realms/${keycloakConfig.realm}`,
                 algorithms: ["RS256"],
               },
@@ -158,49 +160,67 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
 
     // authorize based on user role
     async (req, res, next) => {
-      let user = await UserModel.findOne({ user_id: req.auth.sub });
-
-      if (!user) {
-        // user no longer exists
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-
-      // Impersonate - change to impersonatee
-      if ([UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN].includes(user.role) && !!req.get("impersonate")) {
-        const decodedToken = jwt.decode(req.get("impersonate"), {
-          secret,
-          algorithms: ["HS512"],
+      let users = await UserModel.find();
+      if (users.length === 0) {
+        await updateRealmSettings(false);
+        await resendKeycloakVerificationEmail(req.auth.sub);
+        // await assignRoleToUser(req.auth.sub);
+        let newUser = new UserModel({
+          user_id: req.auth.sub,
+          email: req.auth.email,
+          role: 0,
+          firstName: req.auth.given_name,
+          lastName: req.auth.family_name,
+          title: req.auth.name,
+          verified: Date.now(),
         });
-        user = await UserModel.findById(decodedToken.id);
-        user.impersonate = true;
+        await newUser.save();
       }
+      else{
+        let user = await UserModel.findOne({ user_id: req.auth.sub });
 
-      if (!user || (roles.length && !roles.includes(user.role))) {
-        // user no longer exists or role not authorized
-        return res.status(401).json({
-          message: `Unauthorized operation for ${getUserRoleString(user.role)}`,
-        });
-      }
-
-      if (UserRole.SUPER_ADMIN < user.role) {
-        if (isValidObjectId(user.organisation)) {
-          await user.populate("organisation");
+        if (!user) {
+          // user no longer exists
+          return res.status(401).json({ message: "Unauthorized" });
         }
-      } else {
-        const org_id = req.get("organisation");
-        if (isValidObjectId(org_id)) {
-          const org = await OrganisationModel.findById(org_id);
-          if (org) {
-            user.organisation = org;
+
+        // Impersonate - change to impersonatee
+        if ([UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN].includes(user.role) && !!req.get("impersonate")) {
+          const decodedToken = jwt.decode(req.get("impersonate"), {
+            secret,
+            algorithms: ["HS512"],
+          });
+          user = await UserModel.findById(decodedToken.id);
+          user.impersonate = true;
+        }
+
+        if (!user || (roles.length && !roles.includes(user.role))) {
+          // user no longer exists or role not authorized
+          return res.status(401).json({
+            message: `Unauthorized operation for ${getUserRoleString(user.role)}`,
+          });
+        }
+
+        if (UserRole.SUPER_ADMIN < user.role) {
+          if (isValidObjectId(user.organisation)) {
+            await user.populate("organisation");
+          }
+        } else {
+          const org_id = req.get("organisation");
+          if (isValidObjectId(org_id)) {
+            const org = await OrganisationModel.findById(org_id);
+            if (org) {
+              user.organisation = org;
+            }
           }
         }
+        // if (true === req.auth.impersonate) {
+        //     user.impersonate = true;
+        // } else {
+        //     user.impersonate = false;
+        // }
+        req.user = user;
       }
-      // if (true === req.auth.impersonate) {
-      //     user.impersonate = true;
-      // } else {
-      //     user.impersonate = false;
-      // }
-      req.user = user;
 
       /*
             // authentication and authorization successful

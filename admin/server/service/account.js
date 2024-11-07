@@ -60,7 +60,6 @@ async function authenticate(token) {
     }
 
     const { email } = decoded;
-    // console.log(decoded);
 
     let account = await UserModel.findOne({
       user_id: decoded.user_id,
@@ -77,7 +76,6 @@ async function authenticate(token) {
       }
     }
 
-    // console.log(account);
 
     if (!account) {
       // new user - register
@@ -587,7 +585,6 @@ async function getUserById(id, user) {
 async function createUser(req) {
   const { user } = req;
   const { organisation } = user;
-  // console.log(user);
   if (undefined === organisation) {
     throw "Organisation undefined";
   }
@@ -639,15 +636,18 @@ async function createUser(req) {
   if (!is_sso_account) {
     account.user_id = await createKeycloakUser({
       email: params.email,
-      blocked: false,
-      email_verified: params.verify,
-      given_name: params.firstName,
-      family_name: params.lastName,
-      name: `${params.firstName} ${params.lastName}`,
-      nickname: `${params.firstName} ${params.lastName}`,
-      password: params.password,
-      verify_email: params.verify,
+      enabled: true,
+      emailVerified: params.verify,
+      firstName: params.firstName,
+      lastName: params.lastName,
+      username: params.firstName + " " + params.lastName,
+      credentials: [{
+        type: "password",
+        value: params.password,
+        temporary: false
+      }]
     });
+
   }
 
   // save account

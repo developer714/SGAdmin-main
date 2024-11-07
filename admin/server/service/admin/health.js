@@ -2,6 +2,7 @@ const os = require("os");
 const { WafEngineModel } = require("../../models/WafNodes/WafEngine");
 const { RLEngineModel } = require("../../models/WafNodes/RLEngine");
 const { BMEngineModel } = require("../../models/WafNodes/BMEngine");
+const { AUEngineModel } = require("../../models/WafNodes/AUEngine");
 const { ESEngineModel } = require("../../models/WafNodes/ESEngine");
 const { ADEngineModel } = require("../../models/WafNodes/ADEngine");
 const { OMBServiceModel } = require("../../models/WafNodes/OMBService");
@@ -197,6 +198,65 @@ async function getBmEngineStats(node_id, time_range) {
   return stats;
 }
 
+async function getAuEngineHealth(node_id) {
+  
+  const waf = await AUEngineModel.findById(node_id);
+  if (!waf) {
+    throw `AU-Engine node '${node_id}' not found`;
+  }
+  const real_url = "/api/v1/node/health";
+  const url = isProductionEnv() ? "/api/admin/v1/node/health" : real_url;
+  try {
+    const jwtToken = generateWafJwtToken("GET", real_url, {});
+    const res = await get2WafNodeApi(waf, url, jwtToken);
+    return res.data;
+  } catch (err) {
+    throw err.response?.data?.message || err.message;
+  }
+}
+
+const g_mapAuEngineStatsDate = new Map();
+
+async function getAuEngineStats(node_id, time_range) {
+  // First, get past stats from ES cloud
+  let result = await esService.getBmEngineStats(node_id, time_range);
+  if (false !== result) {
+    return result;
+  }
+  // Get real time connection information from BM-Engine node
+  const waf = await AUEngineModel.findById(node_id);
+  if (!waf) {
+    throw `AU-Engine node '${node_id}' not found`;
+  }
+  const real_url = `/api/v1/node/stats`;
+  const url = isProductionEnv() ? `/api/admin/v1/node/stats` : real_url;
+  let stats = {};
+  try {
+    const jwtToken = generateWafJwtToken("GET", real_url, {});
+    
+    const res = await get2WafNodeApi(waf, url, jwtToken);
+    stats = res.data;
+  } catch (err) {
+    
+    throw err.response?.data?.message || err.message;
+  }
+
+  let past = undefined;
+  if (!g_mapAuEngineStatsDate.has(node_id)) {
+    past = new Date(Date.now() - STATS_REAL_TIME_PERIOD);
+  } else {
+    past = g_mapAuEngineStatsDate.get(node_id);
+    if (past.getTime() + STATS_REAL_TIME_PERIOD < Date.now()) {
+      past = new Date(Date.now() - STATS_REAL_TIME_PERIOD);
+    }
+  }
+
+  const bandwidth = await esService.getAuEngineRealtimeTrafficStats(waf, past);
+  stats.bandwidth = bandwidth;
+  g_mapAuEngineStatsDate.set(node_id, new Date());
+  return stats;
+}
+
 async function getAdEngineHealth(node_id) {
   const waf = await ADEngineModel.findById(node_id);
   if (!waf) {
@@ -377,6 +437,8 @@ module.exports = {
   getWafEdgeStats,
   getBmEngineHealth,
   getBmEngineStats,
+  getAuEngineHealth,
+  getAuEngineStats,
   getAdEngineHealth,
   getAdEngineStats,
   getOmbServiceHealth,

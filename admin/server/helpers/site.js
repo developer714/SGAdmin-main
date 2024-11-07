@@ -15,6 +15,7 @@ const { getEmailTemplate } = require("../service/admin/general");
 const { template } = require("./string");
 const { isValidString } = require("./validator");
 const { BotConfigModel } = require("../models/BotConfig");
+const { AuthConfigModel } = require("../models/AuthConfig");
 const { CACHE_KEY_ALL_SUBDOMAIN_NAMES_OF_SITE, CACHE_TIMEOUT_SITE_CONFIG } = require("../constants/Cache");
 
 const cache = new NodeCache();
@@ -99,6 +100,25 @@ async function getBasicBmEnabledSitesInOrg(org) {
     })
   );
   return bmSites.filter((bmSite) => bmSite.enabled);
+}
+
+async function getBasicAuEnabledSitesInOrg(org) {
+  const sites = await SiteModel.find({
+    owner_id: org._id,
+    deleted: { $in: [null, undefined] },
+  })
+    .select("site_id")
+    .sort({ created_date: -1 });
+  const auSites = await Promise.all(
+    sites.map(async (site) => {
+      const auConfig = await AuthConfigModel.findOne({
+        site_id: site.id,
+        enabled: true,
+      });
+      return { site_id: site.site_id, enabled: !!auConfig };
+    })
+  );
+  return auSites.filter((auSite) => auSite.enabled);
 }
 
 async function getNumberOfSitesInOrg(org) {
@@ -277,6 +297,7 @@ module.exports = {
   getBasicActiveSitesInOrg,
   getAllSubdomainNamesInSite,
   getBasicBmEnabledSitesInOrg,
+  getBasicAuEnabledSitesInOrg,
   getNumberOfSitesInOrg,
   getNumberOfActiveSitesInOrg,
   sendAddSiteEmail,

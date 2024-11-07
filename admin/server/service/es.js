@@ -11,6 +11,7 @@ const {
   parseSiteId,
   isValidInterval,
   parseSiteId4BotTrafficAccount,
+  parseSiteId4AuthTrafficAccount,
 } = require("../helpers/es");
 const ruleService = require("../service/config/rule");
 const { isOwnerOfSite } = require("../helpers/config");
@@ -35,6 +36,7 @@ const { isProductionEnv } = require("../helpers/env");
 const { getToOtx, basicOtxInfoDetails } = require("../helpers/otx");
 const { generateInvoice4RateLimit } = require("./admin/invoice");
 const { BotScore } = require("../constants/config/Bot");
+const { AuthScore } = require("../constants/config/Auth");
 const defaultVatTaxId = config.get("stripe.DEFAULT_VAT_TAX_ID");
 
 const {
@@ -65,6 +67,10 @@ const {
   ES_URL_BM_BOTSCORE_CAT_INDICES,
   ES_URL_BM_BOTSCORE_SEARCH,
   ES_URL_BM_BOTSCORE_DELETE,
+  ES_INDEX_PREFIX_AU_BOTSCORE,
+  ES_URL_AU_AUTHSCORE_CAT_INDICES,
+  ES_URL_AU_AUTHSCORE_SEARCH,
+  ES_URL_AU_AUTHSCORE_DELETE,
   ES_INDEX_PREFIX_AD_ACCESS,
   ES_URL_AD_ACCESS_CAT_INDICES,
   ES_URL_AD_ACCESS_SEARCH,
@@ -991,6 +997,127 @@ function addBotEventConditions(postParam, conditions) {
               should: values.map((value) => {
                 return {
                   match: { bot_score: value },
+                };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "ja3_hash":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return {
+                  match: { ja3_hash: value },
+                };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+      }
+    }
+  }
+}
+
+function addAuthEventConditions(postParam, conditions) {
+  let equalsCondition = undefined;
+  if (
+    undefined !== conditions &&
+    null !== conditions &&
+    "object" === typeof conditions &&
+    Array.isArray(conditions) &&
+    0 < conditions.length
+  ) {
+    for (let or_condition of conditions) {
+      const key = or_condition["key"];
+      const values = or_condition["values"];
+      if (!isValidString(key) || !isValidArray(values)) {
+        throw `Invalid filter condition for Auth event logs ${key} ${values}`;
+      }
+      switch (key) {
+        case "country":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return { term: { "geoip.geo.country_iso_code": value } };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "source_ip":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return { term: { "source.address": value } };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "uri":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return { term: { "url.original": value } };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "ua":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return {
+                  term: { "user_agent.original": value },
+                };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "res_code":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return {
+                  term: {
+                    "http.response.status_code": value,
+                  },
+                };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "method":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return {
+                  match: { "http.request.method": value },
+                };
+              }),
+              minimum_should_match: 1,
+            },
+          };
+          postParam.query.bool.must.push(equalsCondition);
+          break;
+        case "auth_score":
+          equalsCondition = {
+            bool: {
+              should: values.map((value) => {
+                return {
+                  match: { auth_score: value },
                 };
               }),
               minimum_should_match: 1,
@@ -2471,6 +2598,47 @@ async function getBotStats(req) {
   return datas;
 }
 
+async function getAuthStats(req) {
+  const { site_id, time_range, conditions, interval } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      myDateHistogram: {
+        date_histogram: {
+          field: "@timestamp",
+          fixed_interval: "1h",
+          extended_bounds: getExtentedBounds(time_range),
+        },
+      },
+    },
+  };
+  parseTimeRange(time_range, postParam, false);
+  if (isValidInterval(interval)) {
+    postParam.aggregations.myDateHistogram.date_histogram.fixed_interval = interval;
+  } else {
+    let fixed_interval = getIntervalFromTimeRange(time_range);
+    if (isValidString(fixed_interval)) {
+      postParam.aggregations.myDateHistogram.date_histogram.fixed_interval = fixed_interval;
+    }
+  }
+
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  addParamForBotStats(postParam);
+  addAuthEventConditions(postParam, conditions);
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.myDateHistogram.buckets;
+  } catch (err) {
+    logger.error(err);
+    // return require("../data/sample/detect-stats.json");
+  }
+  return datas;
+}
+
 async function getDetectionsTotal(site_id) {
   let postParam = {
     query: {
@@ -2685,6 +2853,36 @@ async function deleteESLogs4Organisation(org) {
     }
   };
 
+  const deleteOldAuAuthscoreLogs = async () => {
+    // Delete old AU botscore logs
+    let postParam = {
+      query: {
+        bool: {
+          must: [
+            {
+              range: {
+                "@timestamp": {
+                  lt: `now-${dataRetentionPeriod}`,
+                },
+              },
+            },
+          ],
+        },
+      },
+    };
+    await parseSiteId(org, SITE_ID_ALL, postParam, LogType.BOTSCORE);
+    let sDeleteUrl = ES_URL_AU_AUTHSCORE_DELETE;
+    try {
+      let res = await postToElasticCloud(sDeleteUrl, postParam);
+      let deleted = res.data.deleted;
+      if (0 < deleted) {
+        logger.info(`[ES] [${org.title}] Deleted ${deleted} documents from AU authscore index`);
+      }
+    } catch (err) {
+      logger.error(err);
+    }
+  };
+
   const deleteOldAdAccessLogs = async () => {
     // Delete old AD access logs
     let postParam = {
@@ -2722,6 +2920,7 @@ async function deleteESLogs4Organisation(org) {
     deleteOldRateLimitAccountingLogs(),
     deleteOldAntiDdosAccountingLogs(),
     deleteOldBmBotscoreLogs(),
+    deleteOldAuAuthscoreLogs(),
     deleteOldAdAccessLogs(),
   ]);
 }
@@ -2862,6 +3061,28 @@ async function deleteESLogs4Site(site_id) {
     }
   };
 
+  const deleteOldAuAuthscoreLogs = async () => {
+    // Delete old bot score logs
+    let postParam = {
+      query: {
+        bool: {
+          must: [],
+        },
+      },
+    };
+    await parseSiteId(null, site_id, postParam, LogType.BOTSCORE);
+    let sDeleteUrl = ES_URL_AU_BOTSCORE_DELETE;
+    try {
+      let res = await postToElasticCloud(sDeleteUrl, postParam);
+      let deleted = res.data.deleted;
+      if (0 < deleted) {
+        logger.info(`[ES] [${site_id}] Deleted ${deleted} documents from AU bot score logs index`);
+      }
+    } catch (err) {
+      logger.error(err);
+    }
+  };
+
   const deleteOldAdAccessLogs = async () => {
     // Delete old AD access logs
     let postParam = {
@@ -2890,6 +3111,7 @@ async function deleteESLogs4Site(site_id) {
     deleteOldRateLimitAccountingLogs(),
     deleteOldAntiDdosAccountingLogs(),
     deleteOldBmBotscoreLogs(),
+    deleteOldAuAuthscoreLogs(),
     deleteOldAdAccessLogs(),
   ]);
 }
@@ -3437,6 +3659,91 @@ async function calculateBotTrafficAccount4Organisation(org) {
   }
 }
 
+async function calculateAuthTrafficAccount4Organisation(org) {
+  logger.debug(`calculateAuthTrafficAccount4Organisation ${org.title}`);
+  const { license, auth_traffic_account, current_period_end } = org;
+  const now = new Date();
+  if (LicenseLevel.ENTERPRISE !== license) {
+    return;
+  }
+
+  if (!auth_traffic_account.current_period_started_at) {
+    // The very first time to calculcate auth traffic account
+    auth_traffic_account.current_period_started_at = now;
+    if (!auth_traffic_account.updated_at) {
+      auth_traffic_account.updated_at = now;
+    }
+
+    logger.debug(
+      `Init auth_traffic_account for ${
+        org.title
+      }, current_period_started_at=${auth_traffic_account.current_period_started_at.toISOString()}, updated_at=${auth_traffic_account.updated_at.toISOString()}`
+    );
+    await org.save();
+    return;
+  }
+
+  // calculate number of auth requests, and increase auth_traffic_account
+  let total_requests_number = 0,
+    total_traffic_bytes = 0;
+  let nSites = await siteHelper.getNumberOfSitesInOrg(org);
+  if (0 < nSites) {
+    const postParam = {
+      query: {
+        bool: {
+          must: [],
+        },
+      },
+      aggregations: {
+        nr_entries: { sum: { field: "nr_entries" } },
+        out_bytes: { sum: { field: "out_bytes" } },
+      },
+      size: 0,
+    };
+    const time_range = {
+      time_zone: "+00:00",
+      from: auth_traffic_account.updated_at?.toISOString(),
+      to: now?.toISOString(),
+    };
+    parseTimeRange(time_range, postParam, false);
+    await parseSiteId4BotTrafficAccount(org, postParam);
+    postParam.query.bool.must.push({
+      term: {
+        sd_node_type: WafNodeType.WAF_ENGINE,
+      },
+    });
+    let sGetUrl = ES_URL_NGX_ACCOUNTING_SEARCH;
+    try {
+      let res = await postToElasticCloud(sGetUrl, postParam);
+      total_requests_number = res.data.aggregations?.nr_entries?.value || 0;
+      total_traffic_bytes = res.data.aggregations?.out_bytes?.value || 0;
+    } catch (err) {
+      logger.error(err);
+    }
+    auth_traffic_account.requests_number += total_requests_number;
+    auth_traffic_account.traffic_bytes += total_traffic_bytes;
+  }
+
+  auth_traffic_account.updated_at = now;
+  await org.save();
+
+  // Check whether the current accumulation period is finished.
+
+  if (convertDate2Timestamp(auth_traffic_account.current_period_started_at) + REQUEST_ACCOUNTING_PERIOD < convertDate2Timestamp(now)) {
+    logger.warn(
+      `current_period_started_at = ${auth_traffic_account.current_period_started_at?.toISOString()}, now = ${now?.toISOString()}. Reset traffic accounting for free [${
+        org.title
+      }] organisation.`
+    );
+    auth_traffic_account.requests_number = 0;
+    auth_traffic_account.traffic_bytes = 0;
+    auth_traffic_account.current_period_started_at = now;
+    auth_traffic_account.updated_at = now;
+    await org.save();
+    return;
+  }
+}
+
 /**
  *
  * @param {*} waf_id
@@ -3643,7 +3950,182 @@ async function getBmEngineStats(node_id, time_range) {
   return stat;
 }
 
+async function getAuEngineStats(node_id, time_range) {
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_date: {
+        date_histogram: { field: "@timestamp", fixed_interval: "1h" },
+      },
+    },
+  };
+  const diff_ts = parseTimeRange(time_range, postParam, false);
+  if (0 === diff_ts) {
+    return false;
+  }
+  let fixed_interval = getIntervalFromTimeRange(time_range);
+  if (isValidString(fixed_interval)) {
+    postParam.aggregations.traffic_by_date.date_histogram.fixed_interval = fixed_interval;
+  }
+
+  // Get traffic bandwidth and connections in the period from ngx_accounting index
+  postParam.query.bool.must = [];
+  parseTimeRange(time_range, postParam, false);
+  postParam.query.bool.must.push({
+    term: {
+      sg_waf_id: node_id,
+    },
+  });
+  postParam.aggregations.traffic_by_date.aggregations = {
+    in_bytes: {
+      sum: {
+        field: "in_bytes",
+      },
+    },
+    out_bytes: {
+      sum: {
+        field: "out_bytes",
+      },
+    },
+    connection: {
+      sum: { field: "nr_entries" },
+    },
+  };
+  datas = [];
+  sGetUrl = ES_URL_NGX_ACCOUNTING_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_date.buckets;
+  } catch (err) {
+    logger.error(err);
+  }
+  const bandwidth = datas.map((data) => ({
+    key_as_string: data.key_as_string,
+    inbound: data.in_bytes?.value || 0,
+    outbound: data.out_bytes?.value || 0,
+  }));
+  const connection = datas.map((data) => ({
+    key_as_string: data.key_as_string,
+    doc_count: data.connection?.value || 0,
+  }));
+  const stat = { connection, bandwidth };
+  return stat;
+}
+
 async function getBmEngineRealtimeTrafficStats(waf, past) {
+  const postParam = {
+    size: 0,
+    aggregations: {
+      inbound: {
+        sum: { field: "in_bytes" },
+      },
+      outbound: {
+        sum: { field: "out_bytes" },
+      },
+      connection: {
+        sum: { field: "nr_entries" },
+      },
+    },
+  };
+
+  // Get traffic bandwidth in the period from ngx_accounting index
+  postParam.query = {
+    bool: {
+      must: [
+        {
+          range: {
+            "@timestamp": {
+              lte: `now`,
+              gte: `${past.toISOString()}`,
+            },
+          },
+        },
+        {
+          term: {
+            sg_waf_id: waf.id,
+          },
+        },
+      ],
+    },
+  };
+  const sGetUrl = ES_URL_NGX_ACCOUNTING_SEARCH;
+  let inbound = 0;
+  let outbound = 0;
+  let connection = 0;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    inbound = res.data?.aggregations?.inbound?.value || 0;
+    outbound = res.data?.aggregations?.outbound?.value || 0;
+    connection = res.data?.aggregations?.connection?.value || 0;
+  } catch (err) {
+    logger.error(err);
+  }
+  return { inbound, outbound, connection };
+}
+
+async function getAuEngineStats(node_id, time_range) {
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_date: {
+        date_histogram: { field: "@timestamp", fixed_interval: "1h" },
+      },
+    },
+  };
+  const diff_ts = parseTimeRange(time_range, postParam, false);
+  if (0 === diff_ts) {
+    return false;
+  }
+  let fixed_interval = getIntervalFromTimeRange(time_range);
+  if (isValidString(fixed_interval)) {
+    postParam.aggregations.traffic_by_date.date_histogram.fixed_interval = fixed_interval;
+  }
+
+  // Get traffic bandwidth and connections in the period from ngx_accounting index
+  postParam.query.bool.must = [];
+  parseTimeRange(time_range, postParam, false);
+  postParam.query.bool.must.push({
+    term: {
+      sg_waf_id: node_id,
+    },
+  });
+  postParam.aggregations.traffic_by_date.aggregations = {
+    in_bytes: {
+      sum: {
+        field: "in_bytes",
+      },
+    },
+    out_bytes: {
+      sum: {
+        field: "out_bytes",
+      },
+    },
+    connection: {
+      sum: { field: "nr_entries" },
+    },
+  };
+  datas = [];
+  sGetUrl = ES_URL_NGX_ACCOUNTING_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_date.buckets;
+  } catch (err) {
+    logger.error(err);
+  }
+  const bandwidth = datas.map((data) => ({
+    key_as_string: data.key_as_string,
+    inbound: data.in_bytes?.value || 0,
+    outbound: data.out_bytes?.value || 0,
+  }));
+  const connection = datas.map((data) => ({
+    key_as_string: data.key_as_string,
+    doc_count: data.connection?.value || 0,
+  }));
+  const stat = { connection, bandwidth };
+  return stat;
+}
+
+async function getAuEngineRealtimeTrafficStats(waf, past) {
   const postParam = {
     size: 0,
     aggregations: {
@@ -3834,6 +4316,28 @@ async function deleteAllOldLogs() {
     }
   };
 
+  const deleteAllOldAuAuthScoreLogs = async () => {
+    const sGetUrl = ES_URL_AU_AUTHSCORE_CAT_INDICES + "?s=index&h=index";
+    try {
+      const res = await getToElasticCloud(sGetUrl);
+      const indices = res.data.split("\n").filter((index) => 0 < index?.length);
+      await Promise.all(
+        indices.map(async (index) => {
+          if (ES_INDEX_PREFIX_BM_BOTSCORE.length > index.length) {
+            return;
+          }
+          const indexDate = index.substring(ES_INDEX_PREFIX_AU_AUTHSCORE.length);
+          const idxDate = Date.parse(indexDate);
+          if (idxDate < nowTime.getTime()) {
+            await deleteToElasticCloud("/" + index);
+          }
+        })
+      );
+    } catch (err) {
+      logger.error(err.response?.data?.message || err.message);
+    }
+  };
+
   const deleteAllOldAdAccessLogs = async () => {
     const sGetUrl = ES_URL_AD_ACCESS_CAT_INDICES + "?s=index&h=index";
     try {
@@ -3863,6 +4367,7 @@ async function deleteAllOldLogs() {
     deleteAllOldRateLimitAccountingLogs(),
     deleteAllOldAntiDdosAccountingLogs(),
     deleteAllOldBmBotScoreLogs(),
+    deleteAllOldAuAuthScoreLogs(),
     deleteAllOldAdAccessLogs(),
   ]);
 }
@@ -4883,6 +5388,990 @@ async function getBotEventLog(log_id) {
   return auditLog;
 }
 
+async function getAuthScoreStats(req) {
+  const { site_id, time_range } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_score: {
+        range: {
+          field: "auth_score",
+          ranges: [
+            {
+              key: "unknown",
+              from: 0,
+              to: AuthScore.MIN_BAD,
+            },
+            {
+              key: "BAD",
+              from: AuthScore.MIN_BAD,
+              to: AuthScore.MIN_BAD + 1,
+            },
+            {
+              key: "bad",
+              from: AuthScore.MIN_BAD + 1,
+              to: AuthScore.MIN_GOOD,
+            },
+            {
+              key: "good",
+              from: AuthScore.MIN_GOOD,
+              to: AuthScore.MAX_GOOD,
+            },
+            { key: "human", from: AuthScore.MIN_HUMAN },
+          ],
+        },
+      },
+      traffic_by_date: {
+        date_histogram: {
+          field: "@timestamp",
+          fixed_interval: "1h",
+          extended_bounds: getExtentedBounds(time_range),
+        },
+        aggregations: {
+          auth_score_ranges: {
+            range: {
+              field: "auth_score",
+              ranges: [
+                {
+                  key: "unknown",
+                  from: 0,
+                  to: AuthScore.MIN_BAD,
+                },
+                {
+                  key: "BAD",
+                  from: AuthScore.MIN_BAD,
+                  to: AuthScore.MIN_BAD + 1,
+                },
+                {
+                  key: "bad",
+                  from: AuthScore.MIN_BAD + 1,
+                  to: AuthScore.MIN_GOOD,
+                },
+                {
+                  key: "good",
+                  from: AuthScore.MIN_GOOD,
+                  to: AuthScore.MAX_GOOD,
+                },
+                { key: "human", from: AuthScore.MIN_HUMAN },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+  parseTimeRange(time_range, postParam, false);
+  let fixed_interval = getIntervalFromTimeRange(time_range);
+  if (isValidString(fixed_interval)) {
+    postParam.aggregations.traffic_by_date.date_histogram.fixed_interval = fixed_interval;
+  }
+
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  let datas = [];
+  let total_data = {};
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    {
+      // Collect total analytics
+      let unknown = 0;
+      let good = 0;
+      let bad = 0;
+      let BAD = 0;
+      let human = 0;
+      res.data.aggregations.traffic_by_score.buckets.forEach((sb) => {
+        if ("unknown" === sb.key) {
+          unknown = sb.doc_count;
+        } else if ("good" === sb.key) {
+          good = sb.doc_count;
+        } else if ("bad" === sb.key) {
+          bad = sb.doc_count;
+        } else if ("BAD" === sb.key) {
+          BAD = sb.doc_count;
+        } else if ("human" === sb.key) {
+          human = sb.doc_count;
+        }
+      });
+      total_data = { unknown, BAD, bad, good, human };
+    }
+    datas = res.data.aggregations.traffic_by_date.buckets.map((bucket) => {
+      let unknown = 0;
+      let good = 0;
+      let bad = 0;
+      let BAD = 0;
+      let human = 0;
+      bucket.auth_score_ranges.buckets.forEach((sb) => {
+        if ("unknown" === sb.key) {
+          unknown = sb.doc_count;
+        } else if ("good" === sb.key) {
+          good = sb.doc_count;
+        } else if ("bad" === sb.key) {
+          bad = sb.doc_count;
+        } else if ("BAD" === sb.key) {
+          BAD = sb.doc_count;
+        } else if ("human" === sb.key) {
+          human = sb.doc_count;
+        }
+      });
+      return {
+        key_as_string: bucket.key_as_string,
+        stats: {
+          unknown,
+          good,
+          bad,
+          BAD,
+          human,
+        },
+      };
+    });
+  } catch (err) {
+    logger.error(err);
+    // return require("../data/sample/traffic-stats.json");
+  }
+  return { data: datas, total: total_data };
+}
+
+async function getAuthScoreStatsTotal(req) {
+  const { site_id, time_range } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_score: {
+        range: {
+          field: "auth_score",
+          ranges: [
+            {
+              key: "unknown",
+              from: 0,
+              to: AuthScore.MIN_BAD,
+            },
+            {
+              key: "BAD",
+              from: AuthScore.MIN_BAD,
+              to: AuthScore.MIN_BAD + 1,
+            },
+            {
+              key: "bad",
+              from: AuthScore.MIN_BAD + 1,
+              to: AuthScore.MIN_GOOD,
+            },
+            {
+              key: "good",
+              from: AuthScore.MIN_GOOD,
+              to: AuthScore.MAX_GOOD,
+            },
+            { key: "human", from: AuthScore.MIN_HUMAN },
+          ],
+        },
+      },
+    },
+  };
+  parseTimeRange(time_range, postParam, false);
+
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  let datas = [];
+  let total_data = {};
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    {
+      // Collect total analytics
+      let unknown = 0;
+      let good = 0;
+      let bad = 0;
+      let BAD = 0;
+      let human = 0;
+      res.data.aggregations.traffic_by_score.buckets.forEach((sb) => {
+        if ("unknown" === sb.key) {
+          unknown = sb.doc_count;
+        } else if ("good" === sb.key) {
+          good = sb.doc_count;
+        } else if ("bad" === sb.key) {
+          bad = sb.doc_count;
+        } else if ("BAD" === sb.key) {
+          BAD = sb.doc_count;
+        } else if ("human" === sb.key) {
+          human = sb.doc_count;
+        }
+      });
+      total_data = { unknown, BAD, bad, good, human };
+    }
+  } catch (err) {
+    logger.error(err);
+    // return require("../data/sample/traffic-stats.json");
+  }
+  return { total: total_data };
+}
+
+function addParamForAuthStats(postParam) {
+  postParam.query.bool.must.push({
+    range: {
+      auth_score: {
+        gte: AuthScore.MIN_BAD,
+        lt: AuthScore.MIN_HUMAN,
+      },
+    },
+  });
+  postParam.query.bool.must.push({
+    term: {
+      sd_node_type: WafNodeType.WAF_ENGINE,
+    },
+  });
+}
+
+function addParamForRlStats(postParam) {
+  postParam.query.bool.must.push({
+    term: {
+      sd_node_type: WafNodeType.RL_ENGINE,
+    },
+  });
+  postParam.query.bool.must.push({
+    term: { sd_rate_limited: 1 },
+  });
+}
+
+async function getTopRegionAuthStats(req) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      detections_by_regions: {
+        // categorize_text:
+        terms: {
+          field: "geoip.geo.country_iso_code",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  addParamForAuthStats(postParam);
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.detections_by_regions.buckets.map((bucket) => {
+      return {
+        country_iso_code: bucket?.key,
+        count: bucket?.doc_count,
+      };
+    });
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopSourceAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      detections_by_sources: {
+        terms: {
+          field: "source.address",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.detections_by_sources.buckets.map((bucket) => {
+      return { addr: bucket?.key, count: bucket?.doc_count };
+    });
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopPathAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      detections_by_path: {
+        // categorize_text:
+        terms: {
+          field: "url.original",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.detections_by_path.buckets.map((bucket) => ({ path: bucket?.key, count: bucket?.doc_count }));
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopUaAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_ua: {
+        terms: {
+          field: "user_agent.original",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_ua.buckets.map((bucket) => ({
+      ua: bucket?.key,
+      count: bucket?.doc_count,
+    }));
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopHostAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_host: {
+        terms: {
+          field: "http.request.host",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_host.buckets.map((bucket) => ({
+      host: bucket?.key,
+      count: bucket?.doc_count,
+    }));
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopJa3HashAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_host: {
+        terms: {
+          field: "ja3_hash",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_host.buckets.map((bucket) => ({
+      ja3_hash: bucket?.key,
+      count: bucket?.doc_count,
+    }));
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopHttpMethodAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_host: {
+        terms: {
+          field: "http.request.method",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    datas = res.data.aggregations.traffic_by_host.buckets.map((bucket) => ({
+      method: bucket?.key,
+      count: bucket?.doc_count,
+    }));
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopHttpResCodeAuthStats(req, isAuth = true) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_res_code: {
+        terms: {
+          field: "http.response.status_code",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+
+  if (isAuth) {
+    addParamForAuthStats(postParam);
+  } else {
+    addParamForRlStats(postParam);
+  }
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    let res_datas = res.data.aggregations.traffic_by_res_code.buckets;
+    res_datas.forEach((data) => {
+      datas.push({ res_code: data?.key, count: data?.doc_count });
+    });
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getTopAuthScoreAuthStats(req) {
+  const { site_id, time_range, size } = req.body;
+  let postParam = {
+    size: 0,
+    aggregations: {
+      traffic_by_score: {
+        terms: {
+          field: "auth_score",
+          size,
+        },
+        aggregations: {
+          detection_sort: {
+            bucket_sort: {
+              sort: [
+                {
+                  _count: {
+                    order: "desc",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  };
+
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+  addParamForAuthStats(postParam);
+
+  let datas = [];
+  let sGetUrl = ES_URL_WEBLOG_SEARCH;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    let res_datas = res.data.aggregations.traffic_by_score.buckets;
+    res_datas.forEach((data) => {
+      datas.push({ auth_score: data?.key, count: data?.doc_count });
+    });
+  } catch (err) {
+    logger.error(err);
+  }
+  return datas;
+}
+
+async function getAuthEventLogs(req) {
+  const { site_id, time_range, conditions, action, from, count } = req.body;
+  const sitesNumber = await siteHelper.getNumberOfActiveSitesInOrg(req.user?.organisation);
+  if (0 == sitesNumber) return { total: 0, data: [] };
+
+  const sGetUrl = ES_URL_WEBLOG_SEARCH;
+  const sCountUrl = ES_URL_WEBLOG_COUNT;
+
+  let rawAuthLogs = [];
+  let authLogs = [];
+  let postParam = {
+    query: {
+      bool: { must: [], should: [], minimum_should_match: 1 },
+    },
+    sort: {
+      "@timestamp": "desc",
+    },
+  };
+  parseTimeRange(time_range, postParam, false);
+  await parseSiteId(req.user?.organisation, site_id, postParam, LogType.WEBLOG);
+  addParamForAuthStats(postParam);
+  addAuthEventConditions(postParam, conditions);
+
+  /*
+    let equalsCondition = undefined;
+    let containsCondition = undefined;
+    postParam.query.bool.must_not = [];
+    if (
+        undefined !== conditions &&
+        null !== conditions &&
+        "object" === typeof conditions &&
+        Array.isArray(conditions) &&
+        0 < conditions.length
+    ) {
+        for (let and_condition of conditions) {
+            const key = and_condition["key"];
+            const value = and_condition["value"];
+            const condition = and_condition["condition"];
+            if (
+                !isValidString(key) ||
+                !isValidString(value) ||
+                !isValidString(condition)
+            ) {
+                throw `Invalid filter condition for Auth event logs ${key} ${value} ${condition}`;
+            }
+            switch (key) {
+                case "country":
+                    containsCondition = undefined;
+                    equalsCondition = {
+                        term: { "geoip.geo.country_iso_code": value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "source_ip":
+                    containsCondition = undefined;
+                    equalsCondition = {
+                        term: { "source.address": value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "host_name":
+                    containsCondition = {
+                        bool: {
+                            should: [
+                                {
+                                    wildcard: {
+                                        "http.request.host": "*" + value + "*",
+                                    },
+                                },
+                                {
+                                    wildcard: {
+                                        "http.request.Host": "*" + value + "*",
+                                    },
+                                },
+                            ],
+                            minimum_should_match: 1,
+                        },
+                    };
+                    equalsCondition = {
+                        bool: {
+                            should: [
+                                {
+                                    term: {
+                                        "http.request.host": value,
+                                    },
+                                },
+                                {
+                                    term: {
+                                        "http.request.Host": value,
+                                    },
+                                },
+                            ],
+                            minimum_should_match: 1,
+                        },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "uri":
+                    containsCondition = {
+                        wildcard: {
+                            "url.original": "*" + value + "*",
+                        },
+                    };
+                    equalsCondition = {
+                        term: { "url.original": value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "ua":
+                    containsCondition = {
+                        bool: {
+                            should: [
+                                {
+                                    wildcard: {
+                                        "user_agent.original":
+                                            "*" + value + "*",
+                                    },
+                                },
+                            ],
+                            minimum_should_match: 1,
+                        },
+                    };
+                    equalsCondition = {
+                        bool: {
+                            should: [
+                                {
+                                    term: { "user_agent.original": value },
+                                },
+                            ],
+                            minimum_should_match: 1,
+                        },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "status":
+                    containsCondition = undefined;
+                    equalsCondition = {
+                        term: { "http.response.status_code": value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "auth_score":
+                    containsCondition = undefined;
+                    equalsCondition = {
+                        term: { auth_score: value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "method":
+                    containsCondition = {
+                        query_string: {
+                            default_field: "http.request.method",
+                            query: `*${value}*`,
+                        },
+                    };
+                    equalsCondition = {
+                        match: { "http.request.method": value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+                case "ja3_hash":
+                    containsCondition = {
+                        query_string: {
+                            default_field: "ja3_hash",
+                            query: `*${value}*`,
+                        },
+                    };
+                    equalsCondition = {
+                        match: { ja3_hash: value },
+                    };
+                    addEventFilter(
+                        postParam,
+                        condition,
+                        equalsCondition,
+                        containsCondition
+                    );
+                    break;
+            }
+        }
+    }
+    */
+
+  switch (action) {
+    case WafAction.BLOCK:
+      postParam.query.bool.must.push({
+        range: { "http.response.status_code": { gte: 300 } },
+      });
+      break;
+    case WafAction.CHALLENGE:
+      postParam.query.bool.must.push({
+        range: { "http.response.status_code": { gte: 500 } },
+      });
+      break;
+    case WafAction.ALL:
+    default:
+      break;
+  }
+
+  if (count) {
+    postParam.size = count;
+  } else {
+    postParam.size = 5;
+  }
+  if (from) {
+    postParam.from = from;
+  } else {
+    postParam.from = 0;
+  }
+
+  let total = 0;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    rawAuthLogs = res.data.hits.hits;
+    delete postParam.sort;
+    delete postParam.from;
+    delete postParam.size;
+    res = await postToElasticCloud(sCountUrl, postParam);
+    total = res.data.count;
+  } catch (err) {
+    logger.error(err);
+    // rawAuthLogs = require("../data/sample/audit-logs.json");
+  }
+  authLogs = await Promise.all(
+    rawAuthLogs.map((rawAuthLog) => {
+      return parseRawAuthLog(rawAuthLog, false);
+    })
+  );
+  return { total, data: authLogs };
+}
+
+async function getAuthEventLog(log_id) {
+  let rawAuditLog = null;
+  const sGetUrl = ES_URL_WEBLOG_SEARCH;
+  let postParam = {
+    query: {
+      ids: { values: [log_id] },
+    },
+    size: 1,
+  };
+
+  let auditLog = null;
+  try {
+    let res = await postToElasticCloud(sGetUrl, postParam);
+    let rawAuditLogs = res.data.hits.hits;
+    if (rawAuditLogs.length > 0) {
+      rawAuditLog = rawAuditLogs[0];
+    }
+  } catch (err) {
+    logger.error(err);
+    // rawAuditLog = require("../data/sample/audit-log.json");
+  }
+
+  if (!rawAuditLog) {
+    throw `Auth event log ${log_id} not found`;
+    // return null;
+  }
+
+  auditLog = parseRawAuthLog(rawAuditLog, true);
+  return auditLog;
+}
+
 async function getRlEventLogs(req) {
   const { site_id, time_range, conditions, action, from, count } = req.body;
   const sitesNumber = await siteHelper.getNumberOfActiveSitesInOrg(req.user?.organisation);
@@ -5220,10 +6709,13 @@ module.exports = {
   calculateRateLimitTrafficAccount4Organisation,
   calculateAntiDdosTrafficAccount4Organisation,
   calculateBotTrafficAccount4Organisation,
+  calculateAuthTrafficAccount4Organisation,
   getWafEdgeStats,
   getWafEdgeRealtimeTrafficStats,
   getBmEngineStats,
   getBmEngineRealtimeTrafficStats,
+  getAuEngineStats,
+  getAuEngineRealtimeTrafficStats,
   deleteAllOldLogs,
   deleteAllOldAdAccessLogs,
   getBotStats,
@@ -5240,6 +6732,20 @@ module.exports = {
   getTopBotScoreBotStats,
   getBotEventLogs,
   getBotEventLog,
+  getAuthStats,
+  getAuthScoreStats,
+  getAuthScoreStatsTotal,
+  getTopRegionAuthStats,
+  getTopSourceAuthStats,
+  getTopPathAuthStats,
+  getTopUaAuthStats,
+  getTopHostAuthStats,
+  getTopJa3HashAuthStats,
+  getTopHttpMethodAuthStats,
+  getTopHttpResCodeAuthStats,
+  getTopAuthScoreAuthStats,
+  getAuthEventLogs,
+  getAuthEventLog,
   getRlEventLogs,
   getRlEventLog,
   getRlStats,

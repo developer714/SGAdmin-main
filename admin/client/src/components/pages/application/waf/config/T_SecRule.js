@@ -136,7 +136,6 @@ function EnhancedTable({ disable }) {
   const { state } = useLocation();
   const { wafConfig, currule, configCrsSecRule } = useWAFConfig();
 
-  // console.log(wafConfig);
 
   const [rows, setRows] = React.useState(null);
   const [order, setOrder] = React.useState("asc");

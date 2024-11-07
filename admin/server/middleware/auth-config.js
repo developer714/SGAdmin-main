@@ -4,6 +4,7 @@ const { SITE_ID_ALL } = require("../constants/config/Waf");
 const { SiteModel } = require("../models/Site");
 const { isValidId } = require("../helpers/db");
 
+
 async function auth_config(req, res, next) {
   let site_id = req.body.site_id;
   const site_uid = req.params?.site_uid;
@@ -32,6 +33,7 @@ async function auth_config(req, res, next) {
     }
     return next();
   }
+
   if (!isValidString(site_id)) {
     site_id = req.query.site_id;
   }

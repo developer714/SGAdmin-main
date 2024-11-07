@@ -23,7 +23,7 @@ import {
 } from "../../../components/pages/application/common/styled";
 import DeleteProviderModal from "../../../components/pages/application/admin/saml/M_DeleteProvider";
 import useAuth from "../../../hooks/useAuth";
-import { auth0Config } from "../../../config";
+// import { keycloakConfig } from "../../../config";
 import keycloak from "../../../Keycloak";
 import useIdP from "../../../hooks/user/useIdP";
 
@@ -232,7 +232,7 @@ function SAMLConfig() {
                         value={
                           // prettier-ignore
                           values.connection_name?.length > 0
-                                                    ? `urn:auth0:${auth0Config.tenant}:${values.connection_name}`
+                                                    ? `${keycloak.url}:${keycloak.realm}:${values.connection_name}`
                                                     : ""
                         }
                       />

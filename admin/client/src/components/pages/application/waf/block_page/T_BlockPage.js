@@ -331,7 +331,7 @@ function EnhancedTable() {
           {UserRole.READONLY_USER === userRole ? "View" : "Edit"}
         </MenuItem>
         {UserRole.READONLY_USER === userRole ? (
-          <></>
+          null
         ) : (
           <MenuItem onClick={deleteBlockPages} disableRipple>
             <DeleteIcon />

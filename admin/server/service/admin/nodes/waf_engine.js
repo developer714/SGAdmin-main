@@ -15,6 +15,7 @@ const { isProductionEnv } = require("../../../helpers/env");
 const { NotFoundError } = require("../../../middleware/error-handler");
 const edgeService = require("./rl_engine");
 const bmEngineService = require("./bm_engine");
+const auEngineService = require("./au_engine");
 const adEngineService = require("./ad_engine");
 const ombServiceService = require("./omb_service");
 
@@ -303,6 +304,17 @@ async function applySgCertConfig() {
       }
     })
   );
+
+  const au_engines = await auEngineService.getAllAuEngineNodes();
+  await Promise.all(
+    au_engines.map(async (au_engine) => {
+      try {
+        await post2WafNodeApi(au_engine, url, payload, jwtToken);
+      } catch (err) {
+        logger.error(err.response?.data?.message || err.message);
+      }
+    })
+  );
 }
 
 async function __applySslconfig() {
@@ -347,6 +359,20 @@ async function __applySslconfig() {
       }
     })
   );
+
+  const au_engines = await auEngineService.getAllActiveAuEngineNodes();
+  await Promise.all(
+    au_engines.map(async (au_engine) => {
+      try {
+        payload.node_id = au_engine.id;
+        jwtToken = generateWafJwtToken("POST", real_url, payload);
+        await post2WafNodeApi(au_engine, url, payload, jwtToken, true);
+      } catch (err) {
+        logger.error(err.response?.data?.message || err.message);
+      }
+    })
+  );
+
 
   const ad_engines = await adEngineService.getAllActiveAdEngineNodes();
   url = isProductionEnv() ? "/api/admin/v1/node/apply_ssl" : real_url;

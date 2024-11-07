@@ -46,6 +46,8 @@ const { isOwnerOfSite } = require("../helpers/config");
 const { isValidString } = require("../helpers/validator");
 const { BotConfigModel } = require("../models/BotConfig");
 const { BotExceptionModel } = require("../models/BotException");
+const { AuthConfigModel } = require("../models/AuthConfig");
+const { AuthExceptionModel } = require("../models/AuthException");
 const { RateLimitRuleModel } = require("../models/RateLimitRule");
 const { isWildcardCertPending } = require("../helpers/zerossl");
 const { NotFoundError, UnauthorizedError } = require("../middleware/error-handler");
@@ -327,6 +329,7 @@ async function createSite(req) {
     await newSslConfig.save();
 
     await BotConfigModel.create({ site_id: newSite._id });
+    await AuthConfigModel.create({ site_id: newSite._id });
     await DdosConfigModel.create({ site_id: newSite._id });
     // await applySiteConfig(site_id);  // No need to call when we use onboarding flow for creating site. It will be called after user finishes operation and click "Submit" button.
     return newSite;
@@ -396,7 +399,6 @@ async function updateSite(site_uid, params) {
 
   const subdomains_cache_key = `${CACHE_KEY_ALL_SUBDOMAIN_NAMES_OF_SITE}/${site_id}`;
   cache.set(subdomains_cache_key, subdomains?.map((subdomain) => subdomain.name) ?? [], CACHE_TIMEOUT_SITE_CONFIG);
-  console.log("service/site", cache.get(subdomains_cache_key));
 
   if (undefined !== enable) {
     await site.populate("waf_config");
@@ -421,8 +423,10 @@ async function removeOneSite(site_id) {
   await FwRuleModel.deleteMany({ site_id: site._id });
   await RateLimitRuleModel.deleteMany({ site_id: site._id });
   await BotConfigModel.deleteMany({ site_id: site._id });
+  await AuthConfigModel.deleteMany({ site_id: site._id });
   await DdosConfigModel.deleteMany({ site_id: site._id });
   await BotExceptionModel.deleteMany({ site_id: site._id });
+  await AuthExceptionModel.deleteMany({ site_id: site._id });
   await SiteModel.deleteOne({ site_id });
   await esService.deleteESLogs4Site(site_id);
   return true;

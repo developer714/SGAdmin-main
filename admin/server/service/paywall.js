@@ -29,6 +29,7 @@ const siteService = require("./site");
 const wafService = require("./admin/nodes/waf_engine");
 const edgeService = require("./admin/nodes/rl_engine");
 const ombService = require("./admin/nodes/omb_service");
+const auService = require("./admin/nodes/au_engine");
 const bmService = require("./admin/nodes/bm_engine");
 const esEngineService = require("./admin/nodes/es_engine");
 const notiService = require("./notification");
@@ -710,6 +711,7 @@ async function checkLicense4Org(org, stripeInstance) {
     await esService.calculateRateLimitTrafficAccount4Organisation(org);
     await esService.calculateAntiDdosTrafficAccount4Organisation(org);
     await esService.calculateBotTrafficAccount4Organisation(org);
+    await esService.calculateAuthTrafficAccount4Organisation(org);
     const traffic_noti = await esService.calculateTrafficAccount4Organisation(org);
     if (isValidString(traffic_noti)) {
       createNotification("Request Limit", traffic_noti, org, NotificationType.LICENSE);
@@ -828,6 +830,7 @@ async function checkAllLicenses() {
     await wafService.removeOldWafEngineNodes();
     await edgeService.removeOldRlEngineNodes();
     await bmService.removeOldBmEngineNodes();
+    await auService.removeOldAuEngineNodes();
     await esEngineService.removeOldEsEngineNodes();
     await ombService.removeOldOmbServiceNodes();
 

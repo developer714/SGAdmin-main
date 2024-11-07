@@ -461,6 +461,58 @@ async function parseSiteId(org, site_id, postParam, nLogType, bThrow = true) {
       }
       postParam.query.bool.must.push(shouldParam);
     }
+
+  } else if (LogType.AUTHSCORE == nLogType) {
+    if (isValidString(site_id) && SITE_ID_ALL !== site_id) {
+      const subdomainNames = await getFullSubdomainNamesInSite(site_id);
+      const shouldConditions = [];
+      subdomainNames.forEach((subdomainName) => {
+        shouldConditions.push({
+          match: {
+            "hostname.keyword": {
+              query: subdomainName,
+            },
+          },
+        });
+      });
+      postParam.query.bool.must.push({
+        bool: {
+          should: shouldConditions,
+          minimum_should_match: 1,
+        },
+      });
+    } else {
+      const sites = await siteHelper.getBasicActiveSitesInOrg(org);
+      if (0 === sites?.length) {
+        throwOrLog(`No sites for this organisation ${org?.title}, authscore logs`, bThrow);
+      }
+      const shouldParam = {
+        bool: {
+          should: [],
+          minimum_should_match: 1,
+        },
+      };
+      for (let site of sites) {
+        const subdomainNames = await getFullSubdomainNamesInSite(site.site_id);
+        const shouldConditions = [];
+        subdomainNames.forEach((subdomainName) => {
+          shouldConditions.push({
+            match: {
+              "hostname.keyword": {
+                query: subdomainName,
+              },
+            },
+          });
+        });
+        shouldParam.bool.should.push({
+          bool: {
+            should: shouldConditions,
+            minimum_should_match: 1,
+          },
+        });
+      }
+      postParam.query.bool.must.push(shouldParam);
+    }
   } else {
     if (LogType.WEBLOG === nLogType || LogType.AD_ACCESS === nLogType) {
       sHostFieldPath = "http.request";
@@ -550,6 +602,27 @@ async function parseSiteId4BotTrafficAccount(org, postParam, bThrow = true) {
   postParam.query.bool.must.push(shouldParam);
 }
 
+async function parseSiteId4AuthTrafficAccount(org, postParam, bThrow = true) {
+  const sites = await siteHelper.getBasicBmEnabledSitesInOrg(org);
+  if (0 === sites?.length) {
+    throwOrLog(`No sites for this organisation ${org?.title}, auth accounting logs`, bThrow);
+  }
+  const shouldParam = {
+    bool: {
+      should: [],
+      minimum_should_match: 1,
+    },
+  };
+  for (let site of sites) {
+    shouldParam.bool.should.push({
+      wildcard: {
+        accounting_id: "*" + site.site_id + "*",
+      },
+    });
+  }
+  postParam.query.bool.must.push(shouldParam);
+}
+
 function isValidInterval(interval) {
   if (!isValidString(interval)) {
     return false;
@@ -616,6 +689,7 @@ module.exports = {
   parseTimeRange,
   parseSiteId,
   parseSiteId4BotTrafficAccount,
+  parseSiteId4AuthTrafficAccount,
   isValidInterval,
   resetActiveEsNodes,
   getFilteredRawAuditLog,

@@ -117,6 +117,24 @@ const OrganisationSchema = Schema({
       default: 0,
     },
   },
+  auth_traffic_account: {
+    current_period_started_at: {
+      type: Date,
+    },
+    updated_at: {
+      type: Date,
+    },
+    requests_number: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    traffic_bytes: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+  },
   zoho_crm: {
     Account: {
       id: { type: String /*, required: true, default: "" */ },

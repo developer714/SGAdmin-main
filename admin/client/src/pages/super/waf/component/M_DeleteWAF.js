@@ -37,6 +37,8 @@ function DeleteWAFModal({ type, open, handleClose, id, name, removeFlag }) {
                         ? "RL Engine"
                         : WafNodeType.BM_ENGINE === type
                         ? "BM Engine"
+                        : WafNodeType.AU_ENGINE === type
+                        ? "AU Engine"
                         : WafNodeType.ES_ENGINE === type
                         ? "ES Engine"
                         : WafNodeType.OMB_SERVICE === type

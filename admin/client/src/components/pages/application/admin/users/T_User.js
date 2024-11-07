@@ -535,8 +535,8 @@ function EnhancedTable({ refresh, download }) {
           // <MenuItem onClick={restoreClick} disableRipple>
           //     <RestoreIcon />
           //     Restore
-          // </MenuItem>
-          <></>
+          // </MenuItem> 
+          null
         ) : (
           <MenuItem onClick={deleteClick} disableRipple>
             <DeleteIcon />

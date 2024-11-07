@@ -20,18 +20,19 @@ function App({ emotionCache = clientSideEmotionCache }) {
   const content = useRoutes(routes);
 
   return (
-    <ThemeCustomization>
-      <CacheProvider value={emotionCache}>
-        <HelmetProvider>
-          <Helmet titleTemplate="%s | SD" defaultTitle="SENSE DEFENCE" />
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <AuthProvider>
-              <ErrorBoundary>{content}</ErrorBoundary>
-            </AuthProvider>
-          </LocalizationProvider>
-        </HelmetProvider>
-      </CacheProvider>
-    </ThemeCustomization>
+    
+      <ThemeCustomization>
+        <CacheProvider value={emotionCache}>
+          <HelmetProvider>
+            <Helmet titleTemplate="%s | SD" defaultTitle="SENSE DEFENCE" />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <AuthProvider>
+                <ErrorBoundary>{content}</ErrorBoundary>
+              </AuthProvider>
+            </LocalizationProvider>
+          </HelmetProvider>
+        </CacheProvider>
+      </ThemeCustomization>
   );
 }
 

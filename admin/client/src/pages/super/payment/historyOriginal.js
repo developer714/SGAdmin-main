@@ -81,7 +81,7 @@ function SAPaymentHistoryOriginal() {
       </Grid>
       <Divider my={4} />
       <ButtonGroup variant="outlined" fullWidth>
-        <Button
+        {/* <Button
           variant={"contained"}
           color="primary"
           py={3}
@@ -98,7 +98,7 @@ function SAPaymentHistoryOriginal() {
           >
             Normal
           </Typography>
-        </Button>
+        </Button> */}
         <Button
           variant="outlined"
           color="primary"

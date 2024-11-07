@@ -38,15 +38,18 @@ async function createAdmin(params) {
   // Create Keycloak account
   account.user_id = await createKeycloakUser({
     email: params.email,
-    blocked: false,
-    email_verified: params.verify,
-    given_name: params.firstName,
-    family_name: params.lastName,
-    name: `${params.firstName} ${params.lastName}`,
-    nickname: `${params.firstName} ${params.lastName}`,
-    password: params.password,
-    verify_email: params.verify,
+    enabled: true,
+    firstName: params.firstName,
+    lastName: params.lastName,
+    username: params.firstName + " " + params.lastName,
+    emailVerified: params.verify,
+    credentials: [{
+      type: "password",
+      value: params.password,
+      temporary: false
+    }]
   });
+
 
   // save account
   await account.save();

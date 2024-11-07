@@ -1,7 +1,7 @@
 import { Box, Checkbox, Grid, Tooltip, Typography } from "@mui/material";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { BotScore } from "../../../../utils/constants";
+import { BotScore, AuthScore } from "../../../../utils/constants";
 import { formatHttpResponseCode, formatNumbers } from "../../../../utils/format";
 import { MenuItem } from "../common/styled";
 
@@ -156,6 +156,20 @@ const getBotType = (bot_score) => {
   }
 };
 
+const getAuthType = (auth_score) => {
+  if (0 === auth_score) {
+    return "Unknown";
+  } else if (AuthScore.MIN_BAD === auth_score) {
+    return "Bad Auth";
+  } else if (AuthScore.MAX_BAD >= auth_score) {
+    return "Likely Bad Auth";
+  } else if (AuthScore.MAX_GOOD >= auth_score) {
+    return "Verified Auths";
+  } else {
+    return "Likely Human";
+  }
+};
+
 const getPeriodString = (period, customDateRange) => {
   switch (period) {
     case "30m":
@@ -249,6 +263,7 @@ export {
   downloadAsPdf,
   downloadObjectAsJson,
   getBotType,
+  getAuthType,
   getPeriodString,
   CheckKeyValueComponent,
   CheckKeyAllComponent,

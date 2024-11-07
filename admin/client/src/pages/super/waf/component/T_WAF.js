@@ -113,6 +113,8 @@ const EnhancedTableHead = (props) => {
     headCells[0].label = "RL Engine";
   } else if (WafNodeType.BM_ENGINE === type) {
     headCells[0].label = "BM Engine";
+  } else if (WafNodeType.AU_ENGINE === type) {
+    headCells[0].label = "AU Engine";
   } else if (WafNodeType.AD_ENGINE === type) {
     headCells[0].label = "AD Engine";
   } else if (WafNodeType.ES_ENGINE === type) {
@@ -451,9 +453,9 @@ function EnhancedTable({ type }) {
               orderBy={orderBy}
               // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              // onDeleteClick={deleteClick}
-              // onRestoreClick={restoreClick}
-              // rowCount={totalCount}
+            // onDeleteClick={deleteClick}
+            // onRestoreClick={restoreClick}
+            // rowCount={totalCount}
             />
             {wafEdges === null ? (
               <SkeletonContent rowsPerPage={rowsPerPage} />
@@ -466,14 +468,16 @@ function EnhancedTable({ type }) {
                       {WafNodeType.RL_ENGINE === type
                         ? " RL engines"
                         : WafNodeType.BM_ENGINE === type
-                        ? " BM engines"
-                        : WafNodeType.AD_ENGINE === type
-                        ? " AD engines"
-                        : WafNodeType.ES_ENGINE === type
-                        ? " ES engines"
-                        : WafNodeType.OMB_SERVICE === type
-                        ? " OMB Services"
-                        : " WAF engines"}
+                          ? " BM engines"
+                          : WafNodeType.AU_ENGINE === type
+                            ? " AU engines"
+                            : WafNodeType.AD_ENGINE === type
+                              ? " AD engines"
+                              : WafNodeType.ES_ENGINE === type
+                                ? " ES engines"
+                                : WafNodeType.OMB_SERVICE === type
+                                  ? " OMB Services"
+                                  : " WAF engines"}
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -490,7 +494,7 @@ function EnhancedTable({ type }) {
                       // aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={`${row?.id}-${index}`}
-                      // selected={isItemSelected}
+                    // selected={isItemSelected}
                     >
                       {/* <TableCell
                                                 role="checkbox"
@@ -691,33 +695,33 @@ function EnhancedTable({ type }) {
           View
         </MenuItem>
         {[UserRole.SUPER_ADMIN].includes(adminRole) && (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               Edit
-            </MenuItem>
-            {WafNodeType.AD_ENGINE !== type &&
-              (deleted ? (
-                <MenuItem onClick={restoreClick} disableRipple>
-                  <RestoreIcon />
-                  Restore
-                </MenuItem>
-              ) : (
-                <MenuItem onClick={deleteClick} disableRipple>
-                  <DeleteIcon />
-                  Delete
-                </MenuItem>
-              ))}
-            {WafNodeType.AD_ENGINE !== type && (
-              <>
-                <hr />
-                <MenuItem onClick={removeClick} disableRipple>
+            </MenuItem>,
+            WafNodeType.AD_ENGINE !== type &&
+            (deleted ? (
+              <MenuItem onClick={restoreClick} disableRipple key={1}>
+                <RestoreIcon />
+                Restore
+              </MenuItem>
+            ) : (
+              <MenuItem onClick={deleteClick} disableRipple key={1}>
+                <DeleteIcon />
+                Delete
+              </MenuItem>
+            )),
+            WafNodeType.AD_ENGINE !== type && (
+              [
+                <hr key={0}/>,
+                <MenuItem onClick={removeClick} disableRipple key={1}>
                   <RemoveIcon />
                   Remove
                 </MenuItem>
-              </>
-            )}
-          </>
+              ]
+            ),
+          ]
         )}
       </StyledMenu>
     </>

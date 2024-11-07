@@ -15,6 +15,7 @@ import { AdminProvider } from "./contexts/user/AdminContext";
 import { EventProvider } from "./contexts/user/EventContext";
 import { WAFRuleProvider } from "./contexts/user/WAFConfigContext";
 import { BMConfigProvider } from "./contexts/user/BMConfigContext";
+import { AUConfigProvider } from "./contexts/user/AUConfigContext.js";
 import { DdosConfigProvider } from "./contexts/user/DdosConfigContext";
 import { SiteProvider } from "./contexts/user/SiteContext";
 import { SslConfigProvider } from "./contexts/user/SSLConfigContext";
@@ -30,6 +31,7 @@ import { UserProvider } from "./contexts/super/UserContext";
 import { WAFProvider } from "./contexts/super/nodes/WAFContext";
 import { WAFEdgeProvider } from "./contexts/super/nodes/WAFEdgeContext";
 import { BmEngineProvider } from "./contexts/super/nodes/BmEngineContext";
+import { AuEngineProvider } from "./contexts/super/nodes/AuEngineContext";
 import { EsEngineProvider } from "./contexts/super/nodes/EsEngineContext";
 import { AdEngineProvider } from "./contexts/super/nodes/AdEngineContext";
 import { OmbServiceProvider } from "./contexts/super/nodes/OmbServiceContext";
@@ -37,6 +39,7 @@ import { MonitorProvider } from "./contexts/super/monitor_nodes/MonitorContext";
 import { MonitorOmbServiceProvider } from "./contexts/super/monitor_nodes/MonitorOmbServiceContext";
 import { MonitorEdgeProvider } from "./contexts/super/monitor_nodes/MonitorEdgeContext";
 import { MonitorBmEngineProvider } from "./contexts/super/monitor_nodes/MonitorBmEngineContext";
+import { MonitorAuEngineProvider } from "./contexts/super/monitor_nodes/MonitorAuEngineContex.js";
 import { MonitorAdEngineProvider } from "./contexts/super/monitor_nodes/MonitorAdEngineContext";
 import { MonitorEsEngineProvider } from "./contexts/super/monitor_nodes/MonitorEsEngineContext";
 import { RegionProvider } from "./contexts/super/RegionContext";
@@ -48,11 +51,11 @@ import { RuleProvider } from "./contexts/super/RuleContext";
 import { PaymentProvider } from "./contexts/super/PaymentContext";
 import { ZcrmProvider } from "./contexts/super/ZcrmContext";
 import { BMProvider } from "./contexts/super/BMContext";
+import { AUProvider } from "./contexts/super/AUContext";
 import { ADProvider } from "./contexts/super/ADContext";
 import { AdExceptionProvider } from "./contexts/super/ADExceptionContext";
 // Landing
 import Landing from "./pages/landing";
-
 // Auth components
 /*
 import SignIn from "./pages/auth/SignIn";
@@ -100,6 +103,13 @@ import BMException from "./pages/application/bot/exception";
 import NewBotException from "./pages/application/bot/newException";
 import EditBotException from "./pages/application/bot/editException";
 
+
+// application/auth
+import AUConfig from "./pages/application/auth/config";
+import AUException from "./pages/application/auth/exception";
+import NewAuthException from "./pages/application/auth/newException";
+import EditAuthException from "./pages/application/auth/editException";
+
 // application/ddos
 import DdosConfig from "./pages/application/ddos/config";
 
@@ -117,6 +127,9 @@ import AnalyticsEventsDetail from "./pages/application/analytics/detail";
 
 import AnalyticsBotEvents from "./pages/application/analytics/bot_events";
 import AnalyticsBotEventsDetail from "./pages/application/analytics/bot_detail";
+
+import AnalyticsAuthEvents from "./pages/application/analytics/auth_events";
+import AnalyticsAuthEventsDetail from "./pages/application/analytics/auth_detail";
 
 import AnalyticsRLEvents from "./pages/application/analytics/rl_events";
 import AnalyticsRLEventsDetail from "./pages/application/analytics/rl_detail";
@@ -143,7 +156,7 @@ import SAZcrmProduct from "./pages/super/zcrm/product";
 import SAZcrmAccountContact from "./pages/super/zcrm/account_contact";
 import SAZcrmQuote from "./pages/super/zcrm/quote";
 import SARateLimitBillConfig from "./pages/super/payment/rateLimitBill";
-import SAPaymentHistoryOriginal from "./pages/super/payment/historyOriginal";
+// import SAPaymentHistoryOriginal from "./pages/super/payment/historyOriginal";
 import SAPaymentHistoryCustom from "./pages/super/payment/historyCustom";
 /*
 import SABMPayment from "./pages/super/bm/payment";
@@ -151,6 +164,7 @@ import SABmLicenseUsage from "./pages/super/bm/license_usage";
 import SABMPackage from "./pages/super/bm/package";
 */
 import SAAwsS3Cfgs from "./pages/super/bm/aws_s3";
+import AU_SAAwsS3Cfgs from "./pages/super/au/au_aws_s3.js";
 import SAAdCfgs from "./pages/super/ad/config";
 import SAAdException from "./pages/super/ad/exception";
 import SAPaymentCommonPackage from "./pages/super/payment/common";
@@ -183,6 +197,7 @@ import SAPaymentFeature from "./pages/super/payment/feature";
 import SAProfile from "./pages/super/profile";
 import { WafNodeType } from "./utils/constants";
 import BMDashboard from "./pages/application/bot/dashboard";
+import AUDashboard from "./pages/application/auth/dashboard";
 import { IdPProvider } from "./contexts/user/IdPContext";
 import AgreePolicy from "./pages/auth/AgreePolicy";
 import LogIn from "./pages/auth/LogIn";
@@ -305,6 +320,14 @@ const routes = [
         ),
       },
       {
+        path: "monitor/au_engine",
+        element: (
+          <MonitorAuEngineProvider>
+            <SAWAFEdgeHealth type={WafNodeType.AU_ENGINE} />
+          </MonitorAuEngineProvider>
+        ),
+      },
+      {
         path: "monitor/ad_engine",
         element: (
           <MonitorAdEngineProvider>
@@ -369,11 +392,27 @@ const routes = [
         ),
       },
       {
+        path: "stats/au_engine_real",
+        element: (
+          <MonitorAuEngineProvider>
+            <SAWAFEdgeStatsReal type={WafNodeType.AU_ENGINE} />
+          </MonitorAuEngineProvider>
+        ),
+      },
+      {
         path: "stats/bm_engine_past",
         element: (
           <MonitorBmEngineProvider>
             <SAWAFEdgeStatsHistory type={WafNodeType.BM_ENGINE} />
           </MonitorBmEngineProvider>
+        ),
+      },
+      {
+        path: "stats/au_engine_past",
+        element: (
+          <MonitorAuEngineProvider>
+            <SAWAFEdgeStatsHistory type={WafNodeType.AU_ENGINE} />
+          </MonitorAuEngineProvider>
         ),
       },
       {
@@ -424,16 +463,16 @@ const routes = [
           </PaymentProvider>
         ),
       },
+      // {
+      //   path: "payment/history",
+      //   element: (
+      //     <PaymentProvider>
+      //       <SAPaymentHistoryOriginal />
+      //     </PaymentProvider>
+      //   ),
+      // },
       {
         path: "payment/history",
-        element: (
-          <PaymentProvider>
-            <SAPaymentHistoryOriginal />
-          </PaymentProvider>
-        ),
-      },
-      {
-        path: "payment/history/custom",
         element: (
           <PaymentProvider>
             <SAPaymentHistoryCustom />
@@ -524,6 +563,15 @@ const routes = [
           <BMProvider>
             <SAAwsS3Cfgs />
           </BMProvider>
+        ),
+      },
+      {
+        path: "au/aws_s3",
+        element: (
+          <AUProvider>
+            {/* eslint-disable-next-line */}
+            <AU_SAAwsS3Cfgs /> 
+          </AUProvider>
         ),
       },
       /*
@@ -708,6 +756,14 @@ const routes = [
           <BmEngineProvider>
             <SAWAFList type={WafNodeType.BM_ENGINE} />
           </BmEngineProvider>
+        ),
+      },
+      {
+        path: "au_engine/list",
+        element: (
+          <AuEngineProvider>
+            <SAWAFList type={WafNodeType.AU_ENGINE} />
+          </AuEngineProvider>
         ),
       },
       {
@@ -1112,6 +1168,48 @@ const routes = [
         ),
       },
       {
+        path: ":configSite/auth/dashboard",
+        element: (
+          <AUConfigProvider>
+            <EventProvider>
+              <AUDashboard />
+            </EventProvider>
+          </AUConfigProvider>
+        ),
+      },
+      {
+        path: ":configSite/auth/config",
+        element: (
+          <AUConfigProvider>
+            <AUConfig />
+          </AUConfigProvider>
+        ),
+      },
+      {
+        path: ":configSite/auth/exception",
+        element: (
+          <AUConfigProvider>
+            <AUException />
+          </AUConfigProvider>
+        ),
+      },
+      {
+        path: ":configSite/auth/exception/new",
+        element: (
+          <AUConfigProvider>
+            <NewAuthException />
+          </AUConfigProvider>
+        ),
+      },
+      {
+        path: ":configSite/auth/exception/edit/:authExceptionID",
+        element: (
+          <AUConfigProvider>
+            <EditAuthException />
+          </AUConfigProvider>
+        ),
+      },
+      {
         path: ":configSite/ddos/config",
         element: (
           <DdosConfigProvider>
@@ -1162,6 +1260,24 @@ const routes = [
         element: (
           <EventProvider>
             <AnalyticsBotEventsDetail />
+          </EventProvider>
+        ),
+      },
+      {
+        path: "auth_events",
+        element: (
+          <EventProvider>
+            <AUConfigProvider>
+              <AnalyticsAuthEvents />
+            </AUConfigProvider>
+          </EventProvider>
+        ),
+      },
+      {
+        path: "auth_events/:eventID",
+        element: (
+          <EventProvider>
+            <AnalyticsAuthEventsDetail />
           </EventProvider>
         ),
       },

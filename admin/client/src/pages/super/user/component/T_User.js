@@ -668,45 +668,45 @@ function EnhancedTable() {
           View
         </MenuItem>
         {[UserRole.SUPER_ADMIN, UserRole.SUPPORT_ADMIN, UserRole.PAYMENT_ADMIN].includes(adminRole) && (
-          <>
-            <MenuItem onClick={editClick} disableRipple>
+          [
+            <MenuItem onClick={editClick} disableRipple key={0}>
               <EditIcon />
               Edit
-            </MenuItem>
-            {!verified && (
-              <MenuItem onClick={verifyClick} disableRipple>
+            </MenuItem>,
+            !verified && (
+              <MenuItem onClick={verifyClick} disableRipple key={1}>
                 <VerifiedIcon />
                 Verify
               </MenuItem>
-            )}
-            {enabled ? (
-              <MenuItem onClick={disableClick} disableRipple>
+            ),
+            enabled ? (
+              <MenuItem onClick={disableClick} disableRipple key={2}>
                 <DisableIcon />
                 Disable
               </MenuItem>
             ) : (
-              <MenuItem onClick={enableClick} disableRipple>
+              <MenuItem onClick={enableClick} disableRipple key={2}>
                 <EnableIcon />
                 Enable
               </MenuItem>
-            )}
-            {deleted ? (
-              <MenuItem onClick={restoreClick} disableRipple>
+            ),
+            deleted ? (
+              <MenuItem onClick={restoreClick} disableRipple key={3}>
                 <RestoreIcon />
                 Restore
               </MenuItem>
             ) : (
-              <MenuItem onClick={deleteClick} disableRipple>
+              <MenuItem onClick={deleteClick} disableRipple key={3}>
                 <DeleteIcon />
                 Delete
               </MenuItem>
-            )}
-            <hr />
-            <MenuItem onClick={removeClick} disableRipple>
+            ),
+            <hr key={4} />,
+            <MenuItem onClick={removeClick} disableRipple key={5}>
               <RemoveIcon />
               Remove
             </MenuItem>
-          </>
+          ]
         )}
       </StyledMenu>
     </div>

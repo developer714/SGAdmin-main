@@ -4,7 +4,7 @@ BackendDomain="pomb.sdinternal.com"
 GithubUsername="Binary-Vanguard-12138"
 GithubToken="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"
 AdminDirName="SGAdmin"
-EngineDirName="WAF-Engine"
+EngineDirName="AU-Engine"
 DepsRootDir="others/"
 
 IS_DEBIAN=false
@@ -141,6 +141,35 @@ function install_waf_engine {
     make -j$(nproc) && sudo make install
     cd ~
     rm -rf $EngineDirName
+}
+
+function install_au_engine {
+    cd ~
+    if [ ! -d $EngineDirName ]
+    then
+        git clone https://$GithubUsername:$GithubToken@github.com/Sense-Guard/$EngineDirName.git
+    else
+        cd $EngineDirName
+        # Update github token
+        git remote set-url origin https://$GithubUsername:$GithubToken@github.com/Sense-Guard/$EngineDirName.git
+        git remote set-url --push origin https://$GithubUsername:$GithubToken@github.com/Sense-Guard/$EngineDirName.git
+        git pull
+    fi
+    cd ~/$EngineDirName/AUEngine
+    if [ ! -d /var/log/bm ]; then
+        sudo mkdir -p /var/log/bm
+    fi
+    sudo chmod 777 -R /var/log/bm/
+ 
+    virtualenv env
+    source env/bin/activate
+    pip3 install -r requirements.txt
+    python3 manage.py migrate
+    deactivate
+
+    # Create empty .env file
+    cd ~/$EngineDirName/AUEngine/AUEngine
+    cp .env.example .env
 }
 
 function install_nginx {
@@ -325,6 +354,7 @@ is_debian
 install_deps
 install_nginx
 # install_waf_engine
+install_au_engine
 install_sd_admin
 prepare_nginx_conf_dir
 generate_cert

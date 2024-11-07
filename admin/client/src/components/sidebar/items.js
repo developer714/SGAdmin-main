@@ -16,6 +16,7 @@ import { ReactComponent as FwSvg } from "../../vendor/sidebar/firewall.svg";
 import { ReactComponent as RlSvg } from "../../vendor/sidebar/ratelimit.svg";
 import { ReactComponent as DdosSvg } from "../../vendor/sidebar/ddos.svg";
 import { ReactComponent as BotSvg } from "../../vendor/sidebar/bot.svg";
+import { ReactComponent as AuthSvg } from "../../vendor/sidebar/auth.svg";
 import { ReactComponent as Analytics } from "../../vendor/sidebar/analytics.svg";
 import { ReactComponent as AppsSvg } from "../../vendor/application.svg";
 
@@ -44,6 +45,10 @@ const DdosIcon = styled(DdosSvg)`
   height: 24px;
 `;
 const BotIcon = styled(BotSvg)`
+  width: 24px;
+  height: 24px;
+`;
+const AuthIcon = styled(AuthSvg)`
   width: 24px;
   height: 24px;
 `;
@@ -253,6 +258,27 @@ function Items() {
       ],
     };
 
+    const AUSection = {
+      href: "/application",
+      icon: AuthIcon,
+      title: "Auth Management",
+      children: [
+        {
+          href: `/application/${siteUid}/auth/dashboard`,
+          title: "Dashboard",
+        },
+        {
+          href: siteUid === "all" ? `/application/${siteList[0]?.id}/auth/config` : `/application/${siteUid}/auth/config`,
+          title: "Configuration",
+        },
+        {
+          href: siteUid === "all" ? `/application/${siteList[0]?.id}/auth/exception` : `/application/${siteUid}/auth/exception`,
+          title: "Exception",
+        },
+      ],
+    };
+
+
     const AnalyticsSection = {
       href: "/application",
       icon: AnalyticsIcon,
@@ -265,6 +291,10 @@ function Items() {
         {
           href: "/application/analytics/bot_events",
           title: "Bot Event",
+        },
+        {
+          href: "/application/analytics/auth_events",
+          title: "Auth Event",
         },
         {
           href: "/application/analytics/rl_events",
@@ -331,6 +361,10 @@ function Items() {
         SidebarSectionOA.push(BMSection);
         SidebarSectionNU.push(BMSection);
       }
+      if (0 < getFeatureValue(FeatureId.AUTH_MANAGEMENT)) {
+        SidebarSectionOA.push(AUSection);
+        SidebarSectionNU.push(AUSection);
+      }
       SidebarSectionOA = [...SidebarSectionOA, AnalyticsSection, AdministrationSection];
       SidebarSectionNU = [...SidebarSectionNU, AnalyticsSection, AdministrationSection_];
     } else {
@@ -344,6 +378,10 @@ function Items() {
       if (0 < getFeatureValue(FeatureId.BOT_MANAGEMENT)) {
         SidebarSectionOA.push(BMSection);
         SidebarSectionNU.push(BMSection);
+      }
+      if (0 < getFeatureValue(FeatureId.AUTH_MANAGEMENT)) {
+        SidebarSectionOA.push(AUSection);
+        SidebarSectionNU.push(AUSection);
       }
       SidebarSectionOA = [...SidebarSectionOA, AnalyticsSection, AdministrationSection, ProfileSection];
       SidebarSectionNU = [...SidebarSectionNU, AnalyticsSection, AdministrationSection_, ProfileSection];

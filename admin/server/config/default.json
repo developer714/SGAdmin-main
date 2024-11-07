@@ -19,11 +19,12 @@
     "AppId": "76e85dc8fd864129a74c10ed47105245"
   },
   "keycloak": {
-    "serverUrl": "http://localhost:8080",
-    "realm": "keycloak-react-auth",
-    "frontendId": "my-react-app-pkce",
-    "backendId": "www",
-    "clientSecret": "lskv51m30EeGvhAHq61sZxejicLBsuhP",
-    "grandType": "client_credentials"
+    "serverUrl": "https://auth.dev.sensedefence.net:8443",
+    "realm": "sense-defence",
+    "clientId": "sense-defence",
+    "clientSecret": "Uy4KSKBii3w49xD8mlJ90FgIGTBz0ZuE",
+    "grandType": "password",
+    "username": "myadmin",
+    "password": "myadmin"
   }
 }

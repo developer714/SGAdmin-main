@@ -456,6 +456,8 @@ function SAWAFEdgeHealth({ type }) {
               ? "WAF Engine "
               : WafNodeType.BM_ENGINE === type
               ? "BM Engine "
+              : WafNodeType.AU_ENGINE === type
+              ? "AU Engine "
               : WafNodeType.AD_ENGINE === type
               ? "AD Engine "
               : WafNodeType.ES_ENGINE === type
