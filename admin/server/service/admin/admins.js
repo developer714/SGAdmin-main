@@ -42,7 +42,7 @@ async function createAdmin(params) {
     firstName: params.firstName,
     lastName: params.lastName,
     username: params.firstName + " " + params.lastName,
-    emailVerified: true,
+    emailVerified: params.verify,
     credentials: [{
       type: "password",
       value: params.password,

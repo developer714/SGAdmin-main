@@ -25,7 +25,7 @@ const { createKeycloakUser, deleteKeycloakUser, deleteKeycloakConnection } = req
 const { CustomPackageModel } = require("../../models/CustomPackage");
 
 async function createOrganisation(params) {
-  const { title, firstName, lastName, email, password } = params;
+  const { title, firstName, lastName, email, password, verify } = params;
   const newOrg = new OrganisationModel({ title, start_date: Date.now() });
   const admin = new UserModel({
     firstName,
@@ -36,11 +36,10 @@ async function createOrganisation(params) {
   admin.passwordHash = hash(password);
   admin.organisation = newOrg._id;
   admin.verified = Date.now();
-  
   admin.user_id = await createKeycloakUser({
     email: admin.email,
     enabled: true,
-    emailVerified: true,
+    emailVerified: verify,
     firstName: admin.firstName,
     lastName: admin.lastName,
     username: admin.firstName + " " + admin.lastName,

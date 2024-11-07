@@ -637,7 +637,7 @@ async function createUser(req) {
     account.user_id = await createKeycloakUser({
       email: params.email,
       enabled: true,
-      emailVerified: true,
+      emailVerified: params.verify,
       firstName: params.firstName,
       lastName: params.lastName,
       username: params.firstName + " " + params.lastName,

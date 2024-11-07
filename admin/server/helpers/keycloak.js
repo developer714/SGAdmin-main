@@ -126,7 +126,6 @@ const resendKeycloakVerificationEmail = async (userId) => {
       },
     );
   } catch (err) {
-    console.log(err);
     throw new Error(err.response.data.error_description || "Failed to resend verification email");
   }
 };

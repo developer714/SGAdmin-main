@@ -163,6 +163,7 @@ function authorize(roles = [], permissions = APIKeyPermissions.NOT_ALLOWED) {
       let users = await UserModel.find();
       if (users.length === 0) {
         await updateRealmSettings(false);
+        await resendKeycloakVerificationEmail(req.auth.sub);
         // await assignRoleToUser(req.auth.sub);
         let newUser = new UserModel({
           user_id: req.auth.sub,
